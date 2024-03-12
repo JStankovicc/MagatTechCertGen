@@ -24,7 +24,7 @@ public class DataLoader {
         User adminUser = User.builder()
                 .firstName("Admin")
                 .lastName("Adminovic")
-                .email("admin@google.com")
+                .email("admin@gmail.com")
                 .password(passwordEncoder.encode("123"))
                 .role(Role.ADMIN)
                 .build();
@@ -33,7 +33,7 @@ public class DataLoader {
         User regularUser = User.builder()
                 .firstName("Regular")
                 .lastName("Userovic")
-                .email("user@google.com")
+                .email("user@gmail.com")
                 .password(passwordEncoder.encode("123"))
                 .role(Role.USER)
                 .build();
