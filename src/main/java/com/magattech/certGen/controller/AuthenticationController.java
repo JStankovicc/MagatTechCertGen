@@ -1,5 +1,6 @@
 package com.magattech.certGen.controller;
 
+import com.magattech.certGen.model.request.SignInWithTokenRequest;
 import com.magattech.certGen.model.request.SignUpRequest;
 import com.magattech.certGen.model.request.SigninRequest;
 import com.magattech.certGen.model.response.JwtAuthenticationResponse;
@@ -24,5 +25,13 @@ public class AuthenticationController {
     @PostMapping("/signin")
     public ResponseEntity<JwtAuthenticationResponse> signin(@RequestBody SigninRequest request) {
         return ResponseEntity.ok(authenticationService.signin(request));
+    }
+
+    @PostMapping("/token")
+    public ResponseEntity<JwtAuthenticationResponse> signInWithToken(@RequestBody SignInWithTokenRequest request){
+        JwtAuthenticationResponse response = authenticationService.signInWithToken(request);
+        if(response.getToken().equals("FALSE")){
+            return ResponseEntity.status(403).build();
+        }else return ResponseEntity.ok(response);
     }
 }

@@ -1,11 +1,13 @@
 package com.magattech.certGen.service.implementation;
 
 import com.magattech.certGen.service.JwtService;
+import com.magattech.certGen.service.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,11 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
+@RequiredArgsConstructor
 public class JwtServiceImpl implements JwtService {
+
+    private final UserService userService;
+
     @Value("${token.signing.key}")
     private String jwtSigningKey;
     @Override
@@ -33,6 +39,14 @@ public class JwtServiceImpl implements JwtService {
     @Override
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String userName = extractUserName(token);
+        return (userName.equals(userDetails.getUsername())) && !isTokenExpired(token);
+    }
+
+    public boolean isTokenValidForRefresh(String token){
+        final String userName = extractUserName(token);
+        System.out.println(userName);
+        UserDetails userDetails = userService.userDetailsService().loadUserByUsername(userName);
+        System.out.println(userDetails.getUsername() + " " + userDetails.getPassword());
         return (userName.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 

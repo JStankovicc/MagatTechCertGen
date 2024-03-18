@@ -2,6 +2,7 @@ package com.magattech.certGen.service.implementation;
 
 import com.magattech.certGen.model.Role;
 import com.magattech.certGen.model.User;
+import com.magattech.certGen.model.request.SignInWithTokenRequest;
 import com.magattech.certGen.model.request.SignUpRequest;
 import com.magattech.certGen.model.request.SigninRequest;
 import com.magattech.certGen.model.response.JwtAuthenticationResponse;
@@ -11,6 +12,7 @@ import com.magattech.certGen.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +41,17 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
         var jwt = jwtService.generateToken(user);
         return JwtAuthenticationResponse.builder().token(jwt).role(String.valueOf(user.getRole())).build();
+    }
+
+    @Override
+    public JwtAuthenticationResponse signInWithToken(SignInWithTokenRequest request){
+        String token = request.getToken();
+        if(jwtService.isTokenValidForRefresh(token)){
+            String username = jwtService.extractUserName(token);
+            var user = userRepository.findByEmail(username).orElseThrow(() -> new IllegalArgumentException("Invalid email"));
+            String jwt = jwtService.generateToken(user);
+            return JwtAuthenticationResponse.builder().token(jwt).role(String.valueOf(user.getRole())).build();
+        }
+        else return JwtAuthenticationResponse.builder().token("FALSE").build();
     }
 }
