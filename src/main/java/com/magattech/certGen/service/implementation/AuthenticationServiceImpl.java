@@ -1,6 +1,6 @@
 package com.magattech.certGen.service.implementation;
 
-import com.magattech.certGen.model.Role;
+import com.magattech.certGen.model.enums.Role;
 import com.magattech.certGen.model.User;
 import com.magattech.certGen.model.request.SignInWithTokenRequest;
 import com.magattech.certGen.model.request.SignUpRequest;
@@ -12,7 +12,6 @@ import com.magattech.certGen.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

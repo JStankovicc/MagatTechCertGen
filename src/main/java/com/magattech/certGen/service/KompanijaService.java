@@ -1,6 +1,6 @@
 package com.magattech.certGen.service;
 
-import com.magattech.certGen.model.Kompanija;
+import com.magattech.certGen.model.included.Kompanija;
 
 import java.util.List;
 

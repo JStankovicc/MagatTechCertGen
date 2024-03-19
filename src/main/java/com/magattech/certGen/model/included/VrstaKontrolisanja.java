@@ -1,4 +1,4 @@
-package com.magattech.certGen.model;
+package com.magattech.certGen.model.included;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "_kompanija")
-public class Kompanija {
+@Table(name = "_vrsta_kontrolisanja")
+public class VrstaKontrolisanja {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
+    private String description;
 }

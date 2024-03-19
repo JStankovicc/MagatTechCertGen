@@ -1,5 +1,6 @@
 package com.magattech.certGen.model;
 
+import com.magattech.certGen.model.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

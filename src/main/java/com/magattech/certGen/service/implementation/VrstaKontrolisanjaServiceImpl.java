@@ -1,6 +1,6 @@
 package com.magattech.certGen.service.implementation;
 
-import com.magattech.certGen.model.VrstaKontrolisanja;
+import com.magattech.certGen.model.included.VrstaKontrolisanja;
 import com.magattech.certGen.repository.VrstaKontrolisanjaRepository;
 import com.magattech.certGen.service.VrstaKontrolisanjaService;
 import lombok.RequiredArgsConstructor;

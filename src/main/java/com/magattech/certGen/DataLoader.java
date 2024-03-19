@@ -1,13 +1,12 @@
 package com.magattech.certGen;
 
-import com.magattech.certGen.model.Kompanija;
-import com.magattech.certGen.model.Role;
-import com.magattech.certGen.model.User;
-import com.magattech.certGen.model.VrstaKontrolisanja;
-import com.magattech.certGen.repository.KompanijaRepository;
-import com.magattech.certGen.repository.UserRepository;
-import com.magattech.certGen.repository.VrstaKontrolisanjaRepository;
-import com.magattech.certGen.service.VrstaKontrolisanjaService;
+import com.magattech.certGen.model.*;
+import com.magattech.certGen.model.enums.Role;
+import com.magattech.certGen.model.included.Kompanija;
+import com.magattech.certGen.model.included.Oprema;
+import com.magattech.certGen.model.included.Proizvodjac;
+import com.magattech.certGen.model.included.VrstaKontrolisanja;
+import com.magattech.certGen.repository.*;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,13 +18,17 @@ public class DataLoader {
     private final PasswordEncoder passwordEncoder;
     private final VrstaKontrolisanjaRepository vrstaKontrolisanjaRepository;
     private final KompanijaRepository kompanijaRepository;
+    private final ProizvodjacRepository proizvodjacRepository;
+    private final OpremaRepository opremaRepository;
 
     @Autowired
-    private DataLoader(UserRepository userRepository, PasswordEncoder passwordEncoder, VrstaKontrolisanjaRepository vrstaKontrolisanjaRepository, KompanijaRepository kompanijaRepository){
+    private DataLoader(UserRepository userRepository, PasswordEncoder passwordEncoder, VrstaKontrolisanjaRepository vrstaKontrolisanjaRepository, KompanijaRepository kompanijaRepository, ProizvodjacRepository proizvodjacRepository, OpremaRepository opremaRepository){
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.vrstaKontrolisanjaRepository = vrstaKontrolisanjaRepository;
         this.kompanijaRepository = kompanijaRepository;
+        this.proizvodjacRepository = proizvodjacRepository;
+        this.opremaRepository = opremaRepository;
     }
 
     @PostConstruct
@@ -58,6 +61,12 @@ public class DataLoader {
         kompanijaRepository.save(kompanija);
         Kompanija kompanija1 = Kompanija.builder().name("Kompanija 2").build();
         kompanijaRepository.save(kompanija1);
+
+        proizvodjacRepository.save(Proizvodjac.builder().name("Proizvodjac").build());
+        proizvodjacRepository.save(Proizvodjac.builder().name("Proizvodjac 2").build());
+
+        opremaRepository.save(Oprema.builder().name("Oprema").serBrEtalona("SerBr1").build());
+        opremaRepository.save(Oprema.builder().name("Oprema 2").serBrEtalona("SerBr2").build());
 
     }
 }

@@ -1,6 +1,6 @@
 package com.magattech.certGen.service.implementation;
 
-import com.magattech.certGen.model.Kompanija;
+import com.magattech.certGen.model.included.Kompanija;
 import com.magattech.certGen.repository.KompanijaRepository;
 import com.magattech.certGen.service.KompanijaService;
 import lombok.RequiredArgsConstructor;
