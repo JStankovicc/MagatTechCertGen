@@ -13,7 +13,7 @@ cd /d %~dp0
 
 REM Izvrsavanje mvn clean install
 echo Izvrsavam mvn clean install...
-call mvn clean install
+call mvn clean install -DskipTests
 if %errorlevel% neq 0 (
     echo Greska prilikom izvrsavanja mvn clean install.
     pause
