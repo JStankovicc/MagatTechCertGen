@@ -19,7 +19,6 @@ public class VrstaKontrolisanjaController {
 
     @GetMapping("/getAll")
     public ResponseEntity<List<VrstaKontrolisanja>> getAll(){
-        System.out.println("OVDE");
         return ResponseEntity.ok(vrstaKontrolisanjaService.getAll());
     }
 }
