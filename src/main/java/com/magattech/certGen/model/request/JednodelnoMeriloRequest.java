@@ -48,6 +48,15 @@ public class JednodelnoMeriloRequest {
 
     private String ndg1;
 
+    private String greska1;
+    private String greska2;
+    private String greska3;
+    private String greska4;
+    private String greska5;
+    private String greska6;
+    private String greska7;
+    private String greska8;
+
     private String greskaPodeljka1;
     private String greskaPodeljka2;
     private String greskaPodeljka3;
@@ -67,6 +76,15 @@ public class JednodelnoMeriloRequest {
     private String odstupanje10;
 
     private String ndg3;
+
+    private String greska9;
+    private String greska10;
+    private String greska11;
+    private String greska12;
+    private String greska13;
+    private String greska14;
+    private String greska15;
+    private String greska16;
 
     private String greskaPodeljka9;
     private String greskaPodeljka10;

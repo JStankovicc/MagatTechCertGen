@@ -15,6 +15,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
@@ -65,6 +67,14 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
                 .odstupanje4(request.getOdstupanje4())
                 .odstupanje5(request.getOdstupanje5())
                 .ndg1(request.getNdg1())
+                .greska1(request.getGreska1())
+                .greska2(request.getGreska2())
+                .greska3(request.getGreska3())
+                .greska4(request.getGreska4())
+                .greska5(request.getGreska5())
+                .greska6(request.getGreska6())
+                .greska7(request.getGreska7())
+                .greska8(request.getGreska8())
                 .greskaPodeljka1(request.getGreskaPodeljka1())
                 .greskaPodeljka2(request.getGreskaPodeljka2())
                 .greskaPodeljka3(request.getGreskaPodeljka3())
@@ -81,6 +91,14 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
                 .odstupanje9(request.getOdstupanje9())
                 .odstupanje10(request.getOdstupanje10())
                 .ndg3(request.getNdg3())
+                .greska9(request.getGreska9())
+                .greska10(request.getGreska10())
+                .greska11(request.getGreska11())
+                .greska12(request.getGreska12())
+                .greska13(request.getGreska13())
+                .greska14(request.getGreska14())
+                .greska15(request.getGreska15())
+                .greska16(request.getGreska16())
                 .greskaPodeljka9(request.getGreskaPodeljka9())
                 .greskaPodeljka10(request.getGreskaPodeljka10())
                 .greskaPodeljka11(request.getGreskaPodeljka11())
@@ -126,5 +144,10 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
         jednodelnoMerilo.setOdobrio(user.getUsername());
 
         //da li je UserDetails ili User??
+    }
+
+    @Override
+    public List<JednodelnoMerilo> getAll() {
+        return jednodelnoMeriloRepository.findAll();
     }
 }

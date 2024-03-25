@@ -1,13 +1,14 @@
 package com.magattech.certGen.controller;
 
 
+import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.request.JednodelnoMeriloRequest;
 import com.magattech.certGen.service.JednodelnoMeriloService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/jednodelnoMerilo")
@@ -22,6 +23,11 @@ public class JednodelnoMeriloController {
         System.out.println(jednodelnoMeriloRequest.getDatum());
         System.out.println(jednodelnoMeriloRequest.getToken());
         jednodelnoMeriloService.add(jednodelnoMeriloRequest);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<JednodelnoMerilo>> getAll(){
+        return ResponseEntity.ok(jednodelnoMeriloService.getAll());
     }
 
 }
