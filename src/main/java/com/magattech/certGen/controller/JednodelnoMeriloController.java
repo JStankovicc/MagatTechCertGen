@@ -19,9 +19,6 @@ public class JednodelnoMeriloController {
 
     @PostMapping("/add")
     public void addJednodelnoMerilo(@RequestBody JednodelnoMeriloRequest jednodelnoMeriloRequest){
-        System.out.println("TEST");
-        System.out.println(jednodelnoMeriloRequest.getDatum());
-        System.out.println(jednodelnoMeriloRequest.getToken());
         jednodelnoMeriloService.add(jednodelnoMeriloRequest);
     }
 
