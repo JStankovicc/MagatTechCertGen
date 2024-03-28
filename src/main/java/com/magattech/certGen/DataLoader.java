@@ -6,11 +6,15 @@ import com.magattech.certGen.model.included.Kompanija;
 import com.magattech.certGen.model.included.Oprema;
 import com.magattech.certGen.model.included.Proizvodjac;
 import com.magattech.certGen.model.included.VrstaKontrolisanja;
+import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.repository.*;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.time.LocalDate;
+import java.util.Date;
 
 @Component
 public class DataLoader {
@@ -21,14 +25,17 @@ public class DataLoader {
     private final ProizvodjacRepository proizvodjacRepository;
     private final OpremaRepository opremaRepository;
 
+    private final JednodelnoMeriloRepository jednodelnoMeriloRepository;
+
     @Autowired
-    private DataLoader(UserRepository userRepository, PasswordEncoder passwordEncoder, VrstaKontrolisanjaRepository vrstaKontrolisanjaRepository, KompanijaRepository kompanijaRepository, ProizvodjacRepository proizvodjacRepository, OpremaRepository opremaRepository){
+    private DataLoader(UserRepository userRepository, PasswordEncoder passwordEncoder, VrstaKontrolisanjaRepository vrstaKontrolisanjaRepository, KompanijaRepository kompanijaRepository, ProizvodjacRepository proizvodjacRepository, OpremaRepository opremaRepository, JednodelnoMeriloRepository jednodelnoMeriloRepository){
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.vrstaKontrolisanjaRepository = vrstaKontrolisanjaRepository;
         this.kompanijaRepository = kompanijaRepository;
         this.proizvodjacRepository = proizvodjacRepository;
         this.opremaRepository = opremaRepository;
+        this.jednodelnoMeriloRepository = jednodelnoMeriloRepository;
     }
 
     @PostConstruct
@@ -68,5 +75,8 @@ public class DataLoader {
         opremaRepository.save(Oprema.builder().name("Oprema").serBrEtalona("SerBr1").build());
         opremaRepository.save(Oprema.builder().name("Oprema 2").serBrEtalona("SerBr2").build());
 
+        jednodelnoMeriloRepository.save(JednodelnoMerilo.builder().brojZapisnika("49/23-K1").datum(new Date()).build());
+        jednodelnoMeriloRepository.save(JednodelnoMerilo.builder().brojZapisnika("48/23-K1").datum(new Date()).build());
+        jednodelnoMeriloRepository.save(JednodelnoMerilo.builder().brojZapisnika("47/23-K1").datum(new Date()).build());
     }
 }
