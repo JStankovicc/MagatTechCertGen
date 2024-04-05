@@ -14,42 +14,30 @@ public class PDFGeneratorServiceImpl implements PDFGeneratorService {
 
     @Override
     public byte[] generateJednodelnoMerilo(JednodelnoMerilo jednodelnoMerilo) {
-        // Pretvaranje objekta u HTML string - ovdje zamijenite s vlastitom logikom za generiranje HTML-a
         String htmlContent = generateHtmlFromJednodelnoMerilo(jednodelnoMerilo);
 
-        // Generiranje PDF-a iz HTML-a
         try {
             InputStream inputStream = new ByteArrayInputStream(htmlContent.getBytes(StandardCharsets.UTF_8));
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             HtmlConverter.convertToPdf(inputStream, outputStream);
 
-            // Spremi PDF datoteku na disk
+            // Spremi PDF datoteku na desktop
             byte[] pdfBytes = outputStream.toByteArray();
-            File pdfFile = File.createTempFile("generated_pdf", ".pdf");
+            File desktopDir = new File(System.getProperty("user.home") + File.separator + "Desktop");
+            File pdfFile = File.createTempFile("generated_pdf", ".pdf", desktopDir);
             FileOutputStream fileOutputStream = new FileOutputStream(pdfFile);
             fileOutputStream.write(pdfBytes);
             fileOutputStream.close();
 
-            // Otvaranje PDF datoteke pomoću Desktop klase
-            if (Desktop.isDesktopSupported()) {
-                Desktop.getDesktop().open(pdfFile);
-            } else {
-                System.out.println("Radna površina nije podržana.");
-            }
-
             return pdfBytes;
         } catch (IOException e) {
-            // Uhvatiti i obraditi iznimku ako se dogodi greška prilikom generiranja PDF-a
             e.printStackTrace();
             return null;
         }
     }
 
-    // Metoda za generiranje HTML-a iz objekta JednodelnoMerilo
     private String generateHtmlFromJednodelnoMerilo(JednodelnoMerilo jednodelnoMerilo) {
-        // Implementirajte logiku pretvorbe objekta u HTML string ovdje
-        // Na primjer, možete koristiti biblioteku poput Thymeleaf ili FreeMarker za generiranje HTML-a iz predloška
-        // ili jednostavno ručno generirati HTML string
+
         return "<html><body><h1>Hello, World!</h1><p>This is a PDF generated from object data.</p></body></html>";
     }
 }
