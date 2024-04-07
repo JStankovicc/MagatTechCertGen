@@ -29,6 +29,8 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
     @Override
     public void add(JednodelnoMeriloRequest request) {
 
+        System.out.println("OBRADA ZAHTEVA");
+
         VrstaKontrolisanja vrstaKontrolisanja = vrstaKontrolisanjaService.getVrstaKontrolisanjaByName(request.getVrstaKontrolisanja());
         Kompanija podnosilacZahteva = kompanijaService.getByName(request.getPodnosilacZahteva());
         Kompanija korisnik = kompanijaService.getByName(request.getKorisnik());
@@ -121,6 +123,8 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
                 .build();
 
                 jednodelnoMeriloRepository.save(jednodelnoMerilo);
+
+        System.out.println("SACUVAN ZAHTEV");
     }
 
     @Override

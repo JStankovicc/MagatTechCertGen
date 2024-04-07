@@ -19,6 +19,7 @@ public class JednodelnoMeriloController {
 
     @PostMapping("/add")
     public void addJednodelnoMerilo(@RequestBody JednodelnoMeriloRequest jednodelnoMeriloRequest){
+        System.out.println("DOBIJEN ZAHTEV");
         jednodelnoMeriloService.add(jednodelnoMeriloRequest);
     }
 

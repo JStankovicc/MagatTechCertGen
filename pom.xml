@@ -76,6 +76,7 @@
 			<version>3.0.3</version>
 		</dependency>
 
+
 	</dependencies>
 
 	<build>
@@ -84,6 +85,10 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<jvmArguments>
+						<jvmArgument>-Xms128m</jvmArgument>
+						<jvmArgument>-Xmx512m</jvmArgument>
+					</jvmArguments>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>

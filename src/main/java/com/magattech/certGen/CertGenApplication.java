@@ -10,12 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @RequiredArgsConstructor
 public class CertGenApplication {
-	private final PDFGeneratorService pdfGeneratorService;
-
 	public static void main(String[] args) {
 		SpringApplication.run(CertGenApplication.class, args);
-		PDFGeneratorService pdfGeneratorService1 = new PDFGeneratorServiceImpl();
-		pdfGeneratorService1.generateJednodelnoMerilo(new JednodelnoMerilo());
 	}
 
 }
