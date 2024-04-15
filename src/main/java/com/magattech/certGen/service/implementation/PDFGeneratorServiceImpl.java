@@ -2,16 +2,10 @@ package com.magattech.certGen.service.implementation;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
 
-import com.documents4j.api.DocumentType;
-import com.documents4j.api.IConverter;
-import com.documents4j.job.LocalConverter;
-import com.magattech.certGen.model.merila.JednodelnoMerilo;
+import com.magattech.certGen.model.merila.*;
 import com.magattech.certGen.service.PDFGeneratorService;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
@@ -22,48 +16,120 @@ public class PDFGeneratorServiceImpl implements PDFGeneratorService {
 
     @Override
     public byte[] generateJednodelnoMerilo(JednodelnoMerilo jednodelnoMerilo) {
-        String desktopPath = System.getProperty("user.home") + "/Desktop/";
-
-        String wordFilePath = desktopPath + "47-23-K1 Zapisnik o kontrolisanju-overavanju(Jednodelno merilo dužine1).docx";
-        String pdfFilePath = desktopPath + "47-23-K1 Zapisnik o kontrolisanju-overavanju(Jednodelno merilo dužine1).pdf";
+        String staticResourcePath = "src/main/resources/static/";
+        String wordFilePath = staticResourcePath + "47-23-K1 Zapisnik o kontrolisanju-overavanju(Jednodelno merilo dužine1).docx";
 
         File wordFile = new File(wordFilePath);
+
         if (!wordFile.exists()) {
             System.err.println("Word file not found: " + wordFilePath);
             return null;
         }
 
-        File pdfFile = new File(pdfFilePath);
-        if (pdfFile.exists() && !pdfFile.canWrite()) {
-            System.err.println("No write permission for PDF file: " + pdfFilePath);
+        try {
+            return Files.readAllBytes(wordFile.toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public byte[] generateMernaLetva(MernaLetva mernaLetva) {
+        String staticResourcePath = "src/main/resources/static/";
+        String wordFilePath = staticResourcePath + "45-23-К1 Zapisnik o kontrolisanju-overavanju (merna letva).docx";
+
+        File wordFile = new File(wordFilePath);
+
+        if (!wordFile.exists()) {
+            System.err.println("Word file not found: " + wordFilePath);
             return null;
         }
 
-        try (FileInputStream wordInputStream = new FileInputStream(wordFile);
-             FileOutputStream pdfOutputStream = new FileOutputStream(pdfFilePath)) {
+        try {
+            return Files.readAllBytes(wordFile.toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
-            IConverter converter = LocalConverter.builder()
-                    .baseFolder(new File("C:\\Users\\Jovan\\Desktop"))
-                    .workerPool(20, 25, 2, TimeUnit.SECONDS)
-                    .processTimeout(30, TimeUnit.SECONDS)
-                    .build();
+    @Override
+    public byte[] generateMernaTrakaSaViskom(MernaTrakaSaViskom mernaTrakaSaViskom) {
 
-            Future<Boolean> conversion = converter
-                    .convert(wordFile).as(DocumentType.MS_WORD)
-                    .to(pdfFile).as(DocumentType.PDF)
-                    .prioritizeWith(1000)
-                    .schedule();
+            String staticResourcePath = "src/main/resources/static/";
+            String wordFilePath = staticResourcePath + "46-23-K1 Zapisnik o kontrolisanju-overavanju (merna traka s viskom).docx";
 
-            boolean result = conversion.get(30, TimeUnit.SECONDS);
+            File wordFile = new File(wordFilePath);
 
-            if (!result) {
-                System.err.println("Conversion failed.");
+            if (!wordFile.exists()) {
+                System.err.println("Word file not found: " + wordFilePath);
                 return null;
             }
 
-            return Files.readAllBytes(pdfFile.toPath());
+            try {
+                return Files.readAllBytes(wordFile.toPath());
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+    }
 
-        } catch (Exception e) {
+    @Override
+    public byte[] generateMasinaZaMerenje(MasinaZaMerenje masinaZaMerenje) {
+        String staticResourcePath = "src/main/resources/static/";
+        String wordFilePath = staticResourcePath + "39-23-K1 Zapisnik o kontrolisanju-overavanju (mašina za merenje žice i k....docx";
+
+        File wordFile = new File(wordFilePath);
+
+        if (!wordFile.exists()) {
+            System.err.println("Word file not found: " + wordFilePath);
+            return null;
+        }
+
+        try {
+            return Files.readAllBytes(wordFile.toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public byte[] generateSlozivoMerilo(SlozivoMerilo slozivoMerilo) {
+        String staticResourcePath = "src/main/resources/static/";
+        String wordFilePath = staticResourcePath + "slozivo merilo.docx";
+
+        File wordFile = new File(wordFilePath);
+
+        if (!wordFile.exists()) {
+            System.err.println("Word file not found: " + wordFilePath);
+            return null;
+        }
+
+        try {
+            return Files.readAllBytes(wordFile.toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public byte[] generateMetriZaTekstil(MetriZaTekstil metriZaTekstil) {
+        String staticResourcePath = "src/main/resources/static/";
+        String wordFilePath = staticResourcePath + "metri za tekstil.docx";
+
+        File wordFile = new File(wordFilePath);
+
+        if (!wordFile.exists()) {
+            System.err.println("Word file not found: " + wordFilePath);
+            return null;
+        }
+
+        try {
+            return Files.readAllBytes(wordFile.toPath());
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }

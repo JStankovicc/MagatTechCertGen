@@ -6,14 +6,13 @@ import com.magattech.certGen.model.included.Kompanija;
 import com.magattech.certGen.model.included.Oprema;
 import com.magattech.certGen.model.included.Proizvodjac;
 import com.magattech.certGen.model.included.VrstaKontrolisanja;
-import com.magattech.certGen.model.merila.JednodelnoMerilo;
+import com.magattech.certGen.model.merila.*;
 import com.magattech.certGen.repository.*;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 @Component
@@ -26,9 +25,15 @@ public class DataLoader {
     private final OpremaRepository opremaRepository;
 
     private final JednodelnoMeriloRepository jednodelnoMeriloRepository;
+    private final MasinaZaMerenjeRepository masinaZaMerenjeRepository;
+    private final MernaLetvaRepository mernaLetvaRepository;
+
+    private final MernaTrakaSaViskomRepository mernaTrakaSaViskomRepository;
+    private final MetriZaTekstilRepository metriZaTekstilRepository;
+    private final SlozivoMeriloRepository slozivoMeriloRepository;
 
     @Autowired
-    private DataLoader(UserRepository userRepository, PasswordEncoder passwordEncoder, VrstaKontrolisanjaRepository vrstaKontrolisanjaRepository, KompanijaRepository kompanijaRepository, ProizvodjacRepository proizvodjacRepository, OpremaRepository opremaRepository, JednodelnoMeriloRepository jednodelnoMeriloRepository){
+    private DataLoader(UserRepository userRepository, PasswordEncoder passwordEncoder, VrstaKontrolisanjaRepository vrstaKontrolisanjaRepository, KompanijaRepository kompanijaRepository, ProizvodjacRepository proizvodjacRepository, OpremaRepository opremaRepository, JednodelnoMeriloRepository jednodelnoMeriloRepository, MasinaZaMerenjeRepository masinaZaMerenjeRepository, MernaLetvaRepository mernaLetvaRepository, MernaTrakaSaViskomRepository mernaTrakaSaViskomRepository, MetriZaTekstilRepository metriZaTekstilRepository, SlozivoMeriloRepository slozivoMeriloRepository){
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.vrstaKontrolisanjaRepository = vrstaKontrolisanjaRepository;
@@ -36,6 +41,11 @@ public class DataLoader {
         this.proizvodjacRepository = proizvodjacRepository;
         this.opremaRepository = opremaRepository;
         this.jednodelnoMeriloRepository = jednodelnoMeriloRepository;
+        this.masinaZaMerenjeRepository = masinaZaMerenjeRepository;
+        this.mernaLetvaRepository = mernaLetvaRepository;
+        this.mernaTrakaSaViskomRepository = mernaTrakaSaViskomRepository;
+        this.metriZaTekstilRepository = metriZaTekstilRepository;
+        this.slozivoMeriloRepository = slozivoMeriloRepository;
     }
 
     @PostConstruct
@@ -75,8 +85,17 @@ public class DataLoader {
         opremaRepository.save(Oprema.builder().name("Oprema").serBrEtalona("SerBr1").build());
         opremaRepository.save(Oprema.builder().name("Oprema 2").serBrEtalona("SerBr2").build());
 
-        jednodelnoMeriloRepository.save(JednodelnoMerilo.builder().brojZapisnika("49/23-K1").datum(new Date()).build());
-        jednodelnoMeriloRepository.save(JednodelnoMerilo.builder().brojZapisnika("48/23-K1").datum(new Date()).build());
         jednodelnoMeriloRepository.save(JednodelnoMerilo.builder().brojZapisnika("47/23-K1").datum(new Date()).build());
+
+        masinaZaMerenjeRepository.save(MasinaZaMerenje.builder().brojZapisnika("39/23-K2").datum(new Date()).build());
+
+        mernaLetvaRepository.save(MernaLetva.builder().brojZapisnika("45/23-K1").datum(new Date()).build());
+
+        mernaTrakaSaViskomRepository.save(MernaTrakaSaViskom.builder().brojZapisnika("46/23-K1").datum(new Date()).build());
+
+        metriZaTekstilRepository.save(MetriZaTekstil.builder().brojZapisnika("47/23-K1").datum(new Date()).build());
+
+        slozivoMeriloRepository.save(SlozivoMerilo.builder().brojZapisnika("47/23-K1").datum(new Date()).build());
+
     }
 }
