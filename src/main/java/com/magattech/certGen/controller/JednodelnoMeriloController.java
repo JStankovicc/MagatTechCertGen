@@ -4,7 +4,11 @@ package com.magattech.certGen.controller;
 import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.request.JednodelnoMeriloRequest;
 import com.magattech.certGen.service.JednodelnoMeriloService;
+import com.magattech.certGen.service.PDFGeneratorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +20,7 @@ import java.util.List;
 public class JednodelnoMeriloController {
 
     private final JednodelnoMeriloService jednodelnoMeriloService;
+    private final PDFGeneratorService pdfGeneratorService;
 
     @PostMapping("/add")
     public void addJednodelnoMerilo(@RequestBody JednodelnoMeriloRequest jednodelnoMeriloRequest){
@@ -26,6 +31,16 @@ public class JednodelnoMeriloController {
     @GetMapping("/all")
     public ResponseEntity<List<JednodelnoMerilo>> getAll(){
         return ResponseEntity.ok(jednodelnoMeriloService.getAll());
+    }
+
+    @GetMapping("/print")
+    public ResponseEntity<byte[]> printJednodelnoMerilo() {
+        byte[] pdfData = pdfGeneratorService.generateJednodelnoMerilo(new JednodelnoMerilo());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+
+        return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
     }
 
 }
