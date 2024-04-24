@@ -48,12 +48,12 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
         //UserDetails etaloniraoUser = userService.userDetailsService().loadUserByUsername(etalonirao);
 
         JednodelnoMerilo jednodelnoMerilo = JednodelnoMerilo.builder().brojZapisnika(request.getBrojZapisnika())
-                .vrstaKontrolisanja(vrstaKontrolisanja.getId())
-                .podnosilacZahteva(podnosilacZahteva.getId())
-                .korisnik(korisnik.getId())
+                .vrstaKontrolisanja(request.getVrstaKontrolisanja())
+                .podnosilacZahteva(request.getPodnosilacZahteva())
+                .korisnik(request.getKorisnik())
                 .serijskiBroj(request.getSerijskiBroj())
                 .identifikacioniBroj(request.getIdentifikacioniBroj())
-                .proizvodjac(proizvodjac.getId())
+                .proizvodjac(request.getProizvodjac())
                 .oznakaTipa(request.getOznakaTipa())
                 .sluzbenaOznakaTipa(request.getSluzbenaOznakaTipa())
                 .merniOpseg(request.getMerniOpseg())
