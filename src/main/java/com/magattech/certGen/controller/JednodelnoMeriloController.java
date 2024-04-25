@@ -3,7 +3,6 @@ package com.magattech.certGen.controller;
 
 import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.request.JednodelnoMeriloRequest;
-import com.magattech.certGen.model.request.print.JednodelnoMeriloPrintRequest;
 import com.magattech.certGen.service.JednodelnoMeriloService;
 import com.magattech.certGen.service.PDFGeneratorService;
 import lombok.RequiredArgsConstructor;

@@ -1,10 +1,7 @@
 package com.magattech.certGen.controller;
 
-import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.merila.MasinaZaMerenje;
-import com.magattech.certGen.model.request.JednodelnoMeriloRequest;
 import com.magattech.certGen.model.request.MasinaZaMerenjeRequest;
-import com.magattech.certGen.service.JednodelnoMeriloService;
 import com.magattech.certGen.service.MasinaZaMerenjeService;
 import com.magattech.certGen.service.PDFGeneratorService;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +23,6 @@ public class MasinaZaMerenjeController {
 
     @PostMapping("/add")
     public void addJednodelnoMerilo(@RequestBody MasinaZaMerenjeRequest masinaZaMerenjeRequest){
-        System.out.println("DOBIJEN ZAHTEV");
         masinaZaMerenjeService.add(masinaZaMerenjeRequest);
     }
 
@@ -36,8 +32,9 @@ public class MasinaZaMerenjeController {
     }
 
     @GetMapping("/print")
-    public ResponseEntity<byte[]> printMasinaZaMerenje() {
-        byte[] pdfData = pdfGeneratorService.generateMasinaZaMerenje(new MasinaZaMerenje());
+    public ResponseEntity<byte[]> printMasinaZaMerenje(@RequestParam("brojZapisnika") String brojZapisnika) {
+        MasinaZaMerenje masinaZaMerenje = masinaZaMerenjeService.getByBrojZapisnika(brojZapisnika);
+        byte[] pdfData = pdfGeneratorService.generateMasinaZaMerenje(masinaZaMerenje);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);

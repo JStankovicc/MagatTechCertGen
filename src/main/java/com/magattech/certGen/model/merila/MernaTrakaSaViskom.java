@@ -22,22 +22,22 @@ public class MernaTrakaSaViskom {
     @Column(length = 10)
     private String brojZapisnika;
 
-    private int vrstaKontrolisanja;
-    private int podnosilacZahteva;
-    private int korisnik;
+    private String vrstaKontrolisanja;
+    private String podnosilacZahteva;
+    private String korisnik;
 
     @Column(length = 10)
     private String serijskiBroj;
     @Column(length = 10)
     private String identifikacioniBroj;
 
-    private int proizvodjac;
+    private String proizvodjac;
     @Column(length = 10)
     private String oznakaTipa;
     @Column(length = 10)
     private String sluzbenaOznakaTipa;
 
-    @Column(length = 10)
+    @Column(length = 30)
     private String merniOpseg;
     @Column(length = 10)
     private String najmanjiPodeljak;
@@ -151,9 +151,9 @@ public class MernaTrakaSaViskom {
 
     private Date datum;
 
-    @Column(length = 20)
+    @Column(length = 30)
     private String etalonirao;
-    @Column(length = 20)
+    @Column(length = 30)
     private String odobrio;
 
     private boolean odobreno;

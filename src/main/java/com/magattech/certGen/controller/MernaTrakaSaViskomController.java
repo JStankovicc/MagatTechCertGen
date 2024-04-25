@@ -31,8 +31,10 @@ public class MernaTrakaSaViskomController {
     }
 
     @GetMapping("/print")
-    public ResponseEntity<byte[]> printMernaTrakaSaViskom() {
-        byte[] pdfData = pdfGeneratorService.generateMernaTrakaSaViskom(new MernaTrakaSaViskom());
+    public ResponseEntity<byte[]> printMernaTrakaSaViskom(@RequestParam("brojZapisnika") String brojZapisnika) {
+        MernaTrakaSaViskom mernaTrakaSaViskom = mernaTrakaSaViskomService.getByBrojZapisnika(brojZapisnika);
+
+        byte[] pdfData = pdfGeneratorService.generateMernaTrakaSaViskom(mernaTrakaSaViskom);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);

@@ -12,4 +12,5 @@ public interface MasinaZaMerenjeService {
 
     public void add(MasinaZaMerenjeRequest masinaZaMerenjeRequest);
 
+    public MasinaZaMerenje getByBrojZapisnika(String brojZapisnika);
 }

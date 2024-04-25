@@ -1,6 +1,7 @@
 package com.magattech.certGen.service.implementation;
 
 import com.magattech.certGen.model.merila.MasinaZaMerenje;
+import com.magattech.certGen.model.merila.MernaLetva;
 import com.magattech.certGen.model.request.MasinaZaMerenjeRequest;
 import com.magattech.certGen.repository.MasinaZaMerenjeRepository;
 import com.magattech.certGen.service.MasinaZaMerenjeService;
@@ -23,5 +24,10 @@ public class MasinaZaMerenjeServiceImpl implements MasinaZaMerenjeService {
     @Override
     public void add(MasinaZaMerenjeRequest masinaZaMerenjeRequest) {
 
+    }
+
+    @Override
+    public MasinaZaMerenje getByBrojZapisnika(String brojZapisnika) {
+        return masinaZaMerenjeRepository.findByBrojZapisnika(brojZapisnika).orElse(MasinaZaMerenje.builder().brojZapisnika(null).build());
     }
 }

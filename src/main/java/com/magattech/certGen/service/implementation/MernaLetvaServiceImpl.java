@@ -39,12 +39,12 @@ public class MernaLetvaServiceImpl implements MernaLetvaService {
         if(ispunjavaZahteve == "NE") ispunjavaZahteveBool = false;
 
         MernaLetva mernaLetva = MernaLetva.builder().brojZapisnika(request.getBrojZapisnika())
-                .podnosilacZahteva(podnosilacZahteva.getId())
-                .vrstaKontrolisanja(vrstaKontrolisanja.getId())
-                .korisnik(korisnik.getId())
+                .podnosilacZahteva(request.getPodnosilacZahteva())
+                .vrstaKontrolisanja(request.getVrstaKontrolisanja())
+                .korisnik(request.getKorisnik())
                 .serijskiBroj(request.getSerijskiBroj())
                 .identifikacioniBroj(request.getIdentifikacioniBroj())
-                .proizvodjac(proizvodjac.getId())
+                .proizvodjac(request.getProizvodjac())
                 .oznakaTipa(request.getOznakaTipa())
                 .sluzbenaOznakaTipa(request.getSluzbenaOznakaTipa())
                 .merniOpseg(request.getMerniOpseg())
@@ -104,6 +104,7 @@ public class MernaLetvaServiceImpl implements MernaLetvaService {
 
     @Override
     public MernaLetva getByBrojZapisnika(String brojZapisnika) {
+        System.out.println(brojZapisnika);
         return mernaLetvaRepository.findByBrojZapisnika(brojZapisnika).orElse(MernaLetva.builder().brojZapisnika(null).build());
     }
 

@@ -33,8 +33,10 @@ public class MernaLetvaController {
     }
 
     @GetMapping("/print")
-    public ResponseEntity<byte[]> printMernaLetva() {
-        byte[] pdfData = pdfGeneratorService.generateMernaLetva(new MernaLetva());
+    public ResponseEntity<byte[]> printMernaLetva(@RequestParam("brojZapisnika") String brojZapisnika) {
+        MernaLetva mernaLetva = mernaLetvaService.getByBrojZapisnika(brojZapisnika);
+
+        byte[] pdfData = pdfGeneratorService.generateMernaLetva(mernaLetva);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
