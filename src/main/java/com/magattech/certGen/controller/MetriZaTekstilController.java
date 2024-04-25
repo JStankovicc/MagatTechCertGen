@@ -33,8 +33,9 @@ public class MetriZaTekstilController {
     }
 
     @GetMapping("/print")
-    public ResponseEntity<byte[]> printMetriZaTekstil() {
-        byte[] pdfData = pdfGeneratorService.generateMetriZaTekstil(new MetriZaTekstil());
+    public ResponseEntity<byte[]> printMetriZaTekstil(@RequestParam("brojZapisnika") String brojZapisnika) {
+        MetriZaTekstil metriZaTekstil = metriZaTekstilService.getByBrojZapisnika(brojZapisnika);
+        byte[] pdfData = pdfGeneratorService.generateMetriZaTekstil(metriZaTekstil);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);

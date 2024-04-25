@@ -1657,7 +1657,7 @@ public class PDFGeneratorServiceImpl implements PDFGeneratorService {
     @Override
     public byte[] generateMetriZaTekstil(MetriZaTekstil metriZaTekstil) {
         String staticResourcePath = "src/main/resources/static/";
-        String wordFilePath = staticResourcePath + "metri za tekstil.docx";
+        String wordFilePath = staticResourcePath + "metriZaTekstilTemplate.docx";
 
         File wordFile = new File(wordFilePath);
 
@@ -1667,7 +1667,351 @@ public class PDFGeneratorServiceImpl implements PDFGeneratorService {
         }
 
         try {
-            return Files.readAllBytes(wordFile.toPath());
+            XWPFDocument doc = new XWPFDocument(new FileInputStream(wordFile));
+
+            for (XWPFTable table : doc.getTables()) {
+                for (XWPFTableRow row : table.getRows()) {
+                    for (XWPFTableCell cell : row.getTableCells()) {
+                        for (XWPFParagraph paragraph : cell.getParagraphs()) {
+                            String text = paragraph.getText();
+                            if (text != null) {
+                                if (text.contains("[brojZapisnika]")) {
+                                    replaceText(paragraph, "[brojZapisnika]", metriZaTekstil.getBrojZapisnika());
+                                }
+                                if (text.contains("[vrstaKontrolisanja]")) {
+                                    replaceText(paragraph, "[vrstaKontrolisanja]", metriZaTekstil.getVrstaKontrolisanja());
+                                }
+                                if (text.contains("[podnosilacZahteva]")) {
+                                    replaceText(paragraph, "[podnosilacZahteva]", metriZaTekstil.getPodnosilacZahteva());
+                                }
+                                if (text.contains("[vlasnikKorisnik]")) {
+                                    replaceText(paragraph, "[vlasnikKorisnik]", metriZaTekstil.getKorisnik());
+                                }
+                                if (text.contains("[serijskiBroj]")) {
+                                    replaceText(paragraph, "[serijskiBroj]", metriZaTekstil.getSerijskiBroj());
+                                }
+                                if (text.contains("[identifikacioniBroj]")) {
+                                    replaceText(paragraph, "[identifikacioniBroj]", metriZaTekstil.getIdentifikacioniBroj());
+                                }
+                                if (text.contains("[proizvodjac]")) {
+                                    replaceText(paragraph, "[proizvodjac]", metriZaTekstil.getProizvodjac());
+                                }
+                                if (text.contains("[oznakaTipa]")) {
+                                    replaceText(paragraph, "[oznakaTipa]", metriZaTekstil.getOznakaTipa());
+                                }
+                                if (text.contains("sluzbenaOznakaTipa")) {
+                                    replaceText(paragraph, "sluzbenaOznakaTipa", metriZaTekstil.getSluzbenaOznakaTipa());
+                                }
+                                if (text.contains("[merniOpseg]")) {
+                                    replaceText(paragraph, "[merniOpseg]", metriZaTekstil.getMerniOpseg());
+                                }
+                                if (text.contains("najmanjiPodeljak")) {
+                                    replaceText(paragraph, "najmanjiPodeljak", metriZaTekstil.getNajmanjiPodeljak());
+                                }
+                                if (text.contains("[klasaTacnosti]")) {
+                                    replaceText(paragraph, "[klasaTacnosti]", metriZaTekstil.getKlasaTacnosti());
+                                }
+                                if (text.contains("temperatura")) {
+                                    replaceText(paragraph, "temperatura", metriZaTekstil.getTemperatura());
+                                }
+                                if (text.contains("[vlaznost]")) {
+                                    replaceText(paragraph, "[vlaznost]", metriZaTekstil.getVlaznostVazduha());
+                                }
+
+                                if(metriZaTekstil.isMeriloJeIspravno()){
+                                    if (text.contains("[cb1]")) {
+                                        replaceText(paragraph, "[cb1]", "☒");
+                                    }
+                                    if (text.contains("[cb2]")) {
+                                        replaceText(paragraph, "[cb2]", "☐");
+                                    }
+                                }else {
+                                    if (text.contains("[cb1]")) {
+                                        replaceText(paragraph, "[cb1]", "☐");
+                                    }
+                                    if (text.contains("[cb2]")) {
+                                        replaceText(paragraph, "[cb2]", "☒");
+                                    }
+                                }
+
+                                if (text.contains("[napomena1]")) {
+                                    replaceText(paragraph, "[napomena1]", metriZaTekstil.getNapomena());
+                                }
+                                if (text.contains("brojMernogLenjira")) {
+                                    replaceText(paragraph, "brojMernogLenjira", metriZaTekstil.getBrojMernogLenjira());
+                                }
+                                if (text.contains("brojMerneLupe")) {
+                                    replaceText(paragraph, "brojMerneLupe", metriZaTekstil.getBrojMerneLupe());
+                                }
+
+                                List<String> skinuti = List.of(metriZaTekstil.getSkinutiZigovi().split(";"));
+                                List<String> postavljeni = List.of(metriZaTekstil.getPostavljeniZigovi().split(";"));
+
+                                if (text.contains("Skinuti1")) {
+                                    replaceText(paragraph, "Skinuti1", skinuti.get(0));
+                                }
+                                if (text.contains("Skinuti2")) {
+                                    replaceText(paragraph, "Skinuti2", skinuti.get(1));
+                                }
+
+                                if (text.contains("Postavljeni1")) {
+                                    replaceText(paragraph, "Postavljeni1", postavljeni.get(0));
+                                }
+                                if (text.contains("Postavljeni2")) {
+                                    replaceText(paragraph, "Postavljeni2", postavljeni.get(1));
+                                }
+
+                                if(metriZaTekstil.isMeriloIspunjavaZahteve()){
+                                    if (text.contains("[cb3]")) {
+                                        replaceText(paragraph, "[cb3]", "☒");
+                                    }
+                                    if (text.contains("[cb4]")) {
+                                        replaceText(paragraph, "[cb4]", "☐");
+                                    }
+                                }else {
+                                    if (text.contains("[cb3]")) {
+                                        replaceText(paragraph, "[cb3]", "☐");
+                                    }
+                                    if (text.contains("[cb4]")) {
+                                        replaceText(paragraph, "[cb4]", "☒");
+                                    }
+                                }
+
+                                if (text.contains("[komentar2]")) {
+                                    replaceText(paragraph, "[komentar2]", metriZaTekstil.getKomentar2());
+                                }
+
+                                if (text.contains("[datum]")) {
+                                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+
+                                    Date datum = metriZaTekstil.getDatum();
+
+                                    String formatiraniDatum = dateFormat.format(datum);
+
+                                    replaceText(paragraph, "[datum]", formatiraniDatum);
+                                }
+
+                                if (text.contains("etalonirao")) {
+                                    replaceText(paragraph, "etalonirao", metriZaTekstil.getEtalonirao());
+                                }
+                                if (text.contains("odobrio")) {
+                                    replaceText(paragraph, "odobrio", metriZaTekstil.getOdobrio());
+                                }
+
+                                if (text.contains("Резултати контролисања:")){
+                                    for (XWPFTable innerTable : cell.getTables()) {
+                                        for (XWPFTableRow innerRow : innerTable.getRows()) {
+                                            for (XWPFTableCell innerCell : innerRow.getTableCells()) {
+                                                for (XWPFParagraph innerParagraph : innerCell.getParagraphs()) {
+                                                    String innerText = innerParagraph.getText();
+                                                    if (innerText != null) {
+                                                        if (innerText.contains("odstupanje1")) {
+                                                            replaceText(innerParagraph, "odstupanje1", metriZaTekstil.getOdstupanje1());
+                                                        }if (innerText.contains("odstupanje2")) {
+                                                            replaceText(innerParagraph, "odstupanje2", metriZaTekstil.getOdstupanje2());
+                                                        }if (innerText.contains("odstupanje3")) {
+                                                            replaceText(innerParagraph, "odstupanje3", metriZaTekstil.getOdstupanje3());
+                                                        }if (innerText.contains("odstupanje4")) {
+                                                            replaceText(innerParagraph, "odstupanje4", metriZaTekstil.getOdstupanje4());
+                                                        }if (innerText.contains("odstupanje5")) {
+                                                            replaceText(innerParagraph, "odstupanje5", metriZaTekstil.getOdstupanje5());
+                                                        }if (innerText.contains("ndg1")) {
+                                                            replaceText(innerParagraph, "ndg1", metriZaTekstil.getNdg1());
+                                                        }
+                                                        if (innerText.contains("greska1")) {
+                                                            replaceText(innerParagraph, "greska1", metriZaTekstil.getGreska1());
+                                                        }
+                                                        if (innerText.contains("greska2")) {
+                                                            replaceText(innerParagraph, "greska2", metriZaTekstil.getGreska2());
+                                                        }
+                                                        if (innerText.contains("greska3")) {
+                                                            replaceText(innerParagraph, "greska3", metriZaTekstil.getGreska3());
+                                                        }
+                                                        if (innerText.contains("greska4")) {
+                                                            replaceText(innerParagraph, "greska4", metriZaTekstil.getGreska4());
+                                                        }
+                                                        if (innerText.contains("greska5")) {
+                                                            replaceText(innerParagraph, "greska5", metriZaTekstil.getGreska5());
+                                                        }
+                                                        if (innerText.contains("greska6")) {
+                                                            replaceText(innerParagraph, "greska6", metriZaTekstil.getGreska6());
+                                                        }
+                                                        if (innerText.contains("greska7")) {
+                                                            replaceText(innerParagraph, "greska7", metriZaTekstil.getGreska7());
+                                                        }
+                                                        if (innerText.contains("greska8")) {
+                                                            replaceText(innerParagraph, "greska8", metriZaTekstil.getGreska8());
+                                                        }
+                                                        if (innerText.contains("gp1")) {
+                                                            replaceText(innerParagraph, "gp1", metriZaTekstil.getGreskaPodeljka1());
+                                                        }
+                                                        if (innerText.contains("gp2")) {
+                                                            replaceText(innerParagraph, "gp2", metriZaTekstil.getGreskaPodeljka2());
+                                                        }
+                                                        if (innerText.contains("gp3")) {
+                                                            replaceText(innerParagraph, "gp3", metriZaTekstil.getGreskaPodeljka3());
+                                                        }
+                                                        if (innerText.contains("gp4")) {
+                                                            replaceText(innerParagraph, "gp4", metriZaTekstil.getGreskaPodeljka4());
+                                                        }
+                                                        if (innerText.contains("gp5")) {
+                                                            replaceText(innerParagraph, "gp5", metriZaTekstil.getGreskaPodeljka5());
+                                                        }
+                                                        if (innerText.contains("gp6")) {
+                                                            replaceText(innerParagraph, "gp6", metriZaTekstil.getGreskaPodeljka6());
+                                                        }
+                                                        if (innerText.contains("gp7")) {
+                                                            replaceText(innerParagraph, "gp7", metriZaTekstil.getGreskaPodeljka7());
+                                                        }
+                                                        if (innerText.contains("gp8")) {
+                                                            replaceText(innerParagraph, "gp8", metriZaTekstil.getGreskaPodeljka8());
+                                                        }
+                                                        if (innerText.contains("rd1")) {
+                                                            replaceText(innerParagraph, "rd1", getRazlika(metriZaTekstil.getGreskaPodeljka1(), metriZaTekstil.getGreskaPodeljka2()));
+                                                        }
+                                                        if (innerText.contains("rd2")) {
+                                                            replaceText(innerParagraph, "rd2", getRazlika(metriZaTekstil.getGreskaPodeljka3(), metriZaTekstil.getGreskaPodeljka4()));
+                                                        }
+                                                        if (innerText.contains("rd3")) {
+                                                            replaceText(innerParagraph, "rd3", getRazlika(metriZaTekstil.getGreskaPodeljka5(), metriZaTekstil.getGreskaPodeljka6()));
+                                                        }
+                                                        if (innerText.contains("rd4")) {
+                                                            replaceText(innerParagraph, "rd4", getRazlika(metriZaTekstil.getGreskaPodeljka7(), metriZaTekstil.getGreskaPodeljka8()));
+                                                        }
+                                                        if (innerText.contains("ndg2")) {
+                                                            replaceText(innerParagraph, "ndg2", metriZaTekstil.getNdg2());
+                                                        }
+                                                        if (innerText.contains("ndr1")) {
+                                                            replaceText(innerParagraph, "ndr1", metriZaTekstil.getNdr1());
+                                                        }
+
+
+                                                        if (innerText.contains("odstupanje6")) {
+                                                            replaceText(innerParagraph, "odstupanje6", metriZaTekstil.getOdstupanje6());
+                                                        }if (innerText.contains("odstupanje7")) {
+                                                            replaceText(innerParagraph, "odstupanje7", metriZaTekstil.getOdstupanje7());
+                                                        }if (innerText.contains("odstupanje8")) {
+                                                            replaceText(innerParagraph, "odstupanje8", metriZaTekstil.getOdstupanje8());
+                                                        }if (innerText.contains("odstupanje9")) {
+                                                            replaceText(innerParagraph, "odstupanje9", metriZaTekstil.getOdstupanje9());
+                                                        }if (innerText.contains("Odstupanje10")) {
+                                                            replaceText(innerParagraph, "Odstupanje10", metriZaTekstil.getOdstupanje10());
+                                                        }if (innerText.contains("ndg3")) {
+                                                            replaceText(innerParagraph, "ndg3", metriZaTekstil.getNdg3());
+                                                        }
+                                                        if (innerText.contains("Greska9")) {
+                                                            replaceText(innerParagraph, "Greska9", metriZaTekstil.getGreska9());
+                                                        }
+                                                        if (innerText.contains("Greska10")) {
+                                                            replaceText(innerParagraph, "Greska10", metriZaTekstil.getGreska10());
+                                                        }
+                                                        if (innerText.contains("Greska11")) {
+                                                            replaceText(innerParagraph, "Greska11", metriZaTekstil.getGreska11());
+                                                        }
+                                                        if (innerText.contains("Greska12")) {
+                                                            replaceText(innerParagraph, "Greska12", metriZaTekstil.getGreska12());
+                                                        }
+                                                        if (innerText.contains("Greska13")) {
+                                                            replaceText(innerParagraph, "Greska13", metriZaTekstil.getGreska13());
+                                                        }
+                                                        if (innerText.contains("Greska14")) {
+                                                            replaceText(innerParagraph, "Greska14", metriZaTekstil.getGreska14());
+                                                        }
+                                                        if (innerText.contains("Greska15")) {
+                                                            replaceText(innerParagraph, "Greska15", metriZaTekstil.getGreska15());
+                                                        }
+                                                        if (innerText.contains("Greska16")) {
+                                                            replaceText(innerParagraph, "Greska16", metriZaTekstil.getGreska16());
+                                                        }
+                                                        if (innerText.contains("Gp9")) {
+                                                            replaceText(innerParagraph, "Gp9", metriZaTekstil.getGreskaPodeljka9());
+                                                        }
+                                                        if (innerText.contains("Gp10")) {
+                                                            replaceText(innerParagraph, "Gp10", metriZaTekstil.getGreskaPodeljka10());
+                                                        }
+                                                        if (innerText.contains("Gp11")) {
+                                                            replaceText(innerParagraph, "Gp11", metriZaTekstil.getGreskaPodeljka11());
+                                                        }
+                                                        if (innerText.contains("Gp12")) {
+                                                            replaceText(innerParagraph, "Gp12", metriZaTekstil.getGreskaPodeljka12());
+                                                        }
+                                                        if (innerText.contains("Gp13")) {
+                                                            replaceText(innerParagraph, "Gp13", metriZaTekstil.getGreskaPodeljka13());
+                                                        }
+                                                        if (innerText.contains("Gp14")) {
+                                                            replaceText(innerParagraph, "Gp14", metriZaTekstil.getGreskaPodeljka14());
+                                                        }
+                                                        if (innerText.contains("Gp15")) {
+                                                            replaceText(innerParagraph, "Gp15", metriZaTekstil.getGreskaPodeljka15());
+                                                        }
+                                                        if (innerText.contains("Gp16")) {
+                                                            replaceText(innerParagraph, "Gp16", metriZaTekstil.getGreskaPodeljka16());
+                                                        }
+                                                        if (innerText.contains("rd5")) {
+                                                            replaceText(innerParagraph, "rd5", getRazlika(metriZaTekstil.getGreskaPodeljka9(), metriZaTekstil.getGreskaPodeljka10()));
+                                                        }
+                                                        if (innerText.contains("rd6")) {
+                                                            replaceText(innerParagraph, "rd6", getRazlika(metriZaTekstil.getGreskaPodeljka11(), metriZaTekstil.getGreskaPodeljka12()));
+                                                        }
+                                                        if (innerText.contains("rd7")) {
+                                                            replaceText(innerParagraph, "rd7", getRazlika(metriZaTekstil.getGreskaPodeljka13(), metriZaTekstil.getGreskaPodeljka14()));
+                                                        }
+                                                        if (innerText.contains("rd8")) {
+                                                            replaceText(innerParagraph, "rd8", getRazlika(metriZaTekstil.getGreskaPodeljka15(), metriZaTekstil.getGreskaPodeljka16()));
+                                                        }
+                                                        if (innerText.contains("ndg4")) {
+                                                            replaceText(innerParagraph, "ndg4", metriZaTekstil.getNdg4());
+                                                        }
+                                                        if (innerText.contains("ndr2")) {
+                                                            replaceText(innerParagraph, "ndr2", metriZaTekstil.getNdr2());
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            List<XWPFFooter> footers = doc.getFooterList();
+
+            for (XWPFFooter footer : footers) {
+                List<XWPFParagraph> paragraphs = footer.getParagraphs();
+                for (XWPFParagraph paragraph : paragraphs) {
+                    String text = paragraph.getText();
+                    if (text != null) {
+                        if (text.contains("date")) {
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+
+                            Date datum = metriZaTekstil.getDatum();
+
+                            String formatiraniDatum = dateFormat.format(datum);
+
+                            replaceText(paragraph, "date", formatiraniDatum);
+
+                            XWPFRun run = paragraph.createRun();
+                            run.addTab();
+                        }
+                    }
+                }
+            }
+
+            String workingFilePath = staticResourcePath + "workingJednodelnoMerilo.docx";
+            FileOutputStream fos = new FileOutputStream(workingFilePath);
+            doc.write(fos);
+            fos.close();
+            doc.close();
+
+            File workingFile = new File(workingFilePath);
+            byte[] workingDocumentBytes = Files.readAllBytes(workingFile.toPath());
+
+            workingFile.delete();
+
+            return workingDocumentBytes;
         } catch (IOException e) {
             e.printStackTrace();
             return null;

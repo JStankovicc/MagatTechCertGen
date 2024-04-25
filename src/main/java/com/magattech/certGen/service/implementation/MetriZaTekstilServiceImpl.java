@@ -2,6 +2,7 @@ package com.magattech.certGen.service.implementation;
 
 import com.magattech.certGen.model.merila.MasinaZaMerenje;
 import com.magattech.certGen.model.merila.MetriZaTekstil;
+import com.magattech.certGen.model.merila.SlozivoMerilo;
 import com.magattech.certGen.model.request.MetriZaTekstilRequest;
 import com.magattech.certGen.repository.MetriZaTekstilRepository;
 import com.magattech.certGen.service.MetriZaTekstilService;
@@ -22,5 +23,10 @@ public class MetriZaTekstilServiceImpl implements MetriZaTekstilService {
     @Override
     public void add(MetriZaTekstilRequest metriZaTekstilRequest) {
 
+    }
+
+    @Override
+    public MetriZaTekstil getByBrojZapisnika(String brojZapisnika) {
+        return metriZaTekstilRepository.findByBrojZapisnika(brojZapisnika).orElse(MetriZaTekstil.builder().brojZapisnika(null).build());
     }
 }

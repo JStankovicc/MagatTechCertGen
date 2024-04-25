@@ -2,6 +2,7 @@ package com.magattech.certGen.service;
 
 import com.magattech.certGen.model.merila.MasinaZaMerenje;
 import com.magattech.certGen.model.merila.MetriZaTekstil;
+import com.magattech.certGen.model.merila.SlozivoMerilo;
 import com.magattech.certGen.model.request.MasinaZaMerenjeRequest;
 import com.magattech.certGen.model.request.MetriZaTekstilRequest;
 
@@ -13,4 +14,5 @@ public interface MetriZaTekstilService {
 
     public void add(MetriZaTekstilRequest metriZaTekstilRequest);
 
+    public MetriZaTekstil getByBrojZapisnika(String brojZapisnika);
 }
