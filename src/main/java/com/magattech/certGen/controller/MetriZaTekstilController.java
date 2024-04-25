@@ -24,7 +24,6 @@ public class MetriZaTekstilController {
 
     @PostMapping("/add")
     public void addJednodelnoMerilo(@RequestBody MetriZaTekstilRequest metriZaTekstilRequest){
-        System.out.println("DOBIJEN ZAHTEV");
         metriZaTekstilService.add(metriZaTekstilRequest);
     }
 

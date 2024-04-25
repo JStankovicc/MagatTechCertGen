@@ -24,7 +24,6 @@ public class SlozivoMeriloController {
 
     @PostMapping("/add")
     public void addJednodelnoMerilo(@RequestBody SlozivoMeriloRequest slozivoMeriloRequest){
-        System.out.println("DOBIJEN ZAHTEV");
         slozivoMeriloService.add(slozivoMeriloRequest);
     }
 
@@ -34,8 +33,9 @@ public class SlozivoMeriloController {
     }
 
     @GetMapping("/print")
-    public ResponseEntity<byte[]> printSlozivoMerilo() {
-        byte[] pdfData = pdfGeneratorService.generateSlozivoMerilo(new SlozivoMerilo());
+    public ResponseEntity<byte[]> printSlozivoMerilo(@RequestParam("brojZapisnika") String brojZapisnika) {
+        SlozivoMerilo slozivoMerilo = slozivoMeriloService.getByBrojZapisnika(brojZapisnika);
+        byte[] pdfData = pdfGeneratorService.generateSlozivoMerilo(slozivoMerilo);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);

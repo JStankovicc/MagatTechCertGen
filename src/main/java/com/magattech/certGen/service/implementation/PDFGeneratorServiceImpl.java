@@ -1031,8 +1031,8 @@ public class PDFGeneratorServiceImpl implements PDFGeneratorService {
                                 if (text.contains("[vrstaKontrolisanja]")) {
                                     replaceText(paragraph, "[vrstaKontrolisanja]", masinaZaMerenje.getVrstaKontrolisanja());
                                 }
-                                if (text.contains("[podnosilacZahteva]")) {
-                                    replaceText(paragraph, "[podnosilacZahteva]", masinaZaMerenje.getPodnosilacZahteva());
+                                if (text.contains("podnosilacZahteva")) {
+                                    replaceText(paragraph, "podnosilacZahteva", masinaZaMerenje.getPodnosilacZahteva());
                                 }
                                 if (text.contains("vlasnikKorisnik")) {
                                     replaceText(paragraph, "vlasnikKorisnik", masinaZaMerenje.getKorisnik());
@@ -1052,8 +1052,8 @@ public class PDFGeneratorServiceImpl implements PDFGeneratorService {
                                 if (text.contains("sluzbenaOznakaTipa")) {
                                     replaceText(paragraph, "sluzbenaOznakaTipa", masinaZaMerenje.getSluzbenaOznakaTipa());
                                 }
-                                if (text.contains("[merniOpseg]")) {
-                                    replaceText(paragraph, "[merniOpseg]", masinaZaMerenje.getMerniOpseg());
+                                if (text.contains("merniOpseg")) {
+                                    replaceText(paragraph, "merniOpseg", masinaZaMerenje.getMerniOpseg());
                                 }
                                 if (text.contains("najmanjiPodeljak")) {
                                     replaceText(paragraph, "najmanjiPodeljak", masinaZaMerenje.getNajmanjiPodeljak());
@@ -1162,6 +1162,50 @@ public class PDFGeneratorServiceImpl implements PDFGeneratorService {
                                     replaceText(paragraph, "odobrio", masinaZaMerenje.getOdobrio());
                                 }
 
+                                if (text.contains("ot")) {
+                                    String average = calculateAverage(masinaZaMerenje.getMerenje1(), masinaZaMerenje.getMerenje2(), masinaZaMerenje.getMerenje3());
+                                    String result = calculateWithPi(average);
+                                    replaceText(paragraph,"ot",result);
+                                }
+
+                                if(text.contains("[cb3]")){
+                                    if (masinaZaMerenje.getProveraIspravnogVodjenja().equals("испуњавa")){
+                                        replaceText(paragraph,"[cb3]","☒");
+                                    }else {
+                                        replaceText(paragraph, "[cb3]", "☐");
+                                    }
+                                }
+                                if(text.contains("[cb4]")){
+                                    if (masinaZaMerenje.getProveraIspravnogVodjenja().equals("не испуњава")){
+                                        replaceText(paragraph,"[cb4]","☒");
+                                    }else {
+                                        replaceText(paragraph, "[cb4]", "☐");
+                                    }
+                                }
+                                if(text.contains("[cb5]")){
+                                    if (masinaZaMerenje.getProveraIspravnogVodjenja().equals("није применљиво")){
+                                        replaceText(paragraph,"[cb5]","☒");
+                                    }else {
+                                        replaceText(paragraph, "[cb5]", "☐");
+                                    }
+                                }
+
+                                if(masinaZaMerenje.isProveraIspravnostiPokaznogUredjaja()){
+                                    if (text.contains("[cb6]")) {
+                                        replaceText(paragraph, "[cb6]", "☒");
+                                    }
+                                    if (text.contains("[cb7]")) {
+                                        replaceText(paragraph, "[cb7]", "☐");
+                                    }
+                                } else {
+                                    if (text.contains("[cb6]")) {
+                                        replaceText(paragraph, "[cb6]", "☐");
+                                    }
+                                    if (text.contains("[cb7]")) {
+                                        replaceText(paragraph, "[cb7]", "☒");
+                                    }
+                                }
+
                                 if (text.contains("Резултати контролисања:")){
                                     for (XWPFTable innerTable : cell.getTables()) {
                                         for (XWPFTableRow innerRow : innerTable.getRows()) {
@@ -1178,58 +1222,6 @@ public class PDFGeneratorServiceImpl implements PDFGeneratorService {
                                                         }if (innerText.contains("srv")) {
                                                             String average = calculateAverage(masinaZaMerenje.getMerenje1(), masinaZaMerenje.getMerenje2(), masinaZaMerenje.getMerenje3());
                                                             replaceText(innerParagraph,"srv",average);
-                                                        }if (innerText.contains("ot")) {
-                                                            String average = calculateAverage(masinaZaMerenje.getMerenje1(), masinaZaMerenje.getMerenje2(), masinaZaMerenje.getMerenje3());
-                                                            String result = calculateWithPi(average);
-                                                            replaceText(paragraph,"ot",result);
-                                                        }
-
-                                                        if(masinaZaMerenje.getProveraIspravnogVodjenja().equals("испуњавa")){
-                                                            if (text.contains("[cb3]")) {
-                                                                replaceText(paragraph, "[cb3]", "☒");
-                                                            }
-                                                            if (text.contains("[cb4]")) {
-                                                                replaceText(paragraph, "[cb4]", "☐");
-                                                            }
-                                                            if (text.contains("[cb5]")) {
-                                                                replaceText(paragraph, "[cb5]", "☐");
-                                                            }
-                                                        }else if (masinaZaMerenje.getProveraIspravnogVodjenja().equals("не испуњава")){
-                                                            if (text.contains("[cb3]")) {
-                                                                replaceText(paragraph, "[cb3]", "☐");
-                                                            }
-                                                            if (text.contains("[cb4]")) {
-                                                                replaceText(paragraph, "[cb4]", "☒");
-                                                            }
-                                                            if (text.contains("[cb5]")) {
-                                                                replaceText(paragraph, "[cb5]", "☐");
-                                                            }
-                                                        }else {
-                                                            if (text.contains("[cb3]")) {
-                                                                replaceText(paragraph, "[cb3]", "☐");
-                                                            }
-                                                            if (text.contains("[cb4]")) {
-                                                                replaceText(paragraph, "[cb4]", "☐");
-                                                            }
-                                                            if (text.contains("[cb5]")) {
-                                                                replaceText(paragraph, "[cb5]", "☒");
-                                                            }
-                                                        }
-
-                                                        if(masinaZaMerenje.isProveraIspravnostiPokaznogUredjaja()){
-                                                            if (text.contains("[cb6]")) {
-                                                                replaceText(paragraph, "[cb6]", "☒");
-                                                            }
-                                                            if (text.contains("[cb7]")) {
-                                                                replaceText(paragraph, "[cb7]", "☐");
-                                                            }
-                                                        } else {
-                                                            if (text.contains("[cb6]")) {
-                                                                replaceText(paragraph, "[cb6]", "☐");
-                                                            }
-                                                            if (text.contains("[cb7]")) {
-                                                                replaceText(paragraph, "[cb7]", "☒");
-                                                            }
                                                         }
 
                                                         if (innerText.contains("duzina")) {
@@ -1301,7 +1293,7 @@ public class PDFGeneratorServiceImpl implements PDFGeneratorService {
     @Override
     public byte[] generateSlozivoMerilo(SlozivoMerilo slozivoMerilo) {
         String staticResourcePath = "src/main/resources/static/";
-        String wordFilePath = staticResourcePath + "slozivo merilo.docx";
+        String wordFilePath = staticResourcePath + "slozivoMeriloTemplate.docx";
 
         File wordFile = new File(wordFilePath);
 
@@ -1311,7 +1303,351 @@ public class PDFGeneratorServiceImpl implements PDFGeneratorService {
         }
 
         try {
-            return Files.readAllBytes(wordFile.toPath());
+            XWPFDocument doc = new XWPFDocument(new FileInputStream(wordFile));
+
+            for (XWPFTable table : doc.getTables()) {
+                for (XWPFTableRow row : table.getRows()) {
+                    for (XWPFTableCell cell : row.getTableCells()) {
+                        for (XWPFParagraph paragraph : cell.getParagraphs()) {
+                            String text = paragraph.getText();
+                            if (text != null) {
+                                if (text.contains("[brojZapisnika]")) {
+                                    replaceText(paragraph, "[brojZapisnika]", slozivoMerilo.getBrojZapisnika());
+                                }
+                                if (text.contains("[vrstaKontrolisanja]")) {
+                                    replaceText(paragraph, "[vrstaKontrolisanja]", slozivoMerilo.getVrstaKontrolisanja());
+                                }
+                                if (text.contains("[podnosilacZahteva]")) {
+                                    replaceText(paragraph, "[podnosilacZahteva]", slozivoMerilo.getPodnosilacZahteva());
+                                }
+                                if (text.contains("[vlasnikKorisnik]")) {
+                                    replaceText(paragraph, "[vlasnikKorisnik]", slozivoMerilo.getKorisnik());
+                                }
+                                if (text.contains("[serijskiBroj]")) {
+                                    replaceText(paragraph, "[serijskiBroj]", slozivoMerilo.getSerijskiBroj());
+                                }
+                                if (text.contains("[identifikacioniBroj]")) {
+                                    replaceText(paragraph, "[identifikacioniBroj]", slozivoMerilo.getIdentifikacioniBroj());
+                                }
+                                if (text.contains("[proizvodjac]")) {
+                                    replaceText(paragraph, "[proizvodjac]", slozivoMerilo.getProizvodjac());
+                                }
+                                if (text.contains("[oznakaTipa]")) {
+                                    replaceText(paragraph, "[oznakaTipa]", slozivoMerilo.getOznakaTipa());
+                                }
+                                if (text.contains("sluzbenaOznakaTipa")) {
+                                    replaceText(paragraph, "sluzbenaOznakaTipa", slozivoMerilo.getSluzbenaOznakaTipa());
+                                }
+                                if (text.contains("[merniOpseg]")) {
+                                    replaceText(paragraph, "[merniOpseg]", slozivoMerilo.getMerniOpseg());
+                                }
+                                if (text.contains("najmanjiPodeljak")) {
+                                    replaceText(paragraph, "najmanjiPodeljak", slozivoMerilo.getNajmanjiPodeljak());
+                                }
+                                if (text.contains("[klasaTacnosti]")) {
+                                    replaceText(paragraph, "[klasaTacnosti]", slozivoMerilo.getKlasaTacnosti());
+                                }
+                                if (text.contains("temperatura")) {
+                                    replaceText(paragraph, "temperatura", slozivoMerilo.getTemperatura());
+                                }
+                                if (text.contains("[vlaznost]")) {
+                                    replaceText(paragraph, "[vlaznost]", slozivoMerilo.getVlaznostVazduha());
+                                }
+
+                                if(slozivoMerilo.isMeriloJeIspravno()){
+                                    if (text.contains("[cb1]")) {
+                                        replaceText(paragraph, "[cb1]", "☒");
+                                    }
+                                    if (text.contains("[cb2]")) {
+                                        replaceText(paragraph, "[cb2]", "☐");
+                                    }
+                                }else {
+                                    if (text.contains("[cb1]")) {
+                                        replaceText(paragraph, "[cb1]", "☐");
+                                    }
+                                    if (text.contains("[cb2]")) {
+                                        replaceText(paragraph, "[cb2]", "☒");
+                                    }
+                                }
+
+                                if (text.contains("[napomena1]")) {
+                                    replaceText(paragraph, "[napomena1]", slozivoMerilo.getNapomena());
+                                }
+                                if (text.contains("brojMernogLenjira")) {
+                                    replaceText(paragraph, "brojMernogLenjira", slozivoMerilo.getBrojMernogLenjira());
+                                }
+                                if (text.contains("brojMerneLupe")) {
+                                    replaceText(paragraph, "brojMerneLupe", slozivoMerilo.getBrojMerneLupe());
+                                }
+
+                                List<String> skinuti = List.of(slozivoMerilo.getSkinutiZigovi().split(";"));
+                                List<String> postavljeni = List.of(slozivoMerilo.getPostavljeniZigovi().split(";"));
+
+                                if (text.contains("Skinuti1")) {
+                                    replaceText(paragraph, "Skinuti1", skinuti.get(0));
+                                }
+                                if (text.contains("Skinuti2")) {
+                                    replaceText(paragraph, "Skinuti2", skinuti.get(1));
+                                }
+
+                                if (text.contains("Postavljeni1")) {
+                                    replaceText(paragraph, "Postavljeni1", postavljeni.get(0));
+                                }
+                                if (text.contains("Postavljeni2")) {
+                                    replaceText(paragraph, "Postavljeni2", postavljeni.get(1));
+                                }
+
+                                if(slozivoMerilo.isMeriloIspunjavaZahteve()){
+                                    if (text.contains("[cb3]")) {
+                                        replaceText(paragraph, "[cb3]", "☒");
+                                    }
+                                    if (text.contains("[cb4]")) {
+                                        replaceText(paragraph, "[cb4]", "☐");
+                                    }
+                                }else {
+                                    if (text.contains("[cb3]")) {
+                                        replaceText(paragraph, "[cb3]", "☐");
+                                    }
+                                    if (text.contains("[cb4]")) {
+                                        replaceText(paragraph, "[cb4]", "☒");
+                                    }
+                                }
+
+                                if (text.contains("[komentar2]")) {
+                                    replaceText(paragraph, "[komentar2]", slozivoMerilo.getKomentar2());
+                                }
+
+                                if (text.contains("[datum]")) {
+                                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+
+                                    Date datum = slozivoMerilo.getDatum();
+
+                                    String formatiraniDatum = dateFormat.format(datum);
+
+                                    replaceText(paragraph, "[datum]", formatiraniDatum);
+                                }
+
+                                if (text.contains("etalonirao")) {
+                                    replaceText(paragraph, "etalonirao", slozivoMerilo.getEtalonirao());
+                                }
+                                if (text.contains("odobrio")) {
+                                    replaceText(paragraph, "odobrio", slozivoMerilo.getOdobrio());
+                                }
+
+                                if (text.contains("Резултати контролисања:")){
+                                    for (XWPFTable innerTable : cell.getTables()) {
+                                        for (XWPFTableRow innerRow : innerTable.getRows()) {
+                                            for (XWPFTableCell innerCell : innerRow.getTableCells()) {
+                                                for (XWPFParagraph innerParagraph : innerCell.getParagraphs()) {
+                                                    String innerText = innerParagraph.getText();
+                                                    if (innerText != null) {
+                                                        if (innerText.contains("odstupanje1")) {
+                                                            replaceText(innerParagraph, "odstupanje1", slozivoMerilo.getOdstupanje1());
+                                                        }if (innerText.contains("odstupanje2")) {
+                                                            replaceText(innerParagraph, "odstupanje2", slozivoMerilo.getOdstupanje2());
+                                                        }if (innerText.contains("odstupanje3")) {
+                                                            replaceText(innerParagraph, "odstupanje3", slozivoMerilo.getOdstupanje3());
+                                                        }if (innerText.contains("odstupanje4")) {
+                                                            replaceText(innerParagraph, "odstupanje4", slozivoMerilo.getOdstupanje4());
+                                                        }if (innerText.contains("odstupanje5")) {
+                                                            replaceText(innerParagraph, "odstupanje5", slozivoMerilo.getOdstupanje5());
+                                                        }if (innerText.contains("ndg1")) {
+                                                            replaceText(innerParagraph, "ndg1", slozivoMerilo.getNdg1());
+                                                        }
+                                                        if (innerText.contains("greska1")) {
+                                                            replaceText(innerParagraph, "greska1", slozivoMerilo.getGreska1());
+                                                        }
+                                                        if (innerText.contains("greska2")) {
+                                                            replaceText(innerParagraph, "greska2", slozivoMerilo.getGreska2());
+                                                        }
+                                                        if (innerText.contains("greska3")) {
+                                                            replaceText(innerParagraph, "greska3", slozivoMerilo.getGreska3());
+                                                        }
+                                                        if (innerText.contains("greska4")) {
+                                                            replaceText(innerParagraph, "greska4", slozivoMerilo.getGreska4());
+                                                        }
+                                                        if (innerText.contains("greska5")) {
+                                                            replaceText(innerParagraph, "greska5", slozivoMerilo.getGreska5());
+                                                        }
+                                                        if (innerText.contains("greska6")) {
+                                                            replaceText(innerParagraph, "greska6", slozivoMerilo.getGreska6());
+                                                        }
+                                                        if (innerText.contains("greska7")) {
+                                                            replaceText(innerParagraph, "greska7", slozivoMerilo.getGreska7());
+                                                        }
+                                                        if (innerText.contains("greska8")) {
+                                                            replaceText(innerParagraph, "greska8", slozivoMerilo.getGreska8());
+                                                        }
+                                                        if (innerText.contains("gp1")) {
+                                                            replaceText(innerParagraph, "gp1", slozivoMerilo.getGreskaPodeljka1());
+                                                        }
+                                                        if (innerText.contains("gp2")) {
+                                                            replaceText(innerParagraph, "gp2", slozivoMerilo.getGreskaPodeljka2());
+                                                        }
+                                                        if (innerText.contains("gp3")) {
+                                                            replaceText(innerParagraph, "gp3", slozivoMerilo.getGreskaPodeljka3());
+                                                        }
+                                                        if (innerText.contains("gp4")) {
+                                                            replaceText(innerParagraph, "gp4", slozivoMerilo.getGreskaPodeljka4());
+                                                        }
+                                                        if (innerText.contains("gp5")) {
+                                                            replaceText(innerParagraph, "gp5", slozivoMerilo.getGreskaPodeljka5());
+                                                        }
+                                                        if (innerText.contains("gp6")) {
+                                                            replaceText(innerParagraph, "gp6", slozivoMerilo.getGreskaPodeljka6());
+                                                        }
+                                                        if (innerText.contains("gp7")) {
+                                                            replaceText(innerParagraph, "gp7", slozivoMerilo.getGreskaPodeljka7());
+                                                        }
+                                                        if (innerText.contains("gp8")) {
+                                                            replaceText(innerParagraph, "gp8", slozivoMerilo.getGreskaPodeljka8());
+                                                        }
+                                                        if (innerText.contains("rd1")) {
+                                                            replaceText(innerParagraph, "rd1", getRazlika(slozivoMerilo.getGreskaPodeljka1(), slozivoMerilo.getGreskaPodeljka2()));
+                                                        }
+                                                        if (innerText.contains("rd2")) {
+                                                            replaceText(innerParagraph, "rd2", getRazlika(slozivoMerilo.getGreskaPodeljka3(), slozivoMerilo.getGreskaPodeljka4()));
+                                                        }
+                                                        if (innerText.contains("rd3")) {
+                                                            replaceText(innerParagraph, "rd3", getRazlika(slozivoMerilo.getGreskaPodeljka5(), slozivoMerilo.getGreskaPodeljka6()));
+                                                        }
+                                                        if (innerText.contains("rd4")) {
+                                                            replaceText(innerParagraph, "rd4", getRazlika(slozivoMerilo.getGreskaPodeljka7(), slozivoMerilo.getGreskaPodeljka8()));
+                                                        }
+                                                        if (innerText.contains("ndg2")) {
+                                                            replaceText(innerParagraph, "ndg2", slozivoMerilo.getNdg2());
+                                                        }
+                                                        if (innerText.contains("ndr1")) {
+                                                            replaceText(innerParagraph, "ndr1", slozivoMerilo.getNdr1());
+                                                        }
+
+
+                                                        if (innerText.contains("odstupanje6")) {
+                                                            replaceText(innerParagraph, "odstupanje6", slozivoMerilo.getOdstupanje6());
+                                                        }if (innerText.contains("odstupanje7")) {
+                                                            replaceText(innerParagraph, "odstupanje7", slozivoMerilo.getOdstupanje7());
+                                                        }if (innerText.contains("odstupanje8")) {
+                                                            replaceText(innerParagraph, "odstupanje8", slozivoMerilo.getOdstupanje8());
+                                                        }if (innerText.contains("odstupanje9")) {
+                                                            replaceText(innerParagraph, "odstupanje9", slozivoMerilo.getOdstupanje9());
+                                                        }if (innerText.contains("Odstupanje10")) {
+                                                            replaceText(innerParagraph, "Odstupanje10", slozivoMerilo.getOdstupanje10());
+                                                        }if (innerText.contains("ndg3")) {
+                                                            replaceText(innerParagraph, "ndg3", slozivoMerilo.getNdg3());
+                                                        }
+                                                        if (innerText.contains("Greska9")) {
+                                                            replaceText(innerParagraph, "Greska9", slozivoMerilo.getGreska9());
+                                                        }
+                                                        if (innerText.contains("Greska10")) {
+                                                            replaceText(innerParagraph, "Greska10", slozivoMerilo.getGreska10());
+                                                        }
+                                                        if (innerText.contains("Greska11")) {
+                                                            replaceText(innerParagraph, "Greska11", slozivoMerilo.getGreska11());
+                                                        }
+                                                        if (innerText.contains("Greska12")) {
+                                                            replaceText(innerParagraph, "Greska12", slozivoMerilo.getGreska12());
+                                                        }
+                                                        if (innerText.contains("Greska13")) {
+                                                            replaceText(innerParagraph, "Greska13", slozivoMerilo.getGreska13());
+                                                        }
+                                                        if (innerText.contains("Greska14")) {
+                                                            replaceText(innerParagraph, "Greska14", slozivoMerilo.getGreska14());
+                                                        }
+                                                        if (innerText.contains("Greska15")) {
+                                                            replaceText(innerParagraph, "Greska15", slozivoMerilo.getGreska15());
+                                                        }
+                                                        if (innerText.contains("Greska16")) {
+                                                            replaceText(innerParagraph, "Greska16", slozivoMerilo.getGreska16());
+                                                        }
+                                                        if (innerText.contains("Gp9")) {
+                                                            replaceText(innerParagraph, "Gp9", slozivoMerilo.getGreskaPodeljka9());
+                                                        }
+                                                        if (innerText.contains("Gp10")) {
+                                                            replaceText(innerParagraph, "Gp10", slozivoMerilo.getGreskaPodeljka10());
+                                                        }
+                                                        if (innerText.contains("Gp11")) {
+                                                            replaceText(innerParagraph, "Gp11", slozivoMerilo.getGreskaPodeljka11());
+                                                        }
+                                                        if (innerText.contains("Gp12")) {
+                                                            replaceText(innerParagraph, "Gp12", slozivoMerilo.getGreskaPodeljka12());
+                                                        }
+                                                        if (innerText.contains("Gp13")) {
+                                                            replaceText(innerParagraph, "Gp13", slozivoMerilo.getGreskaPodeljka13());
+                                                        }
+                                                        if (innerText.contains("Gp14")) {
+                                                            replaceText(innerParagraph, "Gp14", slozivoMerilo.getGreskaPodeljka14());
+                                                        }
+                                                        if (innerText.contains("Gp15")) {
+                                                            replaceText(innerParagraph, "Gp15", slozivoMerilo.getGreskaPodeljka15());
+                                                        }
+                                                        if (innerText.contains("Gp16")) {
+                                                            replaceText(innerParagraph, "Gp16", slozivoMerilo.getGreskaPodeljka16());
+                                                        }
+                                                        if (innerText.contains("rd5")) {
+                                                            replaceText(innerParagraph, "rd5", getRazlika(slozivoMerilo.getGreskaPodeljka9(), slozivoMerilo.getGreskaPodeljka10()));
+                                                        }
+                                                        if (innerText.contains("rd6")) {
+                                                            replaceText(innerParagraph, "rd6", getRazlika(slozivoMerilo.getGreskaPodeljka11(), slozivoMerilo.getGreskaPodeljka12()));
+                                                        }
+                                                        if (innerText.contains("rd7")) {
+                                                            replaceText(innerParagraph, "rd7", getRazlika(slozivoMerilo.getGreskaPodeljka13(), slozivoMerilo.getGreskaPodeljka14()));
+                                                        }
+                                                        if (innerText.contains("rd8")) {
+                                                            replaceText(innerParagraph, "rd8", getRazlika(slozivoMerilo.getGreskaPodeljka15(), slozivoMerilo.getGreskaPodeljka16()));
+                                                        }
+                                                        if (innerText.contains("ndg4")) {
+                                                            replaceText(innerParagraph, "ndg4", slozivoMerilo.getNdg4());
+                                                        }
+                                                        if (innerText.contains("ndr2")) {
+                                                            replaceText(innerParagraph, "ndr2", slozivoMerilo.getNdr2());
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            List<XWPFFooter> footers = doc.getFooterList();
+
+            for (XWPFFooter footer : footers) {
+                List<XWPFParagraph> paragraphs = footer.getParagraphs();
+                for (XWPFParagraph paragraph : paragraphs) {
+                    String text = paragraph.getText();
+                    if (text != null) {
+                        if (text.contains("date")) {
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+
+                            Date datum = slozivoMerilo.getDatum();
+
+                            String formatiraniDatum = dateFormat.format(datum);
+
+                            replaceText(paragraph, "date", formatiraniDatum);
+
+                            XWPFRun run = paragraph.createRun();
+                            run.addTab();
+                        }
+                    }
+                }
+            }
+
+            String workingFilePath = staticResourcePath + "workingJednodelnoMerilo.docx";
+            FileOutputStream fos = new FileOutputStream(workingFilePath);
+            doc.write(fos);
+            fos.close();
+            doc.close();
+
+            File workingFile = new File(workingFilePath);
+            byte[] workingDocumentBytes = Files.readAllBytes(workingFile.toPath());
+
+            workingFile.delete();
+
+            return workingDocumentBytes;
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -1372,7 +1708,6 @@ public class PDFGeneratorServiceImpl implements PDFGeneratorService {
             String text = run.getText(0);
 
             if (text != null) {
-                System.out.println("Text: " + text);
                 textBuilder.append(text);
                 if (text.contains(placeholder)) {
                     placeholderFound = true;

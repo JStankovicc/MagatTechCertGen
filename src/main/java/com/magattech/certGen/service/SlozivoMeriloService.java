@@ -1,5 +1,6 @@
 package com.magattech.certGen.service;
 
+import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.merila.MetriZaTekstil;
 import com.magattech.certGen.model.merila.SlozivoMerilo;
 import com.magattech.certGen.model.request.MetriZaTekstilRequest;
@@ -11,4 +12,6 @@ public interface SlozivoMeriloService {
     List<SlozivoMerilo> getAll();
 
     public void add(SlozivoMeriloRequest slozivoMeriloRequest);
+    public SlozivoMerilo getByBrojZapisnika(String brojZapisnika);
+
 }
