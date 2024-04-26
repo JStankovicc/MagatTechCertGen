@@ -19,4 +19,7 @@ public interface MernaLetvaService {
 
     List<MernaLetva> getAll();
 
+    List<MernaLetva> findAllNeoverena();
+
+    void odobri(String brojZapisnika);
 }

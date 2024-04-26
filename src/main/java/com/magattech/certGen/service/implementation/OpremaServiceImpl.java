@@ -1,6 +1,7 @@
 package com.magattech.certGen.service.implementation;
 
 import com.magattech.certGen.model.included.Oprema;
+import com.magattech.certGen.model.request.OpremaRequest;
 import com.magattech.certGen.repository.OpremaRepository;
 import com.magattech.certGen.service.OpremaService;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +13,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OpremaServiceImpl implements OpremaService {
     private final OpremaRepository opremaRepository;
+
     @Override
-    public List<Oprema> getAll() {
+    public List<Oprema> findAll() {
         return opremaRepository.findAll();
     }
 
@@ -33,7 +35,14 @@ public class OpremaServiceImpl implements OpremaService {
     }
 
     @Override
-    public void save(Oprema oprema) {
+    public void addOprema(OpremaRequest opremaRequest) {
+        Oprema oprema = Oprema.builder().name(opremaRequest.getName()).serBrEtalona(opremaRequest.getSerBrEtalona()).build();
         opremaRepository.save(oprema);
     }
+
+    @Override
+    public void deleteOpremaById(String id) {
+        opremaRepository.deleteById(Integer.valueOf(id));
+    }
+
 }

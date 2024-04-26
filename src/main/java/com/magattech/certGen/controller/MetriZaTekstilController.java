@@ -32,6 +32,16 @@ public class MetriZaTekstilController {
         return ResponseEntity.ok(metriZaTekstilService.getAll());
     }
 
+    @GetMapping("/neoverena")
+    public ResponseEntity<List<MetriZaTekstil>> getNeoverena(){
+        return ResponseEntity.ok(metriZaTekstilService.getAllNeoverena());
+    }
+
+    @GetMapping("/odobri")
+    public void odobriMerilo(@RequestParam("brojZapisnika") String brojZapisnika){
+        metriZaTekstilService.odobri(brojZapisnika);
+    }
+
     @GetMapping("/print")
     public ResponseEntity<byte[]> printMetriZaTekstil(@RequestParam("brojZapisnika") String brojZapisnika) {
         MetriZaTekstil metriZaTekstil = metriZaTekstilService.getByBrojZapisnika(brojZapisnika);

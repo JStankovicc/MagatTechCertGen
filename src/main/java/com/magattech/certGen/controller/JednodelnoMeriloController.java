@@ -32,6 +32,16 @@ public class JednodelnoMeriloController {
         return ResponseEntity.ok(jednodelnoMeriloService.getAll());
     }
 
+    @GetMapping("/neoverena")
+    public ResponseEntity<List<JednodelnoMerilo>> getNeoverena(){
+        return ResponseEntity.ok(jednodelnoMeriloService.getNeoverena());
+    }
+
+    @GetMapping("/odobri")
+    public void odobriMerilo(@RequestParam("brojZapisnika") String brojZapisnika){
+        jednodelnoMeriloService.odobri(brojZapisnika);
+    }
+
     @GetMapping("/print")
     public ResponseEntity<byte[]> printJednodelnoMerilo(@RequestParam("brojZapisnika") String brojZapisnika) {
         JednodelnoMerilo jednodelnoMerilo = jednodelnoMeriloService.getByBrojZapisnika(brojZapisnika);

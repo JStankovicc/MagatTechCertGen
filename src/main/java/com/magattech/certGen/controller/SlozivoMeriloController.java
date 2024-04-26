@@ -32,6 +32,16 @@ public class SlozivoMeriloController {
         return ResponseEntity.ok(slozivoMeriloService.getAll());
     }
 
+    @GetMapping("/neoverena")
+    public ResponseEntity<List<SlozivoMerilo>> getNeodobrena(){
+        return ResponseEntity.ok(slozivoMeriloService.getAllNeoverena());
+    }
+
+    @GetMapping("/odobri")
+    public void odobriMerilo(@RequestParam("brojZapisnika") String brojZapisnika){
+        slozivoMeriloService.odobri(brojZapisnika);
+    }
+
     @GetMapping("/print")
     public ResponseEntity<byte[]> printSlozivoMerilo(@RequestParam("brojZapisnika") String brojZapisnika) {
         SlozivoMerilo slozivoMerilo = slozivoMeriloService.getByBrojZapisnika(brojZapisnika);

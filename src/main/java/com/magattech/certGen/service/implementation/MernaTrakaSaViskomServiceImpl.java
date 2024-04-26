@@ -129,4 +129,16 @@ public class MernaTrakaSaViskomServiceImpl implements MernaTrakaSaViskomService 
     public List<MernaTrakaSaViskom> getAll() {
         return mernaTrakaSaViskomRepository.findAll();
     }
+
+    @Override
+    public List<MernaTrakaSaViskom> getAllNeoverena() {
+        return mernaTrakaSaViskomRepository.findAllByOdobreno(false);
+    }
+
+    @Override
+    public void odobri(String brojZapisnika) {
+        MernaTrakaSaViskom mernaTrakaSaViskom = this.getByBrojZapisnika(brojZapisnika);
+        mernaTrakaSaViskom.setOdobreno(true);
+        mernaTrakaSaViskomRepository.save(mernaTrakaSaViskom);
+    }
 }

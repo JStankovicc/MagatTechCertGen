@@ -17,4 +17,8 @@ public interface MernaTrakaSaViskomService {
     public void addOdobrenje(OdobrenjeRequest odobrenjeRequest);
 
     List<MernaTrakaSaViskom> getAll();
+
+    List<MernaTrakaSaViskom> getAllNeoverena();
+
+    void odobri(String brojZapisnika);
 }

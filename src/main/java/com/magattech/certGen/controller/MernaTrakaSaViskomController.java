@@ -30,6 +30,16 @@ public class MernaTrakaSaViskomController {
         return ResponseEntity.ok(mernaTrakaSaViskomService.getAll());
     }
 
+    @GetMapping("/neoverena")
+    public ResponseEntity<List<MernaTrakaSaViskom>> getAllNeoverena(){
+        return ResponseEntity.ok(mernaTrakaSaViskomService.getAllNeoverena());
+    }
+
+    @GetMapping("/odobri")
+    public void odobriMerilo(@RequestParam("brojZapisnika") String brojZapisnika){
+        mernaTrakaSaViskomService.odobri(brojZapisnika);
+    }
+
     @GetMapping("/print")
     public ResponseEntity<byte[]> printMernaTrakaSaViskom(@RequestParam("brojZapisnika") String brojZapisnika) {
         MernaTrakaSaViskom mernaTrakaSaViskom = mernaTrakaSaViskomService.getByBrojZapisnika(brojZapisnika);

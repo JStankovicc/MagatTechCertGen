@@ -16,4 +16,8 @@ public interface JednodelnoMeriloService {
     public void addOdobrenje(OdobrenjeRequest odobrenjeRequest);
 
     List<JednodelnoMerilo> getAll();
+
+    List<JednodelnoMerilo> getNeoverena();
+
+    void odobri(String brojZapisnika);
 }

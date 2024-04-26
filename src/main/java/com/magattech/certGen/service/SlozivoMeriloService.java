@@ -14,4 +14,7 @@ public interface SlozivoMeriloService {
     public void add(SlozivoMeriloRequest slozivoMeriloRequest);
     public SlozivoMerilo getByBrojZapisnika(String brojZapisnika);
 
+    List<SlozivoMerilo> getAllNeoverena();
+
+    void odobri(String brojZapisnika);
 }

@@ -32,6 +32,16 @@ public class MernaLetvaController {
         return ResponseEntity.ok(mernaLetvaService.getAll());
     }
 
+    @GetMapping("/neoverena")
+    public ResponseEntity<List<MernaLetva>> getNeoverena(){
+        return ResponseEntity.ok(mernaLetvaService.findAllNeoverena());
+    }
+
+    @GetMapping("/odobri")
+    public void odobriMerilo(@RequestParam("brojZapisnika") String brojZapisnika){
+        mernaLetvaService.odobri(brojZapisnika);
+    }
+
     @GetMapping("/print")
     public ResponseEntity<byte[]> printMernaLetva(@RequestParam("brojZapisnika") String brojZapisnika) {
         MernaLetva mernaLetva = mernaLetvaService.getByBrojZapisnika(brojZapisnika);

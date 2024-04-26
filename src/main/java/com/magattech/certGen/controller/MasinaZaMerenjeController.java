@@ -31,6 +31,16 @@ public class MasinaZaMerenjeController {
         return ResponseEntity.ok(masinaZaMerenjeService.getAll());
     }
 
+    @GetMapping("/neoverena")
+    public ResponseEntity<List<MasinaZaMerenje>> getNeoverena(){
+        return ResponseEntity.ok(masinaZaMerenjeService.findAllNeoverena());
+    }
+
+    @GetMapping("/odobri")
+    public void odobriMerilo(@RequestParam("brojZapisnika") String brojZapisnika){
+        masinaZaMerenjeService.odobri(brojZapisnika);
+    }
+
     @GetMapping("/print")
     public ResponseEntity<byte[]> printMasinaZaMerenje(@RequestParam("brojZapisnika") String brojZapisnika) {
         MasinaZaMerenje masinaZaMerenje = masinaZaMerenjeService.getByBrojZapisnika(brojZapisnika);

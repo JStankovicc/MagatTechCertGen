@@ -29,4 +29,16 @@ public class MetriZaTekstilServiceImpl implements MetriZaTekstilService {
     public MetriZaTekstil getByBrojZapisnika(String brojZapisnika) {
         return metriZaTekstilRepository.findByBrojZapisnika(brojZapisnika).orElse(MetriZaTekstil.builder().brojZapisnika(null).build());
     }
+
+    @Override
+    public List<MetriZaTekstil> getAllNeoverena() {
+        return metriZaTekstilRepository.findAllByOdobreno(false);
+    }
+
+    @Override
+    public void odobri(String brojZapisnika) {
+        MetriZaTekstil metriZaTekstil = this.getByBrojZapisnika(brojZapisnika);
+        metriZaTekstil.setOdobreno(true);
+        metriZaTekstilRepository.save(metriZaTekstil);
+    }
 }

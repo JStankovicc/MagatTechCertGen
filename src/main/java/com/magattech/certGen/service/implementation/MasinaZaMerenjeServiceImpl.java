@@ -30,4 +30,16 @@ public class MasinaZaMerenjeServiceImpl implements MasinaZaMerenjeService {
     public MasinaZaMerenje getByBrojZapisnika(String brojZapisnika) {
         return masinaZaMerenjeRepository.findByBrojZapisnika(brojZapisnika).orElse(MasinaZaMerenje.builder().brojZapisnika(null).build());
     }
+
+    @Override
+    public List<MasinaZaMerenje> findAllNeoverena() {
+        return masinaZaMerenjeRepository.findAllByOdobreno(false);
+    }
+
+    @Override
+    public void odobri(String brojZapisnika) {
+        MasinaZaMerenje masinaZaMerenje = this.getByBrojZapisnika(brojZapisnika);
+        masinaZaMerenje.setOdobreno(true);
+        masinaZaMerenjeRepository.save(masinaZaMerenje);
+    }
 }

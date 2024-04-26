@@ -28,4 +28,16 @@ public class SlozivoMeriloServiceImpl implements SlozivoMeriloService {
     public SlozivoMerilo getByBrojZapisnika(String brojZapisnika) {
         return slozivoMeriloRepository.findByBrojZapisnika(brojZapisnika).orElse(SlozivoMerilo.builder().brojZapisnika(null).build());
     }
+
+    @Override
+    public List<SlozivoMerilo> getAllNeoverena() {
+        return slozivoMeriloRepository.findAllByOdobreno(false);
+    }
+
+    @Override
+    public void odobri(String brojZapisnika) {
+        SlozivoMerilo slozivoMerilo = this.getByBrojZapisnika(brojZapisnika);
+        slozivoMerilo.setOdobreno(true);
+        slozivoMeriloRepository.save(slozivoMerilo);
+    }
 }

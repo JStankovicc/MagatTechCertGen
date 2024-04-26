@@ -154,4 +154,16 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
     public List<JednodelnoMerilo> getAll() {
         return jednodelnoMeriloRepository.findAll();
     }
+
+    @Override
+    public List<JednodelnoMerilo> getNeoverena() {
+        return jednodelnoMeriloRepository.findAllByOdobreno(false);
+    }
+
+    @Override
+    public void odobri(String brojZapisnika) {
+        JednodelnoMerilo jednodelnoMerilo = this.getByBrojZapisnika(brojZapisnika);
+        jednodelnoMerilo.setOdobreno(true);
+        jednodelnoMeriloRepository.save(jednodelnoMerilo);
+    }
 }

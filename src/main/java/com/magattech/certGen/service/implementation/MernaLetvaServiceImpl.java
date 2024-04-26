@@ -117,4 +117,16 @@ public class MernaLetvaServiceImpl implements MernaLetvaService {
     public List<MernaLetva> getAll() {
         return mernaLetvaRepository.findAll();
     }
+
+    @Override
+    public List<MernaLetva> findAllNeoverena() {
+        return mernaLetvaRepository.findAllByOdobreno(false);
+    }
+
+    @Override
+    public void odobri(String brojZapisnika) {
+        MernaLetva mernaLetva = this.getByBrojZapisnika(brojZapisnika);
+        mernaLetva.setOdobreno(true);
+        mernaLetvaRepository.save(mernaLetva);
+    }
 }
