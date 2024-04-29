@@ -116,7 +116,7 @@ public class DataLoader {
 
         masinaZaMerenjeRepository.save(MasinaZaMerenje.builder().brojZapisnika("39/23-K2").datum(new Date()).vrstaKontrolisanja("Periodicno (redovno)").podnosilacZahteva("Elektronapon doo").korisnik("Elektronapon doo").serijskiBroj("/").identifikacioniBroj("85434")
                 .proizvodjac("Minion").oznakaTipa("VM-1").sluzbenaOznakaTipa("D-8-17").merniOpseg("50 m do 99999,9 m").najmanjiPodeljak("0,1 m").klasaTacnosti("/").temperatura("19,5").vlaznostVazduha("45,5").meriloJeIspravno(true).napomena("/")
-                .merenje1("157,70").merenje2("157,75").merenje3("157,80").proveraIspravnogVodjenja("није применљиво").proveraIspravnostiPokaznogUredjaja(true).duzinaUzorka("50").debljinaUzorka("0,0065").pokazivanjeMasine("50").odstupanjeOdPraveVrednostiDuzine("0,045").relativnaGreskaIzmereneDuzine("0,09").ndg1("0,5")
+                .merenje1("157,70").merenje2("157,75").merenje3("157,80").proveraIspravnogVodjenja("NP").proveraIspravnostiPokaznogUredjaja(true).duzinaUzorka("50").debljinaUzorka("0,0065").pokazivanjeMasine("50").odstupanjeOdPraveVrednostiDuzine("0,045").relativnaGreskaIzmereneDuzine("0,09").ndg1("0,5")
                 .brojMernogLenjira("197").brojPomicnogMerila("711").skinutiZigovi("00202158 (23)").meriloIspunjavaZahteve(true).komentar2("Komentar 2").etalonirao("Milos Belic").odobrio("Maja Aleksic").odobreno(false).build());
 
 
