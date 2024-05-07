@@ -44,7 +44,6 @@ public class JwtServiceImpl implements JwtService {
 
     public boolean isTokenValidForRefresh(String token){
         final String userName = extractUserName(token);
-        System.out.println(userName);
         UserDetails userDetails = userService.userDetailsService().loadUserByUsername(userName);
         return (userName.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }

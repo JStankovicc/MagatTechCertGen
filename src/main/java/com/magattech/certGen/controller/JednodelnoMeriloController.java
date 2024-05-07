@@ -3,6 +3,7 @@ package com.magattech.certGen.controller;
 
 import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.request.JednodelnoMeriloRequest;
+import com.magattech.certGen.service.BrojZapisnikaService;
 import com.magattech.certGen.service.JednodelnoMeriloService;
 import com.magattech.certGen.service.PDFGeneratorService;
 import lombok.RequiredArgsConstructor;
@@ -21,9 +22,16 @@ public class JednodelnoMeriloController {
 
     private final JednodelnoMeriloService jednodelnoMeriloService;
     private final PDFGeneratorService pdfGeneratorService;
+    private final BrojZapisnikaService brojZapisnikaService;
 
     @PostMapping("/add")
     public void addJednodelnoMerilo(@RequestBody JednodelnoMeriloRequest jednodelnoMeriloRequest){
+        jednodelnoMeriloService.add(jednodelnoMeriloRequest);
+    }
+
+    @PostMapping("/addAndFinsih")
+    public void addAndFinishJednodelnoMerilo(@RequestBody JednodelnoMeriloRequest jednodelnoMeriloRequest){
+        brojZapisnikaService.updateZapisnik();
         jednodelnoMeriloService.add(jednodelnoMeriloRequest);
     }
 
