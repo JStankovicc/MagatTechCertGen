@@ -12,6 +12,6 @@ import java.util.Optional;
 
 @Repository
 public interface BrojZapisnikaRepository extends JpaRepository<BrojZapisnika, Integer> {
-    @Query("SELECT b FROM BrojZapisnika b ORDER BY b.godina DESC, b.broj DESC")
+    @Query(value = "SELECT * FROM _broj_zapisnika b ORDER BY b.godina DESC, b.broj DESC LIMIT 1;",nativeQuery = true)
     BrojZapisnika getAktuelniBrojZapisnika();
 }

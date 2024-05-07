@@ -16,4 +16,10 @@ public class BrojZapisnikaController {
     public String brojZapisnika() {
         return brojZapisnikaService.getAktuelniBrojZapisnika();
     }
+
+    @GetMapping("/update")
+    public void update(){
+        brojZapisnikaService.updateZapisnik();
+    }
+
 }

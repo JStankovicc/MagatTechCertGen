@@ -29,12 +29,6 @@ public class JednodelnoMeriloController {
         jednodelnoMeriloService.add(jednodelnoMeriloRequest);
     }
 
-    @PostMapping("/addAndFinsih")
-    public void addAndFinishJednodelnoMerilo(@RequestBody JednodelnoMeriloRequest jednodelnoMeriloRequest){
-        brojZapisnikaService.updateZapisnik();
-        jednodelnoMeriloService.add(jednodelnoMeriloRequest);
-    }
-
     @GetMapping("/all")
     public ResponseEntity<List<JednodelnoMerilo>> getAll(){
         return ResponseEntity.ok(jednodelnoMeriloService.getAll());
