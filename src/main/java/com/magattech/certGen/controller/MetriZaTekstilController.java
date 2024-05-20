@@ -57,7 +57,14 @@ public class MetriZaTekstilController {
     public ResponseEntity<byte[]> printMetriZaTekstilResenje(@RequestParam("brojZapisnika") String brojZapisnika) {
         MetriZaTekstil metriZaTekstil = metriZaTekstilService.getByBrojZapisnika(brojZapisnika);
         MeriloHelper meriloHelper = metriZaTekstil.getMeriloHeplper();
-        byte[] pdfData = DOCXGeneratorService.generateResenjeOOdbijanju(meriloHelper);
+
+        byte[] pdfData = null;
+
+        if(metriZaTekstil.isMeriloIspunjavaZahteve()){
+            pdfData = DOCXGeneratorService.generateSertifikatOKontrolisanju(meriloHelper);
+        }else{
+            pdfData = DOCXGeneratorService.generateResenjeOOdbijanju(meriloHelper);
+        }
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);

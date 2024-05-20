@@ -68,7 +68,13 @@ public class JednodelnoMeriloController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        byte[] pdfData = DOCXGeneratorService.generateResenjeOOdbijanju(meriloHelper);
+        byte[] pdfData = null;
+
+        if(jednodelnoMerilo.isMeriloIspunjavaZahteve()){
+            pdfData = DOCXGeneratorService.generateSertifikatOKontrolisanju(meriloHelper);
+        }else{
+            pdfData = DOCXGeneratorService.generateResenjeOOdbijanju(meriloHelper);
+        }
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);

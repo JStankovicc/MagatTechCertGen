@@ -106,7 +106,7 @@ public class DataLoader {
                 .odstupanje1("-0,35").odstupanje2("-0,40").odstupanje3("-0,40").odstupanje4("-0,40").odstupanje5("-0,45").odstupanje6("-0,55").ndg1("1,4").ndg2("1,4")
                 .ndg3("1,8").ndg4("1,8").ndg5("2,2").ndg6("2,2").greska1("660-661").greska2("661-662").greska3("1530-1531").greska4("1531-1532").greska5("2250-2251").greska6("2251-2252")
                 .greska7("2863-2864").greska8("2864-2865").greskaPodeljka1("-0,05").greskaPodeljka2("-0,10").greskaPodeljka3("-0,05").greskaPodeljka4("-0,05").greskaPodeljka5("0").greskaPodeljka6("-0,10").greskaPodeljka7("-0,10").greskaPodeljka8("-0,05")
-                .ndg7("±0,4").ndr1("0,4").brojMernogLenjira("650462").brojMerneLupe("2049").skinutiZigovi("63;22").postavljeniZigovi("25;131").napomena("NAPOMENA").meriloIspunjavaZahteve(true).komentar2("Komentar broj 2").etalonirao("Nikola Danilovic").odobrio("Maja Aleksic").odobreno(false).build());
+                .ndg7("±0,4").ndr1("0,4").brojMernogLenjira("650462").brojMerneLupe("2049").skinutiZigovi("63;22").postavljeniZigovi("25;131").napomena("NAPOMENA").meriloIspunjavaZahteve(true).komentar2("Komentar broj 2").etalonirao("Nikola Danilovic").odobrio("Maja Aleksic").odobreno(false).pravilnik("PRAVILNIK").build());
 
 
         mernaTrakaSaViskomRepository.save(MernaTrakaSaViskom.builder().brojZapisnika("46/23-K1").datum(new Date()).vrstaKontrolisanja("Prvo").podnosilacZahteva("Neki doo").korisnik("Drugi doo").serijskiBroj("46/23").identifikacioniBroj("/")
@@ -115,12 +115,12 @@ public class DataLoader {
                 .odstupanje8("-0,60").odstupanje9("-0,70").odstupanje10("-0,80").odstupanje11("-0,90").ndg1("0.6").ndg2("0.6").ndg3("0.7").ndg4("0.9").ndg5("1,1").ndg6("1,3").ndg7("1,5").ndg8("1,7").ndg9("1,9").ndg10("2,1").ndg11("2,3")
                 .greska1("660-661").greska2("661-662").greska3("1350-1351").greska4("1351-1352").greska5("5800-5801").greska6("5801-5802").greska7("8560-8561").greska8("8561-8562")
                 .greskaPodeljka1("-0,05").greskaPodeljka2("0").greskaPodeljka3("0").greskaPodeljka4("0").greskaPodeljka5("-0,05").greskaPodeljka6("0").greskaPodeljka7("0").greskaPodeljka8("-0,05").ndg12("±0,2").ndr1("0,2")
-                .brojMernogLenjira("650462").brojMerneLupe("2049").skinutiZigovi("/").postavljeniZigovi("25;131").meriloIspunjavaZahteve(true).komentar2("Komentar 2").etalonirao("Nikola Danilovic").odobrio("Maja Aleksic").odobreno(false).build());
+                .brojMernogLenjira("650462").brojMerneLupe("2049").skinutiZigovi("/").postavljeniZigovi("25;131").meriloIspunjavaZahteve(true).komentar2("Komentar 2").etalonirao("Nikola Danilovic").odobrio("Maja Aleksic").odobreno(false).pravilnik("PRAVILNIK").build());
 
         masinaZaMerenjeRepository.save(MasinaZaMerenje.builder().brojZapisnika("39/23-K2").datum(new Date()).vrstaKontrolisanja("Periodicno (redovno)").podnosilacZahteva("Elektronapon doo").korisnik("Elektronapon doo").serijskiBroj("/").identifikacioniBroj("85434")
                 .proizvodjac("Minion").oznakaTipa("VM-1").sluzbenaOznakaTipa("D-8-17").merniOpseg("50 m do 99999,9 m").najmanjiPodeljak("0,1 m").klasaTacnosti("/").temperatura("19,5").vlaznostVazduha("45,5").meriloJeIspravno(true).napomena("/")
                 .merenje1("157,70").merenje2("157,75").merenje3("157,80").proveraIspravnogVodjenja("NP").proveraIspravnostiPokaznogUredjaja(true).duzinaUzorka("50").debljinaUzorka("0,0065").pokazivanjeMasine("50").odstupanjeOdPraveVrednostiDuzine("0,045").relativnaGreskaIzmereneDuzine("0,09").ndg1("0,5")
-                .brojMernogLenjira("197").brojPomicnogMerila("711").skinutiZigovi("00202158 (23)").meriloIspunjavaZahteve(true).komentar2("Komentar 2").etalonirao("Milos Belic").odobrio("Maja Aleksic").odobreno(false).build());
+                .brojMernogLenjira("197").brojPomicnogMerila("711").skinutiZigovi("00202158 (23)").meriloIspunjavaZahteve(true).komentar2("Komentar 2").etalonirao("Milos Belic").odobrio("Maja Aleksic").odobreno(false).pravilnik("PRAVILNIK").build());
 
 
         slozivoMeriloRepository.save(SlozivoMerilo.builder().brojZapisnika("47/23-K2").datum(new Date()).vrstaKontrolisanja("Periodicno (redovno)").podnosilacZahteva("LIBELA").korisnik("DELTA").serijskiBroj("/").identifikacioniBroj("200").proizvodjac("S-VAGA").oznakaTipa("RS").sluzbenaOznakaTipa("D-1-5")
@@ -128,7 +128,7 @@ public class DataLoader {
                 .ndg1("±2,6").greska1("22-23").greska2("23-24").greska3("45-46").greska4("46-47").greska5("62-63").greska6("63-64").greska7("78-79").greska8("79-80").greskaPodeljka1("+0,05").greskaPodeljka2("0").greskaPodeljka3("-0,10").greskaPodeljka4("0").greskaPodeljka5("-0,10").greskaPodeljka6("0").greskaPodeljka7("0").greskaPodeljka8("0")
                 .ndg2("±1,2").ndr1("1,2").odstupanje6("-0,80").odstupanje7("-0,80").odstupanje8("-0,80").odstupanje9("-0,90").odstupanje10("-0,90").ndg3("±2,6")
                 .greska9("31-32").greska10("32-33").greska11("41-42").greska12("42-43").greska13("55-56").greska14("56-57").greska15("85-86").greska16("86-87").greskaPodeljka9("-0,05").greskaPodeljka10("0").greskaPodeljka11("0").greskaPodeljka12("0").greskaPodeljka13("-0,05").greskaPodeljka14("0").greskaPodeljka15("-0,05").greskaPodeljka16("-0,05")
-                .ndg4("±1,2").ndr2("1,2").brojMernogLenjira("650462").brojMerneLupe("2049").skinutiZigovi("77;23").postavljeniZigovi("25;131").meriloIspunjavaZahteve(true).komentar2("/").etalonirao("Nikola Danilovic").odobreno(false).odobrio("Maja Aleksic").build());
+                .ndg4("±1,2").ndr2("1,2").brojMernogLenjira("650462").brojMerneLupe("2049").skinutiZigovi("77;23").postavljeniZigovi("25;131").meriloIspunjavaZahteve(true).komentar2("/").etalonirao("Nikola Danilovic").odobreno(false).odobrio("Maja Aleksic").pravilnik("PRAVILNIK").build());
 
 
         metriZaTekstilRepository.save(MetriZaTekstil.builder().brojZapisnika("47/23-K3").datum(new Date()).vrstaKontrolisanja("Periodicno (redovno)").podnosilacZahteva("LIBELA").korisnik("DELTA").serijskiBroj("/").identifikacioniBroj("200").proizvodjac("S-VAGA").oznakaTipa("RS").sluzbenaOznakaTipa("D-1-5")
@@ -136,7 +136,7 @@ public class DataLoader {
                 .ndg1("±2,6").greska1("22-23").greska2("23-24").greska3("45-46").greska4("46-47").greska5("62-63").greska6("63-64").greska7("78-79").greska8("79-80").greskaPodeljka1("+0,05").greskaPodeljka2("0").greskaPodeljka3("-0,10").greskaPodeljka4("0").greskaPodeljka5("-0,10").greskaPodeljka6("0").greskaPodeljka7("0").greskaPodeljka8("0")
                 .ndg2("±1,2").ndr1("1,2").odstupanje6("-0,80").odstupanje7("-0,80").odstupanje8("-0,80").odstupanje9("-0,90").odstupanje10("-0,90").ndg3("±2,6")
                 .greska9("31-32").greska10("32-33").greska11("41-42").greska12("42-43").greska13("55-56").greska14("56-57").greska15("85-86").greska16("86-87").greskaPodeljka9("-0,05").greskaPodeljka10("0").greskaPodeljka11("0").greskaPodeljka12("0").greskaPodeljka13("-0,05").greskaPodeljka14("0").greskaPodeljka15("-0,05").greskaPodeljka16("-0,05")
-                .ndg4("±1,2").ndr2("1,2").brojMernogLenjira("650462").brojMerneLupe("2049").skinutiZigovi("77;23").postavljeniZigovi("25;131").meriloIspunjavaZahteve(true).komentar2("/").etalonirao("Nikola Danilovic").odobreno(false).odobrio("Maja Aleksic").build());
+                .ndg4("±1,2").ndr2("1,2").brojMernogLenjira("650462").brojMerneLupe("2049").skinutiZigovi("77;23").postavljeniZigovi("25;131").meriloIspunjavaZahteve(true).komentar2("/").etalonirao("Nikola Danilovic").odobreno(false).odobrio("Maja Aleksic").pravilnik("PRAVILNIK").build());
 
 
 

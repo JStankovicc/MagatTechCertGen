@@ -56,7 +56,14 @@ public class MernaTrakaSaViskomController {
     public ResponseEntity<byte[]> printMernaTrakaSaViskomResenje(@RequestParam("brojZapisnika") String brojZapisnika) {
         MernaTrakaSaViskom mernaTrakaSaViskom = mernaTrakaSaViskomService.getByBrojZapisnika(brojZapisnika);
         MeriloHelper meriloHelper = mernaTrakaSaViskom.getMeriloHeplper();
-        byte[] pdfData = DOCXGeneratorService.generateResenjeOOdbijanju(meriloHelper);
+
+        byte[] pdfData = null;
+
+        if(mernaTrakaSaViskom.isMeriloIspunjavaZahteve()){
+            pdfData = DOCXGeneratorService.generateSertifikatOKontrolisanju(meriloHelper);
+        }else{
+            pdfData = DOCXGeneratorService.generateResenjeOOdbijanju(meriloHelper);
+        }
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);

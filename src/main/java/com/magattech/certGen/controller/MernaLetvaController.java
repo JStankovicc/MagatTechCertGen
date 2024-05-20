@@ -58,8 +58,14 @@ public class MernaLetvaController {
     public ResponseEntity<byte[]> printMernaLetvaResenje(@RequestParam("brojZapisnika") String brojZapisnika) {
         MernaLetva mernaLetva = mernaLetvaService.getByBrojZapisnika(brojZapisnika);
         MeriloHelper meriloHelper = mernaLetva.getMeriloHeplper();
-        byte[] pdfData = DOCXGeneratorService.generateResenjeOOdbijanju(meriloHelper);
 
+        byte[] pdfData = null;
+
+        if(mernaLetva.isMeriloIspunjavaZahteve()){
+            pdfData = DOCXGeneratorService.generateSertifikatOKontrolisanju(meriloHelper);
+        }else{
+            pdfData = DOCXGeneratorService.generateResenjeOOdbijanju(meriloHelper);
+        }
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
 

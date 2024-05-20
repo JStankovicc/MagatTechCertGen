@@ -57,7 +57,14 @@ public class SlozivoMeriloController {
     public ResponseEntity<byte[]> printSlozivoMeriloResenje(@RequestParam("brojZapisnika") String brojZapisnika) {
         SlozivoMerilo slozivoMerilo = slozivoMeriloService.getByBrojZapisnika(brojZapisnika);
         MeriloHelper meriloHelper = slozivoMerilo.getMeriloHeplper();
-        byte[] pdfData = DOCXGeneratorService.generateResenjeOOdbijanju(meriloHelper);
+
+        byte[] pdfData = null;
+
+        if(slozivoMerilo.isMeriloIspunjavaZahteve()){
+            pdfData = DOCXGeneratorService.generateSertifikatOKontrolisanju(meriloHelper);
+        }else{
+            pdfData = DOCXGeneratorService.generateResenjeOOdbijanju(meriloHelper);
+        }
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);

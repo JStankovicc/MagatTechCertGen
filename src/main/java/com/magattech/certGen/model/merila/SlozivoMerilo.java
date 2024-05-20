@@ -196,6 +196,8 @@ public class SlozivoMerilo {
                 .razlogOdbijanja("RAZLOG")
                 .brojZapisnika(this.brojZapisnika)
                 .vlasnikKorisnik(this.korisnik)
+                .identifikacioniBroj(this.identifikacioniBroj)
+                .ispunjavaUslove(this.meriloIspunjavaZahteve)
                 .build();
 
         return meriloHelper;

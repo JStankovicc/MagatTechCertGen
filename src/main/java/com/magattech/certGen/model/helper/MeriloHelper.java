@@ -26,6 +26,8 @@ public class MeriloHelper {
     private String datum;
     private String razlogOdbijanja;
     private String merniOpseg;
+    private String identifikacioniBroj;
+    private boolean ispunjavaUslove;
 
     @Override
     public String toString() {

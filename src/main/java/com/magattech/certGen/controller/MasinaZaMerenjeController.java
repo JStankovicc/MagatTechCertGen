@@ -57,8 +57,14 @@ public class MasinaZaMerenjeController {
     public ResponseEntity<byte[]> printMasinaZaMerenjeResenje(@RequestParam("brojZapisnika") String brojZapisnika) {
         MasinaZaMerenje masinaZaMerenje = masinaZaMerenjeService.getByBrojZapisnika(brojZapisnika);
         MeriloHelper meriloHelper = masinaZaMerenje.getMeriloHeplper();
-        byte[] pdfData = DOCXGeneratorService.generateResenjeOOdbijanju(meriloHelper);
 
+        byte[] pdfData = null;
+
+        if(masinaZaMerenje.isMeriloIspunjavaZahteve()){
+            pdfData = DOCXGeneratorService.generateSertifikatOKontrolisanju(meriloHelper);
+        }else{
+            pdfData = DOCXGeneratorService.generateResenjeOOdbijanju(meriloHelper);
+        }
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
 

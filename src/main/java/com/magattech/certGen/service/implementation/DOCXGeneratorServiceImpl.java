@@ -2033,7 +2033,6 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
             for (XWPFParagraph paragraph : doc.getParagraphs()) {
                 for (XWPFRun run : paragraph.getRuns()) {
                     String text = run.getText(0);
-                    //System.out.println(text);
                     if(text != null) {
                         if (text.contains("brojZapisnika")) {
                             text = text.replace("brojZapisnika", meriloHelper.getBrojZapisnika());
@@ -2112,10 +2111,134 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
         }
     }
 
-
     @Override
     public byte[] generateSertifikatOKontrolisanju(MeriloHelper meriloHelper) {
-        return new byte[0];
+        String staticResourcePath = "src/main/resources/static/";
+        String wordFilePath = staticResourcePath + "sertifikatOKontrolisanjuTemplate.docx";
+
+        File wordFile = new File(wordFilePath);
+
+        if (!wordFile.exists()) {
+            System.err.println("Word file not found: " + wordFilePath);
+            return null;
+        }
+
+        try {
+            XWPFDocument doc = new XWPFDocument(new FileInputStream(wordFile));
+
+            for (XWPFParagraph paragraph : doc.getParagraphs()) {
+                for (XWPFRun run : paragraph.getRuns()) {
+                    String text = run.getText(0);
+                    if(text != null) {
+                        if (text.contains("brojZapisnika")) {
+                            text = text.replace("brojZapisnika", meriloHelper.getBrojZapisnika());
+                            run.setText(text, 0);
+                        }
+
+                    }
+                }
+            }
+            for (XWPFTable table : doc.getTables()) {
+                for (XWPFTableRow row : table.getRows()) {
+                    for (XWPFTableCell cell : row.getTableCells()) {
+                        for (XWPFParagraph paragraph : cell.getParagraphs()) {
+                            String text = paragraph.getText();
+                            if (text != null) {
+                                if (text.contains("brojZapisnika")) {
+                                    replaceText(paragraph, "brojZapisnika", meriloHelper.getBrojZapisnika());
+                                }
+                                if (text.contains("nazivMerila")) {
+                                    replaceText(paragraph, "nazivMerila", meriloHelper.getNazivMerila());
+                                }
+                                if (text.contains("vlasnikKorisnik")) {
+                                    replaceText(paragraph, "vlasnikKorisnik", meriloHelper.getVlasnikKorisnik());
+                                }
+                                if (text.contains("vrstaKontrolisanja")) {
+                                    replaceText(paragraph, "vrstaKontrolisanja", meriloHelper.getVrstaKontrolisanja());
+                                }
+                                if (text.contains("sluzbenaOznakaTipa")) {
+                                    replaceText(paragraph, "sluzbenaOznakaTipa", meriloHelper.getSluzbenaOznakaTipa());
+                                }
+                                if (text.contains("brojIzjaveOUsaglasenosti")) {
+                                    replaceText(paragraph, "brojIzjaveOUsaglasenosti", meriloHelper.getSluzbenaOznakaTipa());
+                                }
+                                if (text.contains("proizvodjac")) {
+                                    replaceText(paragraph, "proizvodjac", meriloHelper.getProizvodjac());
+                                }
+                                if (text.contains("oznakaTipa")) {
+                                    replaceText(paragraph, "oznakaTipa", meriloHelper.getTip());
+                                }
+                                if (text.contains("serijskiBroj")) {
+                                    replaceText(paragraph, "serijskiBroj", meriloHelper.getSerijskiBroj());
+                                }
+                                if (text.contains("datum")) {
+                                    replaceText(paragraph, "datum", meriloHelper.getDatum());
+                                }
+                                if (text.contains("identifikacioniBroj")) {
+                                    replaceText(paragraph, "identifikacioniBroj", meriloHelper.getIdentifikacioniBroj());
+                                }
+                                if (text.contains("merniOpseg")) {
+                                    replaceText(paragraph, "merniOpseg", meriloHelper.getMerniOpseg());
+                                }
+                                if (text.contains("[cb1]")) {
+                                    if(meriloHelper.isIspunjavaUslove()){
+                                        replaceText(paragraph, "[cb1]", "☒ ");
+                                    }else{
+                                        replaceText(paragraph, "[cb1]", "☐ ");
+                                    }
+                                }
+                                if (text.contains("[cb2] ")) {
+                                    if(!meriloHelper.isIspunjavaUslove()){
+                                        replaceText(paragraph, "[cb2]", "☒ ");
+                                    }else{
+                                        replaceText(paragraph, "[cb2]", "☐ ");
+                                    }                                }
+                                if (text.contains("pravilnik")) {
+                                    replaceText(paragraph, "pravilnik", meriloHelper.getPravilnik());
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            List<XWPFFooter> footers = doc.getFooterList();
+
+            for (XWPFFooter footer : footers) {
+                List<XWPFParagraph> paragraphs = footer.getParagraphs();
+                for (XWPFParagraph paragraph : paragraphs) {
+                    String text = paragraph.getText();
+                    if (text != null) {
+                        if (text.contains("[datum]")) {
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+
+                            String datum = meriloHelper.getDatum();
+
+                            replaceText(paragraph, "[datum]", datum);
+
+                            XWPFRun run = paragraph.createRun();
+                            run.addTab();
+                        }
+                    }
+                }
+            }
+
+            String workingFilePath = staticResourcePath + "workingJednodelnoMerilo.docx";
+            FileOutputStream fos = new FileOutputStream(workingFilePath);
+            doc.write(fos);
+            fos.close();
+            doc.close();
+
+            File workingFile = new File(workingFilePath);
+            byte[] workingDocumentBytes = Files.readAllBytes(workingFile.toPath());
+
+            workingFile.delete();
+
+            return workingDocumentBytes;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 
@@ -2141,8 +2264,6 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
 
         return String.valueOf(razlika);
     }
-
-
 
     private void replaceText(XWPFParagraph paragraph, String placeholder, String replacement) {
         StringBuilder textBuilder = new StringBuilder();
@@ -2206,7 +2327,4 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
         return String.format("%.2f", result);
     }
 
-
 }
-
-
