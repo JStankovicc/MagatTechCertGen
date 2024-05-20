@@ -57,14 +57,23 @@ public class MernaLetvaRequest {
     private String ndg5;
     private String ndg6;
 
-    private String greska1;
-    private String greska2;
-    private String greska3;
-    private String greska4;
-    private String greska5;
-    private String greska6;
-    private String greska7;
-    private String greska8;
+    private String greska1a;
+    private String greska2a;
+    private String greska3a;
+    private String greska4a;
+    private String greska5a;
+    private String greska6a;
+    private String greska7a;
+    private String greska8a;
+
+    private String greska1b;
+    private String greska2b;
+    private String greska3b;
+    private String greska4b;
+    private String greska5b;
+    private String greska6b;
+    private String greska7b;
+    private String greska8b;
 
     private String greskaPodeljka1;
     private String greskaPodeljka2;
@@ -89,5 +98,17 @@ public class MernaLetvaRequest {
     private String komentar2;
 
     private Date datum;
+
+    private String unit1;
+    private String unit2;
+
+    private String merniLenjir;
+    private String mernaLupa;
+    private String pomicnoMerilo;
+
+    private String zapisnikUneo;
+    private String zapisnikOdobrio;
+
+    private String propisaniZahtevi;
 
 }

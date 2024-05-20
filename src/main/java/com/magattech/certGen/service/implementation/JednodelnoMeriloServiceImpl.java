@@ -26,6 +26,7 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
     private final ProizvodjacService proizvodjacService;
     private final UserService userService;
     private final JwtService jwtService;
+
     @Override
     public void add(JednodelnoMeriloRequest request) {
 
@@ -43,8 +44,6 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
         boolean ispunjavaZahteveBool = true;
         if(ispunjavaZahteve == "NE") ispunjavaZahteveBool = false;
 
-        //String etalonirao = jwtService.extractUserName(request.getToken());
-        //UserDetails etaloniraoUser = userService.userDetailsService().loadUserByUsername(etalonirao);
 
         JednodelnoMerilo jednodelnoMerilo = JednodelnoMerilo.builder().brojZapisnika(request.getBrojZapisnika())
                 .vrstaKontrolisanja(request.getVrstaKontrolisanja())
@@ -68,14 +67,14 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
                 .odstupanje4(request.getOdstupanje4())
                 .odstupanje5(request.getOdstupanje5())
                 .ndg1(request.getNdg1())
-                .greska1(request.getGreska1())
-                .greska2(request.getGreska2())
-                .greska3(request.getGreska3())
-                .greska4(request.getGreska4())
-                .greska5(request.getGreska5())
-                .greska6(request.getGreska6())
-                .greska7(request.getGreska7())
-                .greska8(request.getGreska8())
+                .greska1(request.getGreska1a() + "-" + request.getGreska1b())
+                .greska2(request.getGreska2a() + "-" + request.getGreska2b())
+                .greska3(request.getGreska3a() + "-" + request.getGreska3b())
+                .greska4(request.getGreska4a() + "-" + request.getGreska4b())
+                .greska5(request.getGreska5a() + "-" + request.getGreska5b())
+                .greska6(request.getGreska6a() + "-" + request.getGreska6b())
+                .greska7(request.getGreska7a() + "-" + request.getGreska7b())
+                .greska8(request.getGreska8a() + "-" + request.getGreska8b())
                 .greskaPodeljka1(request.getGreskaPodeljka1())
                 .greskaPodeljka2(request.getGreskaPodeljka2())
                 .greskaPodeljka3(request.getGreskaPodeljka3())
@@ -92,14 +91,14 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
                 .odstupanje9(request.getOdstupanje9())
                 .odstupanje10(request.getOdstupanje10())
                 .ndg3(request.getNdg3())
-                .greska9(request.getGreska9())
-                .greska10(request.getGreska10())
-                .greska11(request.getGreska11())
-                .greska12(request.getGreska12())
-                .greska13(request.getGreska13())
-                .greska14(request.getGreska14())
-                .greska15(request.getGreska15())
-                .greska16(request.getGreska16())
+                .greska9(request.getGreska9a() + "-" + request.getGreska9b())
+                .greska10(request.getGreska10a() + "-" + request.getGreska10b())
+                .greska11(request.getGreska11a() + "-" + request.getGreska11b())
+                .greska12(request.getGreska12a() + "-" + request.getGreska12b())
+                .greska13(request.getGreska13a() + "-" + request.getGreska13b())
+                .greska14(request.getGreska14a() + "-" + request.getGreska14b())
+                .greska15(request.getGreska15a() + "-" + request.getGreska15b())
+                .greska16(request.getGreska16a() + "-" + request.getGreska16b())
                 .greskaPodeljka9(request.getGreskaPodeljka9())
                 .greskaPodeljka10(request.getGreskaPodeljka10())
                 .greskaPodeljka11(request.getGreskaPodeljka11())
@@ -117,8 +116,12 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
                 .meriloIspunjavaZahteve(ispunjavaZahteveBool)
                 .komentar2(request.getKomentar2())
                 .datum(request.getDatum())
-                //.etalonirao(etaloniraoUser.getUsername())
-                .odobreno(false)
+                .etalonirao(request.getZapisnikUneo())
+                .odobrio(request.getZapisnikOdobrio())
+                .odobreno(true)
+                .unit1(request.getUnit1())
+                .unit2(request.getUnit2())
+                .propisaniZahtevi(request.getPropisaniZahtevi())
                 .build();
 
                 jednodelnoMeriloRepository.save(jednodelnoMerilo);

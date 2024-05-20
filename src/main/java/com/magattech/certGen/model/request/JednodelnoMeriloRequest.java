@@ -48,14 +48,23 @@ public class JednodelnoMeriloRequest {
 
     private String ndg1;
 
-    private String greska1;
-    private String greska2;
-    private String greska3;
-    private String greska4;
-    private String greska5;
-    private String greska6;
-    private String greska7;
-    private String greska8;
+    private String greska1a;
+    private String greska2a;
+    private String greska3a;
+    private String greska4a;
+    private String greska5a;
+    private String greska6a;
+    private String greska7a;
+    private String greska8a;
+
+    private String greska1b;
+    private String greska2b;
+    private String greska3b;
+    private String greska4b;
+    private String greska5b;
+    private String greska6b;
+    private String greska7b;
+    private String greska8b;
 
     private String greskaPodeljka1;
     private String greskaPodeljka2;
@@ -77,14 +86,23 @@ public class JednodelnoMeriloRequest {
 
     private String ndg3;
 
-    private String greska9;
-    private String greska10;
-    private String greska11;
-    private String greska12;
-    private String greska13;
-    private String greska14;
-    private String greska15;
-    private String greska16;
+    private String greska9a;
+    private String greska10a;
+    private String greska11a;
+    private String greska12a;
+    private String greska13a;
+    private String greska14a;
+    private String greska15a;
+    private String greska16a;
+
+    private String greska9b;
+    private String greska10b;
+    private String greska11b;
+    private String greska12b;
+    private String greska13b;
+    private String greska14b;
+    private String greska15b;
+    private String greska16b;
 
     private String greskaPodeljka9;
     private String greskaPodeljka10;
@@ -110,4 +128,15 @@ public class JednodelnoMeriloRequest {
 
     private Date datum;
 
+    private String unit1;
+    private String unit2;
+
+    private String merniLenjir;
+    private String mernaLupa;
+    private String pomicnoMerilo;
+
+    private String zapisnikUneo;
+    private String zapisnikOdobrio;
+
+    private String propisaniZahtevi;
 }

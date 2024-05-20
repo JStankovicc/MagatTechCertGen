@@ -140,6 +140,10 @@ public class MernaLetva {
 
     private boolean odobreno;
 
+    private String unit1;
+    private String unit2;
+
+    private String propisaniZahtevi;
 
     public MeriloHelper getMeriloHeplper(){
         MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Мерна летва").brojZapisnika(this.brojZapisnika)

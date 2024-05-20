@@ -2163,7 +2163,7 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                     replaceText(paragraph, "brojIzjaveOUsaglasenosti", meriloHelper.getSluzbenaOznakaTipa());
                                 }
                                 if (text.contains("proizvodjac")) {
-                                    replaceText(paragraph, "proizvodjac", meriloHelper.getProizvodjac());
+                                     adreplaceText(paragraph, "proizvodjac", meriloHelper.getProizvodjac());
                                 }
                                 if (text.contains("oznakaTipa")) {
                                     replaceText(paragraph, "oznakaTipa", meriloHelper.getTip());
@@ -2187,14 +2187,14 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                         replaceText(paragraph, "[cb1]", "☐ ");
                                     }
                                 }
-                                if (text.contains("[cb2] ")) {
+                                if (text.contains("[cb2]")) {
                                     if(!meriloHelper.isIspunjavaUslove()){
                                         replaceText(paragraph, "[cb2]", "☒ ");
                                     }else{
                                         replaceText(paragraph, "[cb2]", "☐ ");
                                     }                                }
                                 if (text.contains("pravilnik")) {
-                                    replaceText(paragraph, "pravilnik", meriloHelper.getPravilnik());
+                                    //replaceText(paragraph, "pravilnik", meriloHelper.getPravilnik());
                                 }
                             }
                         }

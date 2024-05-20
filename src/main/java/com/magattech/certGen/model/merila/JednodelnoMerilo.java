@@ -184,6 +184,11 @@ public class JednodelnoMerilo {
 
     private boolean odobreno;
 
+    private String unit1;
+    private String unit2;
+
+    private String propisaniZahtevi;
+
     public MeriloHelper getMeriloHeplper(){
         MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Једноделно мерило").brojZapisnika(this.brojZapisnika)
                 .tip(this.oznakaTipa)
