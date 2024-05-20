@@ -2163,7 +2163,7 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                     replaceText(paragraph, "brojIzjaveOUsaglasenosti", meriloHelper.getSluzbenaOznakaTipa());
                                 }
                                 if (text.contains("proizvodjac")) {
-                                     adreplaceText(paragraph, "proizvodjac", meriloHelper.getProizvodjac());
+                                    replaceText(paragraph, "proizvodjac", meriloHelper.getProizvodjac());
                                 }
                                 if (text.contains("oznakaTipa")) {
                                     replaceText(paragraph, "oznakaTipa", meriloHelper.getTip());
