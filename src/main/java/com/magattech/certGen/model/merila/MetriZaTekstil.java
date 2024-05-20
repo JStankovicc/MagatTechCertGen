@@ -182,6 +182,10 @@ public class MetriZaTekstil {
 
     private boolean odobreno;
 
+    private String unit1;
+    private String unit2;
+
+    private String propisaniZahtevi;
 
     public MeriloHelper getMeriloHeplper(){
         MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Метри за текстил").brojZapisnika(this.brojZapisnika)
