@@ -99,7 +99,7 @@ public class DataLoader {
                 .greska9("31-32").greska10("32-33").greska11("41-42").greska12("42-43").greska13("55-56").greska14("56-57").greska15("85-86").greska16("86-87")
                 .greskaPodeljka9("-0.05").greskaPodeljka10("0").greskaPodeljka11("0").greskaPodeljka12("0").greskaPodeljka13("-0.05").greskaPodeljka14("0").greskaPodeljka15("-0.05").greskaPodeljka16("-0.05")
                 .ndg4("±1,2").ndr2("1,2").brojMernogLenjira("650462").brojMerneLupe("2049").skinutiZigovi("77;23").postavljeniZigovi("25;131").meriloIspunjavaZahteve(true)
-                .etalonirao("Nikola Danilovic").odobrio("Maja Aleksic").odobreno(false).komentar2("Komentar2").build());
+                .etalonirao("Nikola Danilovic").odobrio("Maja Aleksic").odobreno(false).komentar2("Komentar2").pravilnik("PRAVILNIK").build());
 
         mernaLetvaRepository.save(MernaLetva.builder().brojZapisnika("45/23-K1").datum(new Date()).vrstaKontrolisanja("Vanredno").podnosilacZahteva("Podnosilac zahteva doo").korisnik("Korisnik doo").serijskiBroj("311/2015").identifikacioniBroj("/").proizvodjac("PROIZVODJAC").oznakaTipa("TIP")
                 .sluzbenaOznakaTipa("Sl TIP").najmanjiPodeljak("1 mm").merniOpseg("0 mm do 3 mm").klasaTacnosti("II").temperatura("19,4").vlaznostVazduha("44,9").meriloJeIspravno(true)

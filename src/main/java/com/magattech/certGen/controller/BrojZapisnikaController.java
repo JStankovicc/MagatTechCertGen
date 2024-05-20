@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/brojZapisnika")
 @RequiredArgsConstructor
 public class BrojZapisnikaController {
+
     private final BrojZapisnikaService brojZapisnikaService;
 
     @GetMapping

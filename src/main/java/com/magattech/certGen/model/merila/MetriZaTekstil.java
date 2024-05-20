@@ -1,5 +1,6 @@
 package com.magattech.certGen.model.merila;
 
+import com.magattech.certGen.model.helper.MeriloHelper;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -167,6 +168,7 @@ public class MetriZaTekstil {
     private String skinutiZigovi;
     private String postavljeniZigovi;
 
+    private String pravilnik;
     private boolean meriloIspunjavaZahteve;
 
     private String komentar2;
@@ -180,4 +182,37 @@ public class MetriZaTekstil {
 
     private boolean odobreno;
 
+
+    public MeriloHelper getMeriloHeplper(){
+        MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Метри за текстил").brojZapisnika(this.brojZapisnika)
+                .tip(this.oznakaTipa)
+                .datum(getDatumFormat())
+                .merniOpseg(this.merniOpseg)
+                .podnosilacZahteva(this.podnosilacZahteva)
+                .serijskiBroj(this.serijskiBroj)
+                .osnovneKarakteristike(getOsnovneKarakteristike())
+                .pravilnik(this.pravilnik)
+                .sluzbenaOznakaTipa(this.sluzbenaOznakaTipa)
+                .vrstaKontrolisanja(this.vrstaKontrolisanja)
+                .proizvodjac(this.proizvodjac)
+                .razlogOdbijanja("RAZLOG")
+                .brojZapisnika(this.brojZapisnika)
+                .vlasnikKorisnik(this.korisnik)
+                .build();
+
+        return meriloHelper;
+    }
+
+    private String getDatumFormat(){
+        int d = this.datum.getDay();
+        int m = this.datum.getMonth() + 1;
+        int y = this.datum.getYear() + 1900;
+        String date = d + "." + m + "." + y + ".";
+        return date;
+    }
+
+    private String getOsnovneKarakteristike(){
+        String osnovneKarakteristike = "Температура: " + this.temperatura + "°C; Влажност ваздуха: " + this.vlaznostVazduha + "%; Мерни опсег: " + this.merniOpseg + "; Најмањи подељак скале: " + this.najmanjiPodeljak;
+        return osnovneKarakteristike;
+    }
 }

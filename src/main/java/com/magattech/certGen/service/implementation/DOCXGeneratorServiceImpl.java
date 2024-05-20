@@ -8,17 +8,17 @@ import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
+import com.magattech.certGen.model.helper.MeriloHelper;
 import com.magattech.certGen.model.merila.*;
-import com.magattech.certGen.service.PDFGeneratorService;
+import com.magattech.certGen.service.DOCXGeneratorService;
 import org.apache.poi.xwpf.usermodel.*;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class PDFGeneratorServiceImpl implements PDFGeneratorService {
+public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
 
     @Override
     public byte[] generateJednodelnoMerilo(JednodelnoMerilo jednodelnoMerilo) {
@@ -383,7 +383,6 @@ public class PDFGeneratorServiceImpl implements PDFGeneratorService {
             return null;
         }
     }
-
 
     @Override
     public byte[] generateMernaLetva(MernaLetva mernaLetva) {
@@ -2016,6 +2015,107 @@ public class PDFGeneratorServiceImpl implements PDFGeneratorService {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public byte[] generateResenjeOOdbijanju(MeriloHelper meriloHelper) {
+        String staticResourcePath = "src/main/resources/static/";
+        String wordFilePath = staticResourcePath + "resenjeOOdbijanjuTemplate.docx";
+
+        File wordFile = new File(wordFilePath);
+
+        if (!wordFile.exists()) {
+            System.err.println("Word file not found: " + wordFilePath);
+            return null;
+        }
+
+        try (XWPFDocument doc = new XWPFDocument(new FileInputStream(wordFile))) {
+            for (XWPFParagraph paragraph : doc.getParagraphs()) {
+                for (XWPFRun run : paragraph.getRuns()) {
+                    String text = run.getText(0);
+                    //System.out.println(text);
+                    if(text != null) {
+                        if (text.contains("brojZapisnika")) {
+                            text = text.replace("brojZapisnika", meriloHelper.getBrojZapisnika());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("pravilnik")) {
+                            text = text.replace("pravilnik", meriloHelper.getPravilnik());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("podnosilacZahteva")) {
+                            text = text.replace("podnosilacZahteva", meriloHelper.getPodnosilacZahteva());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("nazivMerila")) {
+                            text = text.replace("nazivMerila", meriloHelper.getNazivMerila());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("[proizvodjac]")) {
+                            text = text.replace("[proizvodjac]", meriloHelper.getProizvodjac());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("[tip]")) {
+                            text = text.replace("[tip]", meriloHelper.getTip());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("sluzbenaOznakaTipa")) {
+                            text = text.replace("sluzbenaOznakaTipa", meriloHelper.getSluzbenaOznakaTipa());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("serijskiBroj")) {
+                            text = text.replace("serijskiBroj", meriloHelper.getSerijskiBroj());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("osnovneKarakteristike")) {
+                            text = text.replace("osnovneKarakteristike", meriloHelper.getOsnovneKarakteristike());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("vlasnikKorisnik")) {
+                            text = text.replace("vlasnikKorisnik", meriloHelper.getVlasnikKorisnik());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("podnosilacZahteva")) {
+                            text = text.replace("podnosilacZahteva", meriloHelper.getPodnosilacZahteva());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("[datum]")) {
+                            text = text.replace("[datum]", meriloHelper.getDatum());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("[vrstaKontrolisanja]")) {
+                            text = text.replace("[vrstaKontrolisanja]", meriloHelper.getVrstaKontrolisanja());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("razlogOdbijanja")) {
+                            text = text.replace("razlogOdbijanja", meriloHelper.getRazlogOdbijanja());
+                            run.setText(text, 0);
+                        }
+
+                    }
+                }
+            }
+
+            String workingFilePath = staticResourcePath + "workingResenjeOOdbijanju.docx";
+            try (FileOutputStream fos = new FileOutputStream(workingFilePath)) {
+                doc.write(fos);
+            }
+
+            File workingFile = new File(workingFilePath);
+            byte[] workingDocumentBytes = Files.readAllBytes(workingFile.toPath());
+            workingFile.delete();
+
+            return workingDocumentBytes;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+    @Override
+    public byte[] generateSertifikatOKontrolisanju(MeriloHelper meriloHelper) {
+        return new byte[0];
     }
 
 

@@ -1,10 +1,10 @@
 package com.magattech.certGen.controller;
 
-import com.magattech.certGen.model.merila.JednodelnoMerilo;
+import com.magattech.certGen.model.helper.MeriloHelper;
 import com.magattech.certGen.model.merila.MernaLetva;
 import com.magattech.certGen.model.request.MernaLetvaRequest;
 import com.magattech.certGen.service.MernaLetvaService;
-import com.magattech.certGen.service.PDFGeneratorService;
+import com.magattech.certGen.service.DOCXGeneratorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ import java.util.List;
 public class MernaLetvaController {
 
     private final MernaLetvaService mernaLetvaService;
-    private final PDFGeneratorService pdfGeneratorService;
+    private final DOCXGeneratorService DOCXGeneratorService;
 
     @PostMapping("/add")
     public void addMernaLetva(@RequestBody MernaLetvaRequest mernaLetvaRequest){
@@ -46,7 +46,19 @@ public class MernaLetvaController {
     public ResponseEntity<byte[]> printMernaLetva(@RequestParam("brojZapisnika") String brojZapisnika) {
         MernaLetva mernaLetva = mernaLetvaService.getByBrojZapisnika(brojZapisnika);
 
-        byte[] pdfData = pdfGeneratorService.generateMernaLetva(mernaLetva);
+        byte[] pdfData = DOCXGeneratorService.generateMernaLetva(mernaLetva);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+
+        return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/printResenje")
+    public ResponseEntity<byte[]> printMernaLetvaResenje(@RequestParam("brojZapisnika") String brojZapisnika) {
+        MernaLetva mernaLetva = mernaLetvaService.getByBrojZapisnika(brojZapisnika);
+        MeriloHelper meriloHelper = mernaLetva.getMeriloHeplper();
+        byte[] pdfData = DOCXGeneratorService.generateResenjeOOdbijanju(meriloHelper);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);

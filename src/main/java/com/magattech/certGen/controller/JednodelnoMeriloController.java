@@ -1,11 +1,11 @@
 package com.magattech.certGen.controller;
 
 
+import com.magattech.certGen.model.helper.MeriloHelper;
 import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.request.JednodelnoMeriloRequest;
-import com.magattech.certGen.service.BrojZapisnikaService;
 import com.magattech.certGen.service.JednodelnoMeriloService;
-import com.magattech.certGen.service.PDFGeneratorService;
+import com.magattech.certGen.service.DOCXGeneratorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,8 +21,7 @@ import java.util.List;
 public class JednodelnoMeriloController {
 
     private final JednodelnoMeriloService jednodelnoMeriloService;
-    private final PDFGeneratorService pdfGeneratorService;
-    private final BrojZapisnikaService brojZapisnikaService;
+    private final DOCXGeneratorService DOCXGeneratorService;
 
     @PostMapping("/add")
     public void addJednodelnoMerilo(@RequestBody JednodelnoMeriloRequest jednodelnoMeriloRequest){
@@ -52,7 +51,24 @@ public class JednodelnoMeriloController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        byte[] pdfData = pdfGeneratorService.generateJednodelnoMerilo(jednodelnoMerilo);
+        byte[] pdfData = DOCXGeneratorService.generateJednodelnoMerilo(jednodelnoMerilo);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+
+        return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/printResenje")
+    public ResponseEntity<byte[]> printJednodelnoMeriloResenje(@RequestParam("brojZapisnika") String brojZapisnika) {
+        JednodelnoMerilo jednodelnoMerilo = jednodelnoMeriloService.getByBrojZapisnika(brojZapisnika);
+
+        MeriloHelper meriloHelper = jednodelnoMerilo.getMeriloHeplper();
+        if(jednodelnoMerilo == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        byte[] pdfData = DOCXGeneratorService.generateResenjeOOdbijanju(meriloHelper);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);

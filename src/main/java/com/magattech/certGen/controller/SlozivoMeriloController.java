@@ -1,9 +1,9 @@
 package com.magattech.certGen.controller;
 
-import com.magattech.certGen.model.merila.MasinaZaMerenje;
+import com.magattech.certGen.model.helper.MeriloHelper;
 import com.magattech.certGen.model.merila.SlozivoMerilo;
 import com.magattech.certGen.model.request.SlozivoMeriloRequest;
-import com.magattech.certGen.service.PDFGeneratorService;
+import com.magattech.certGen.service.DOCXGeneratorService;
 import com.magattech.certGen.service.SlozivoMeriloService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -20,7 +20,7 @@ import java.util.List;
 public class SlozivoMeriloController {
 
     private final SlozivoMeriloService slozivoMeriloService;
-    private final PDFGeneratorService pdfGeneratorService;
+    private final DOCXGeneratorService DOCXGeneratorService;
 
     @PostMapping("/add")
     public void addJednodelnoMerilo(@RequestBody SlozivoMeriloRequest slozivoMeriloRequest){
@@ -45,7 +45,19 @@ public class SlozivoMeriloController {
     @GetMapping("/print")
     public ResponseEntity<byte[]> printSlozivoMerilo(@RequestParam("brojZapisnika") String brojZapisnika) {
         SlozivoMerilo slozivoMerilo = slozivoMeriloService.getByBrojZapisnika(brojZapisnika);
-        byte[] pdfData = pdfGeneratorService.generateSlozivoMerilo(slozivoMerilo);
+        byte[] pdfData = DOCXGeneratorService.generateSlozivoMerilo(slozivoMerilo);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+
+        return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/printResenje")
+    public ResponseEntity<byte[]> printSlozivoMeriloResenje(@RequestParam("brojZapisnika") String brojZapisnika) {
+        SlozivoMerilo slozivoMerilo = slozivoMeriloService.getByBrojZapisnika(brojZapisnika);
+        MeriloHelper meriloHelper = slozivoMerilo.getMeriloHeplper();
+        byte[] pdfData = DOCXGeneratorService.generateResenjeOOdbijanju(meriloHelper);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
