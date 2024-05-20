@@ -22,8 +22,64 @@ public class MasinaZaMerenjeServiceImpl implements MasinaZaMerenjeService {
     }
 
     @Override
-    public void add(MasinaZaMerenjeRequest masinaZaMerenjeRequest) {
+    public void add(MasinaZaMerenjeRequest request) {
+        String ispravnost = request.getMeriloJeIspravno();
+        boolean ispravnostBool = true;
+        if(ispravnost == "NE") ispravnostBool = false;
 
+        String ispravnostPokaznogUredjaja = request.getProveraIspravnostiPokaznogUredjaja();
+        boolean ispravnostPokaznogUredjajaBool = true;
+        if(ispravnostPokaznogUredjaja == "NE") ispravnostPokaznogUredjajaBool = false;
+
+        String ispunjavaZahteve = request.getMeriloIspunjavaZahteve();
+        boolean ispunjavaZahteveBool = true;
+        if(ispunjavaZahteve == "NE") ispunjavaZahteveBool = false;
+
+        MasinaZaMerenje masinaZaMerenje = MasinaZaMerenje.builder().brojZapisnika(request.getBrojZapisnika())
+                .vrstaKontrolisanja(request.getVrstaKontrolisanja())
+                .podnosilacZahteva(request.getPodnosilacZahteva())
+                .korisnik(request.getKorisnik())
+                .serijskiBroj(request.getSerijskiBroj())
+                .identifikacioniBroj(request.getIdentifikacioniBroj())
+                .proizvodjac(request.getProizvodjac())
+                .oznakaTipa(request.getOznakaTipa())
+                .sluzbenaOznakaTipa(request.getSluzbenaOznakaTipa())
+                .merniOpseg(request.getMerniOpseg())
+                .najmanjiPodeljak(request.getNajmanjiPodeljak())
+                .klasaTacnosti(request.getKlasaTacnosti())
+                .temperatura(request.getTemperatura())
+                .vlaznostVazduha(request.getVlaznostVazduha())
+                .meriloJeIspravno(ispravnostBool)
+                .napomena(request.getNapomena())
+                .proveraIspravnogVodjenja(request.getProveraIspravnogVodjenja())
+                .proveraIspravnostiPokaznogUredjaja(ispravnostPokaznogUredjajaBool)
+                .merenje1(request.getMerenje1())
+                .merenje2(request.getMerenje2())
+                .merenje3(request.getMerenje3())
+                .duzinaUzorka(request.getDuzinaUzorka())
+                .debljinaUzorka(request.getDebljinaUzorka())
+                .pokazivanjeMasine(request.getPokazivanjeMasine())
+                .odstupanjeOdPraveVrednostiDuzine(request.getOdstupanjeOdPraveVrednostiDuzine())
+                .relativnaGreskaIzmereneDuzine(request.getRelativnaGreskaIzmereneDuzine())
+                .ndg1(request.getNdg1())
+                .skinutiZigovi(request.getSkinutiZigovi())
+                .postavljeniZigovi(request.getPostavljeniZigovi())
+                .pravilnik(request.getPravilnik())
+                .meriloIspunjavaZahteve(ispunjavaZahteveBool)
+                .komentar2(request.getKomentar2())
+                .datum(request.getDatum())
+                .etalonirao(request.getEtalonirao())
+                .odobrio(request.getOdobrio())
+                .odobreno(true)
+                .unit1(request.getUnit1())
+                .unit2(request.getUnit2())
+                .propisaniZahtevi(request.getPropisaniZahtevi())
+                .merniLenjir(request.getMerniLenjir())
+                .mernaLupa(request.getMernaLupa())
+                .pomicnoMerilo(request.getPomicnoMerilo())
+                .build();
+
+        masinaZaMerenjeRepository.save(masinaZaMerenje);
     }
 
     @Override

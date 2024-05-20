@@ -1168,21 +1168,21 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 }
 
                                 if(text.contains("[cb3]")){
-                                    if (masinaZaMerenje.getProveraIspravnogVodjenja().equals("испуњавa")){
+                                    if (masinaZaMerenje.getProveraIspravnogVodjenja().equals("ispunjava")){
                                         replaceText(paragraph,"[cb3]","☒");
                                     }else {
                                         replaceText(paragraph, "[cb3]", "☐");
                                     }
                                 }
                                 if(text.contains("[cb4]")){
-                                    if (masinaZaMerenje.getProveraIspravnogVodjenja().equals("не испуњава")){
+                                    if (masinaZaMerenje.getProveraIspravnogVodjenja().equals("neIspunjava")){
                                         replaceText(paragraph,"[cb4]","☒");
                                     }else {
                                         replaceText(paragraph, "[cb4]", "☐");
                                     }
                                 }
                                 if(text.contains("[cb5]")){
-                                    if (masinaZaMerenje.getProveraIspravnogVodjenja().equals("није применљиво")){
+                                    if (masinaZaMerenje.getProveraIspravnogVodjenja().equals("nijePrimenljivo")){
                                         replaceText(paragraph,"[cb5]","☒");
                                     }else {
                                         replaceText(paragraph, "[cb5]", "☐");

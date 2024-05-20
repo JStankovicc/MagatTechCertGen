@@ -89,6 +89,10 @@ public class MasinaZaMerenje {
     private String brojMernogLenjira;
     private String brojPomicnogMerila;
 
+    private String mernaLupa;
+    private String merniLenjir;
+    private String pomicnoMerilo;
+
     private String skinutiZigovi;
     private String postavljeniZigovi;
 
@@ -105,6 +109,11 @@ public class MasinaZaMerenje {
     private String odobrio;
 
     private boolean odobreno;
+
+    private String unit1;
+    private String unit2;
+
+    private String propisaniZahtevi;
 
     public MeriloHelper getMeriloHeplper(){
         MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Машина за мерење жица и каблова").brojZapisnika(this.brojZapisnika)

@@ -31,11 +31,6 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
     public void add(JednodelnoMeriloRequest request) {
 
 
-        VrstaKontrolisanja vrstaKontrolisanja = vrstaKontrolisanjaService.getVrstaKontrolisanjaByName(request.getVrstaKontrolisanja());
-        Kompanija podnosilacZahteva = kompanijaService.getByName(request.getPodnosilacZahteva());
-        Kompanija korisnik = kompanijaService.getByName(request.getKorisnik());
-        Proizvodjac proizvodjac = proizvodjacService.getByName(request.getProizvodjac());
-
         String ispravnost = request.getMeriloJeIspravno();
         boolean ispravnostBool = true;
         if(ispravnost == "NE") ispravnostBool = false;
