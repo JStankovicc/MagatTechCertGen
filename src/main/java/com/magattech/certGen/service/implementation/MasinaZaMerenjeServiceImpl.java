@@ -1,10 +1,12 @@
 package com.magattech.certGen.service.implementation;
 
 import com.magattech.certGen.model.enums.OpremaType;
+import com.magattech.certGen.model.included.Kompanija;
 import com.magattech.certGen.model.merila.MasinaZaMerenje;
 import com.magattech.certGen.model.merila.MernaLetva;
 import com.magattech.certGen.model.request.MasinaZaMerenjeRequest;
 import com.magattech.certGen.repository.MasinaZaMerenjeRepository;
+import com.magattech.certGen.service.KompanijaService;
 import com.magattech.certGen.service.MasinaZaMerenjeService;
 import com.magattech.certGen.service.OpremaService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ public class MasinaZaMerenjeServiceImpl implements MasinaZaMerenjeService {
 
     private final MasinaZaMerenjeRepository masinaZaMerenjeRepository;
     private final OpremaService opremaService;
+    private final KompanijaService kompanijaService;
 
     @Override
     public List<MasinaZaMerenje> getAll() {
@@ -26,6 +29,20 @@ public class MasinaZaMerenjeServiceImpl implements MasinaZaMerenjeService {
 
     @Override
     public void add(MasinaZaMerenjeRequest request) {
+        Kompanija kompanija = kompanijaService.getByName(request.getProizvodjac());
+        if(kompanija.getName() == null){
+            kompanijaService.save(Kompanija.builder().name(request.getProizvodjac()).build());
+        }
+        kompanija = kompanijaService.getByName(request.getKorisnik());
+        if(kompanija.getName() == null){
+            kompanijaService.save(Kompanija.builder().name(request.getKorisnik()).build());
+        }
+        kompanija = kompanijaService.getByName(request.getPodnosilacZahteva());
+        if(kompanija.getName() == null){
+            kompanijaService.save(Kompanija.builder().name(request.getPodnosilacZahteva()).build());
+        }
+
+
         String ispravnost = request.getMeriloJeIspravno();
         boolean ispravnostBool = true;
         if(ispravnost == "NE") ispravnostBool = false;

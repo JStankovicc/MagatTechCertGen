@@ -27,10 +27,18 @@ public class MernaLetvaServiceImpl implements MernaLetvaService {
     @Override
     public void add(MernaLetvaRequest request) {
 
-        VrstaKontrolisanja vrstaKontrolisanja = vrstaKontrolisanjaService.getVrstaKontrolisanjaByName(request.getVrstaKontrolisanja());
-        Kompanija podnosilacZahteva = kompanijaService.getByName(request.getPodnosilacZahteva());
-        Kompanija korisnik = kompanijaService.getByName(request.getKorisnik());
-        Proizvodjac proizvodjac = proizvodjacService.getByName(request.getProizvodjac());
+        Kompanija kompanija = kompanijaService.getByName(request.getProizvodjac());
+        if(kompanija.getName() == null){
+            kompanijaService.save(Kompanija.builder().name(request.getProizvodjac()).build());
+        }
+        kompanija = kompanijaService.getByName(request.getKorisnik());
+        if(kompanija.getName() == null){
+            kompanijaService.save(Kompanija.builder().name(request.getKorisnik()).build());
+        }
+        kompanija = kompanijaService.getByName(request.getPodnosilacZahteva());
+        if(kompanija.getName() == null){
+            kompanijaService.save(Kompanija.builder().name(request.getPodnosilacZahteva()).build());
+        }
 
         String ispravnost = request.getMeriloJeIspravno();
         boolean ispravnostBool = true;

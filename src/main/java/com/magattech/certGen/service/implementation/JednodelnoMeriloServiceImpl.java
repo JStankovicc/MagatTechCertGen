@@ -35,6 +35,19 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
         User user = userService.findByEmail(request.getZapisnikUneo());
         User user2 = userService.findByEmail(request.getZapisnikOdobrio());
 
+        Kompanija kompanija = kompanijaService.getByName(request.getProizvodjac());
+        if(kompanija.getName() == null){
+            kompanijaService.save(Kompanija.builder().name(request.getProizvodjac()).build());
+        }
+        kompanija = kompanijaService.getByName(request.getKorisnik());
+        if(kompanija.getName() == null){
+            kompanijaService.save(Kompanija.builder().name(request.getKorisnik()).build());
+        }
+        kompanija = kompanijaService.getByName(request.getPodnosilacZahteva());
+        if(kompanija.getName() == null){
+            kompanijaService.save(Kompanija.builder().name(request.getPodnosilacZahteva()).build());
+        }
+
         String ispravnost = request.getMeriloJeIspravno();
         boolean ispravnostBool = true;
         if(ispravnost == "NE") ispravnostBool = false;

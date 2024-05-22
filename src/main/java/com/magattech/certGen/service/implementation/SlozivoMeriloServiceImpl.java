@@ -8,6 +8,7 @@ import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.merila.SlozivoMerilo;
 import com.magattech.certGen.model.request.SlozivoMeriloRequest;
 import com.magattech.certGen.repository.SlozivoMeriloRepository;
+import com.magattech.certGen.service.KompanijaService;
 import com.magattech.certGen.service.OpremaService;
 import com.magattech.certGen.service.SlozivoMeriloService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,8 @@ import java.util.List;
 public class SlozivoMeriloServiceImpl implements SlozivoMeriloService {
     private final SlozivoMeriloRepository slozivoMeriloRepository;
     private final OpremaService opremaService;
+    private final KompanijaService kompanijaService;
+
     @Override
     public List<SlozivoMerilo> getAll() {
         return slozivoMeriloRepository.findAll();
@@ -27,6 +30,20 @@ public class SlozivoMeriloServiceImpl implements SlozivoMeriloService {
 
     @Override
     public void add(SlozivoMeriloRequest request) {
+
+        Kompanija kompanija = kompanijaService.getByName(request.getProizvodjac());
+        if(kompanija.getName() == null){
+            kompanijaService.save(Kompanija.builder().name(request.getProizvodjac()).build());
+        }
+        kompanija = kompanijaService.getByName(request.getKorisnik());
+        if(kompanija.getName() == null){
+            kompanijaService.save(Kompanija.builder().name(request.getKorisnik()).build());
+        }
+        kompanija = kompanijaService.getByName(request.getPodnosilacZahteva());
+        if(kompanija.getName() == null){
+            kompanijaService.save(Kompanija.builder().name(request.getPodnosilacZahteva()).build());
+        }
+
         String ispravnost = request.getMeriloJeIspravno();
         boolean ispravnostBool = true;
         if(ispravnost == "NE") ispravnostBool = false;

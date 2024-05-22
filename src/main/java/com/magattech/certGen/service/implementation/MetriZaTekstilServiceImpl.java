@@ -10,6 +10,7 @@ import com.magattech.certGen.model.merila.MetriZaTekstil;
 import com.magattech.certGen.model.merila.SlozivoMerilo;
 import com.magattech.certGen.model.request.MetriZaTekstilRequest;
 import com.magattech.certGen.repository.MetriZaTekstilRepository;
+import com.magattech.certGen.service.KompanijaService;
 import com.magattech.certGen.service.MetriZaTekstilService;
 import com.magattech.certGen.service.OpremaService;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,8 @@ import java.util.List;
 public class MetriZaTekstilServiceImpl implements MetriZaTekstilService {
     private final MetriZaTekstilRepository metriZaTekstilRepository;
     private final OpremaService opremaService;
+    private final KompanijaService kompanijaService;
+
     @Override
     public List<MetriZaTekstil> getAll() {
         return metriZaTekstilRepository.findAll();
@@ -29,6 +32,19 @@ public class MetriZaTekstilServiceImpl implements MetriZaTekstilService {
 
     @Override
     public void add(MetriZaTekstilRequest request) {
+
+        Kompanija kompanija = kompanijaService.getByName(request.getProizvodjac());
+        if(kompanija.getName() == null){
+            kompanijaService.save(Kompanija.builder().name(request.getProizvodjac()).build());
+        }
+        kompanija = kompanijaService.getByName(request.getKorisnik());
+        if(kompanija.getName() == null){
+            kompanijaService.save(Kompanija.builder().name(request.getKorisnik()).build());
+        }
+        kompanija = kompanijaService.getByName(request.getPodnosilacZahteva());
+        if(kompanija.getName() == null){
+            kompanijaService.save(Kompanija.builder().name(request.getPodnosilacZahteva()).build());
+        }
 
         String ispravnost = request.getMeriloJeIspravno();
         boolean ispravnostBool = true;
