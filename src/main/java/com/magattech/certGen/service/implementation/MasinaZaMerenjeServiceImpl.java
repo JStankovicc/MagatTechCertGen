@@ -1,10 +1,12 @@
 package com.magattech.certGen.service.implementation;
 
+import com.magattech.certGen.model.enums.OpremaType;
 import com.magattech.certGen.model.merila.MasinaZaMerenje;
 import com.magattech.certGen.model.merila.MernaLetva;
 import com.magattech.certGen.model.request.MasinaZaMerenjeRequest;
 import com.magattech.certGen.repository.MasinaZaMerenjeRepository;
 import com.magattech.certGen.service.MasinaZaMerenjeService;
+import com.magattech.certGen.service.OpremaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ import java.util.List;
 public class MasinaZaMerenjeServiceImpl implements MasinaZaMerenjeService {
 
     private final MasinaZaMerenjeRepository masinaZaMerenjeRepository;
+    private final OpremaService opremaService;
 
     @Override
     public List<MasinaZaMerenje> getAll() {
@@ -77,6 +80,9 @@ public class MasinaZaMerenjeServiceImpl implements MasinaZaMerenjeService {
                 .merniLenjir(request.getMerniLenjir())
                 .mernaLupa(request.getMernaLupa())
                 .pomicnoMerilo(request.getPomicnoMerilo())
+                .pravilnik(request.getPropisaniZahtevi())
+                .brojMernogLenjira(opremaService.findLatestByTip(OpremaType.MERNI_LENJIR).getSerBrEtalona())
+                .brojPomicnogMerila(opremaService.findLatestByTip(OpremaType.POMICNO_MERILO).getSerBrEtalona())
                 .build();
 
         masinaZaMerenjeRepository.save(masinaZaMerenje);

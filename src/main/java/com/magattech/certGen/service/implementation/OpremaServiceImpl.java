@@ -1,5 +1,6 @@
 package com.magattech.certGen.service.implementation;
 
+import com.magattech.certGen.model.enums.OpremaType;
 import com.magattech.certGen.model.included.Oprema;
 import com.magattech.certGen.model.request.OpremaRequest;
 import com.magattech.certGen.repository.OpremaRepository;
@@ -7,6 +8,8 @@ import com.magattech.certGen.service.OpremaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,10 +27,10 @@ public class OpremaServiceImpl implements OpremaService {
         return opremaRepository.findById(id).orElse(Oprema.builder().serBrEtalona(null).build());
     }
 
-    @Override
+    /**@Override
     public Oprema getByName(String name) {
         return opremaRepository.findByName(name).orElse(Oprema.builder().serBrEtalona(null).build());
-    }
+    }*/
 
     @Override
     public Oprema getByEtalon(String serBrEtalona) {
@@ -36,7 +39,7 @@ public class OpremaServiceImpl implements OpremaService {
 
     @Override
     public void addOprema(OpremaRequest opremaRequest) {
-        Oprema oprema = Oprema.builder().name(opremaRequest.getName()).serBrEtalona(opremaRequest.getSerBrEtalona()).build();
+        Oprema oprema = Oprema.builder().tip(opremaRequest.getTip()).serBrEtalona(opremaRequest.getSerBrEtalona()).date(new Date()).build();
         opremaRepository.save(oprema);
     }
 
@@ -45,4 +48,13 @@ public class OpremaServiceImpl implements OpremaService {
         opremaRepository.deleteById(Integer.valueOf(id));
     }
 
+    @Override
+    public List<Oprema> findByTip(OpremaType tip) {
+        return opremaRepository.findByTip(tip);
+    }
+
+    @Override
+    public Oprema findLatestByTip(OpremaType tip) {
+        return opremaRepository.findTopByTipOrderByDateDesc(tip);
+    }
 }

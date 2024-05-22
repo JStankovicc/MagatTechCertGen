@@ -11,5 +11,6 @@ public interface DOCXGeneratorService {
     public byte[] generateSlozivoMerilo(SlozivoMerilo slozivoMerilo);
     public byte[] generateMetriZaTekstil(MetriZaTekstil metriZaTekstil);
     public byte[] generateResenjeOOdbijanju(MeriloHelper meriloHelper);
+    public byte[] generateUverenjeOOveravanju(MeriloHelper meriloHelper);
     public byte[] generateSertifikatOKontrolisanju(MeriloHelper meriloHelper);
 }

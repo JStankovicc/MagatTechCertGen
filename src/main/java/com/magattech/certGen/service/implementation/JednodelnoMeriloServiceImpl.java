@@ -1,6 +1,7 @@
 package com.magattech.certGen.service.implementation;
 
 import com.magattech.certGen.model.User;
+import com.magattech.certGen.model.enums.OpremaType;
 import com.magattech.certGen.model.included.Kompanija;
 import com.magattech.certGen.model.included.Proizvodjac;
 import com.magattech.certGen.model.included.VrstaKontrolisanja;
@@ -26,6 +27,7 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
     private final ProizvodjacService proizvodjacService;
     private final UserService userService;
     private final JwtService jwtService;
+    private final OpremaService opremaService;
 
     @Override
     public void add(JednodelnoMeriloRequest request) {
@@ -104,8 +106,8 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
                 .greskaPodeljka16(request.getGreskaPodeljka16())
                 .ndg4(request.getNdg4())
                 .ndr2(request.getNdr2())
-                .brojMernogLenjira(request.getBrojMernogLenjira())
-                .brojMerneLupe(request.getBrojMerneLupe())
+                .brojMernogLenjira(opremaService.findLatestByTip(OpremaType.MERNI_LENJIR).getSerBrEtalona())
+                .brojMerneLupe(opremaService.findLatestByTip(OpremaType.MERNA_LUPA).getSerBrEtalona())
                 .skinutiZigovi(request.getSkinutiZigovi())
                 .postavljeniZigovi(request.getPostavljeniZigovi())
                 .meriloIspunjavaZahteve(ispunjavaZahteveBool)
@@ -117,6 +119,7 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
                 .unit1(request.getUnit1())
                 .unit2(request.getUnit2())
                 .propisaniZahtevi(request.getPropisaniZahtevi())
+                .pravilnik(request.getPropisaniZahtevi())
                 .build();
 
                 jednodelnoMeriloRepository.save(jednodelnoMerilo);

@@ -1,5 +1,6 @@
 package com.magattech.certGen.service.implementation;
 
+import com.magattech.certGen.model.enums.OpremaType;
 import com.magattech.certGen.model.included.Kompanija;
 import com.magattech.certGen.model.included.Proizvodjac;
 import com.magattech.certGen.model.included.VrstaKontrolisanja;
@@ -10,6 +11,7 @@ import com.magattech.certGen.model.merila.SlozivoMerilo;
 import com.magattech.certGen.model.request.MetriZaTekstilRequest;
 import com.magattech.certGen.repository.MetriZaTekstilRepository;
 import com.magattech.certGen.service.MetriZaTekstilService;
+import com.magattech.certGen.service.OpremaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MetriZaTekstilServiceImpl implements MetriZaTekstilService {
     private final MetriZaTekstilRepository metriZaTekstilRepository;
+    private final OpremaService opremaService;
     @Override
     public List<MetriZaTekstil> getAll() {
         return metriZaTekstilRepository.findAll();
@@ -100,8 +103,8 @@ public class MetriZaTekstilServiceImpl implements MetriZaTekstilService {
                 .greskaPodeljka16(request.getGreskaPodeljka16())
                 .ndg4(request.getNdg4())
                 .ndr2(request.getNdr2())
-                .brojMernogLenjira(request.getBrojMernogLenjira())
-                .brojMerneLupe(request.getBrojMerneLupe())
+                .brojMernogLenjira(opremaService.findLatestByTip(OpremaType.MERNI_LENJIR).getSerBrEtalona())
+                .brojMerneLupe(opremaService.findLatestByTip(OpremaType.MERNA_LUPA).getSerBrEtalona())
                 .skinutiZigovi(request.getSkinutiZigovi())
                 .postavljeniZigovi(request.getPostavljeniZigovi())
                 .meriloIspunjavaZahteve(ispunjavaZahteveBool)
@@ -113,6 +116,7 @@ public class MetriZaTekstilServiceImpl implements MetriZaTekstilService {
                 .unit1(request.getUnit1())
                 .unit2(request.getUnit2())
                 .propisaniZahtevi(request.getPropisaniZahtevi())
+                .pravilnik(request.getPropisaniZahtevi())
                 .build();
 
         metriZaTekstilRepository.save(metriZaTekstil);

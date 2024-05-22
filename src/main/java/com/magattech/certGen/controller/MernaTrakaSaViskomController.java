@@ -1,6 +1,7 @@
 package com.magattech.certGen.controller;
 
 import com.magattech.certGen.model.helper.MeriloHelper;
+import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.merila.MernaTrakaSaViskom;
 import com.magattech.certGen.model.request.MernaTrakaSaViskomRequest;
 import com.magattech.certGen.service.MernaTrakaSaViskomService;
@@ -60,7 +61,7 @@ public class MernaTrakaSaViskomController {
         byte[] pdfData = null;
 
         if(mernaTrakaSaViskom.isMeriloIspunjavaZahteve()){
-            pdfData = DOCXGeneratorService.generateSertifikatOKontrolisanju(meriloHelper);
+            pdfData = DOCXGeneratorService.generateUverenjeOOveravanju(meriloHelper);
         }else{
             pdfData = DOCXGeneratorService.generateResenjeOOdbijanju(meriloHelper);
         }
@@ -71,4 +72,19 @@ public class MernaTrakaSaViskomController {
         return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
     }
 
+    @GetMapping("/printSertifikat")
+    public ResponseEntity<byte[]> printSertifikat(@RequestParam("brojZapisnika") String brojZapisnika){
+        MernaTrakaSaViskom mernaTrakaSaViskom = mernaTrakaSaViskomService.getByBrojZapisnika(brojZapisnika);
+        MeriloHelper meriloHelper = mernaTrakaSaViskom.getMeriloHeplper();
+        if(mernaTrakaSaViskom == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        byte[] pdfData = DOCXGeneratorService.generateSertifikatOKontrolisanju(meriloHelper);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+
+        return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
+    }
 }

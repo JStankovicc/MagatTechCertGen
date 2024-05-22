@@ -1,6 +1,7 @@
 package com.magattech.certGen.controller;
 
 import com.magattech.certGen.model.helper.MeriloHelper;
+import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.merila.MasinaZaMerenje;
 import com.magattech.certGen.model.request.MasinaZaMerenjeRequest;
 import com.magattech.certGen.service.MasinaZaMerenjeService;
@@ -61,10 +62,23 @@ public class MasinaZaMerenjeController {
         byte[] pdfData = null;
 
         if(masinaZaMerenje.isMeriloIspunjavaZahteve()){
-            pdfData = DOCXGeneratorService.generateSertifikatOKontrolisanju(meriloHelper);
+            pdfData = DOCXGeneratorService.generateUverenjeOOveravanju(meriloHelper);
         }else{
             pdfData = DOCXGeneratorService.generateResenjeOOdbijanju(meriloHelper);
         }
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+
+        return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/printSertifikat")
+    public ResponseEntity<byte[]> printSertifikat(@RequestParam("brojZapisnika") String brojZapisnika){
+        MasinaZaMerenje masinaZaMerenje = masinaZaMerenjeService.getByBrojZapisnika(brojZapisnika);
+        MeriloHelper meriloHelper = masinaZaMerenje.getMeriloHeplper();
+
+        byte[] pdfData = DOCXGeneratorService.generateSertifikatOKontrolisanju(meriloHelper);
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
 

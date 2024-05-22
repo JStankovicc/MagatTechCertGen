@@ -1,6 +1,7 @@
 package com.magattech.certGen;
 
 import com.magattech.certGen.model.*;
+import com.magattech.certGen.model.enums.OpremaType;
 import com.magattech.certGen.model.enums.Role;
 import com.magattech.certGen.model.included.Kompanija;
 import com.magattech.certGen.model.included.Oprema;
@@ -63,8 +64,8 @@ public class DataLoader {
         userRepository.save(adminUser);
 
         User regularUser = User.builder()
-                .firstName("Regular")
-                .lastName("Userovic")
+                .firstName("User")
+                .lastName("Regularevic")
                 .email("user@gmail.com")
                 .password(passwordEncoder.encode("123"))
                 .role(Role.USER)
@@ -85,8 +86,9 @@ public class DataLoader {
         proizvodjacRepository.save(Proizvodjac.builder().name("Proizvodjac").build());
         proizvodjacRepository.save(Proizvodjac.builder().name("Proizvodjac 2").build());
 
-        opremaRepository.save(Oprema.builder().name("Oprema").serBrEtalona("SerBr1").build());
-        opremaRepository.save(Oprema.builder().name("Oprema 2").serBrEtalona("SerBr2").build());
+        opremaRepository.save(Oprema.builder().tip(OpremaType.MERNA_LUPA).serBrEtalona("SerBrMerneLupe").date(new Date()).build());
+        opremaRepository.save(Oprema.builder().tip(OpremaType.MERNI_LENJIR).serBrEtalona("SerBrMernogLenjira").date(new Date()).build());
+        opremaRepository.save(Oprema.builder().tip(OpremaType.POMICNO_MERILO).serBrEtalona("SerBrPomicnogMerila").date(new Date()).build());
 
         jednodelnoMeriloRepository.save(JednodelnoMerilo.builder().brojZapisnika("47/23-K1").datum(new Date()).vrstaKontrolisanja("Periodicno (redovno)").podnosilacZahteva("Kompanija koja je podnela zahtev").korisnik("Kompanija koja je korisnik")
                 .serijskiBroj("ser000").identifikacioniBroj("id000").proizvodjac("Proizvodjac").oznakaTipa("TIP1").sluzbenaOznakaTipa("TIP S1").meriloJeIspravno(true)

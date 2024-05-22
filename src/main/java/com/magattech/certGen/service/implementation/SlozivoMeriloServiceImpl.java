@@ -1,5 +1,6 @@
 package com.magattech.certGen.service.implementation;
 
+import com.magattech.certGen.model.enums.OpremaType;
 import com.magattech.certGen.model.included.Kompanija;
 import com.magattech.certGen.model.included.Proizvodjac;
 import com.magattech.certGen.model.included.VrstaKontrolisanja;
@@ -7,6 +8,7 @@ import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.merila.SlozivoMerilo;
 import com.magattech.certGen.model.request.SlozivoMeriloRequest;
 import com.magattech.certGen.repository.SlozivoMeriloRepository;
+import com.magattech.certGen.service.OpremaService;
 import com.magattech.certGen.service.SlozivoMeriloService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SlozivoMeriloServiceImpl implements SlozivoMeriloService {
     private final SlozivoMeriloRepository slozivoMeriloRepository;
+    private final OpremaService opremaService;
     @Override
     public List<SlozivoMerilo> getAll() {
         return slozivoMeriloRepository.findAll();
@@ -97,8 +100,8 @@ public class SlozivoMeriloServiceImpl implements SlozivoMeriloService {
                 .greskaPodeljka16(request.getGreskaPodeljka16())
                 .ndg4(request.getNdg4())
                 .ndr2(request.getNdr2())
-                .brojMernogLenjira(request.getBrojMernogLenjira())
-                .brojMerneLupe(request.getBrojMerneLupe())
+                .brojMernogLenjira(opremaService.findLatestByTip(OpremaType.MERNI_LENJIR).getSerBrEtalona())
+                .brojMerneLupe(opremaService.findLatestByTip(OpremaType.MERNA_LUPA).getSerBrEtalona())
                 .skinutiZigovi(request.getSkinutiZigovi())
                 .postavljeniZigovi(request.getPostavljeniZigovi())
                 .meriloIspunjavaZahteve(ispunjavaZahteveBool)
@@ -110,6 +113,7 @@ public class SlozivoMeriloServiceImpl implements SlozivoMeriloService {
                 .unit1(request.getUnit1())
                 .unit2(request.getUnit2())
                 .propisaniZahtevi(request.getPropisaniZahtevi())
+                .pravilnik(request.getPropisaniZahtevi())
                 .build();
 
         slozivoMeriloRepository.save(slozivoMerilo);

@@ -789,7 +789,7 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 }else {
                                     replaceText(paragraph,"Postavljeni1", "/");
                                 }
-                                if (text.contains("Postavljeni2") && postavljeni.size() > 0) {
+                                if (text.contains("Postavljeni2") && postavljeni.size() > 1) {
                                     replaceText(paragraph, "Postavljeni2", postavljeni.get(1));
                                 }else {
                                     replaceText(paragraph, "Postavljeni2", "");
@@ -1113,12 +1113,12 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                     replaceText(paragraph,"Skinuti2","");
                                 }
 
-                                if (text.contains("Postavljeni1") && postavljeni != null) {
+                                if (text.contains("Postavljeni1") && postavljeni.size() > 0) {
                                     replaceText(paragraph, "Postavljeni1", postavljeni.get(0));
                                 }else {
                                     replaceText(paragraph,"Postavljeni1", "/");
                                 }
-                                if (text.contains("Postavljeni2") && postavljeni != null) {
+                                if (text.contains("Postavljeni2") && postavljeni.size() > 1) {
                                     replaceText(paragraph, "Postavljeni2", postavljeni.get(1));
                                 }else {
                                     replaceText(paragraph, "Postavljeni2", "");
@@ -1743,21 +1743,35 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                     replaceText(paragraph, "brojMerneLupe", metriZaTekstil.getBrojMerneLupe());
                                 }
 
-                                List<String> skinuti = List.of(metriZaTekstil.getSkinutiZigovi().split(";"));
-                                List<String> postavljeni = List.of(metriZaTekstil.getPostavljeniZigovi().split(";"));
+                                List<String> skinuti = null;
+                                if(metriZaTekstil.getSkinutiZigovi() != null){
+                                    skinuti = List.of(metriZaTekstil.getSkinutiZigovi().split(";"));
+                                }
+                                List<String> postavljeni = null;
+                                if(metriZaTekstil.getPostavljeniZigovi() != null){
+                                    postavljeni = List.of(metriZaTekstil.getPostavljeniZigovi().split(";"));
+                                }
 
-                                if (text.contains("Skinuti1")) {
+                                if (text.contains("Skinuti1") && skinuti!= null) {
                                     replaceText(paragraph, "Skinuti1", skinuti.get(0));
+                                }else {
+                                    replaceText(paragraph,"Skinuti1","/");
                                 }
-                                if (text.contains("Skinuti2")) {
+                                if (text.contains("Skinuti2") && skinuti!= null && skinuti.size() > 1) {
                                     replaceText(paragraph, "Skinuti2", skinuti.get(1));
+                                }else {
+                                    replaceText(paragraph,"Skinuti2","");
                                 }
 
-                                if (text.contains("Postavljeni1")) {
+                                if (text.contains("Postavljeni1") && postavljeni.size() > 0) {
                                     replaceText(paragraph, "Postavljeni1", postavljeni.get(0));
+                                }else {
+                                    replaceText(paragraph,"Postavljeni1", "/");
                                 }
-                                if (text.contains("Postavljeni2")) {
+                                if (text.contains("Postavljeni2") && postavljeni.size() > 1) {
                                     replaceText(paragraph, "Postavljeni2", postavljeni.get(1));
+                                }else {
+                                    replaceText(paragraph, "Postavljeni2", "");
                                 }
 
                                 if(metriZaTekstil.isMeriloIspunjavaZahteve()){
@@ -2112,6 +2126,105 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
     }
 
     @Override
+    public byte[] generateUverenjeOOveravanju(MeriloHelper meriloHelper) {
+        String staticResourcePath = "src/main/resources/static/";
+        String wordFilePath = staticResourcePath + "uverenjeOOveravanjuTemplate.docx";
+
+        File wordFile = new File(wordFilePath);
+
+        if (!wordFile.exists()) {
+            System.err.println("Word file not found: " + wordFilePath);
+            return null;
+        }
+
+        try (XWPFDocument doc = new XWPFDocument(new FileInputStream(wordFile))) {
+            for (XWPFParagraph paragraph : doc.getParagraphs()) {
+                for (XWPFRun run : paragraph.getRuns()) {
+                    String text = run.getText(0);
+                    System.out.println(text);
+                    if(text != null) {
+                        if (text.contains("brojZapisnika")) {
+                            text = text.replace("brojZapisnika", meriloHelper.getBrojZapisnika());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("pravilnik")) {
+                            text = text.replace("pravilnik", meriloHelper.getPravilnik());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("podnosilacZahteva")) {
+                            text = text.replace("podnosilacZahteva", meriloHelper.getPodnosilacZahteva());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("nazivMerila")) {
+                            text = text.replace("nazivMerila", meriloHelper.getNazivMerila());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("proizvodjac")) {
+                            text = text.replace("proizvodjac", meriloHelper.getProizvodjac());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("tip")) {
+                            text = text.replace("tip", meriloHelper.getTip());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("sluzbenaOznakaTipa")) {
+                            text = text.replace("sluzbenaOznakaTipa", meriloHelper.getSluzbenaOznakaTipa());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("serijskiBroj")) {
+                            text = text.replace("serijskiBroj", meriloHelper.getSerijskiBroj());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("osnovneKarakteristike")) {
+                            text = text.replace("osnovneKarakteristike", meriloHelper.getOsnovneKarakteristike());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("vlasnikKorisnik")) {
+                            text = text.replace("vlasnikKorisnik", meriloHelper.getVlasnikKorisnik());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("podnosilacZahteva")) {
+                            text = text.replace("podnosilacZahteva", meriloHelper.getPodnosilacZahteva());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("datum")) {
+                            text = text.replace("datum", meriloHelper.getDatum());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("drugidat")) {
+                            text = text.replace("drugidat", meriloHelper.getDatum2());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("[vrstaKontrolisanja]")) {
+                            text = text.replace("[vrstaKontrolisanja]", meriloHelper.getVrstaKontrolisanja());
+                            run.setText(text, 0);
+                        }
+                        if (text.contains("razlogOdbijanja")) {
+                            text = text.replace("razlogOdbijanja", meriloHelper.getRazlogOdbijanja());
+                            run.setText(text, 0);
+                        }
+
+                    }
+                }
+            }
+
+            String workingFilePath = staticResourcePath + "workingResenjeOOdbijanju.docx";
+            try (FileOutputStream fos = new FileOutputStream(workingFilePath)) {
+                doc.write(fos);
+            }
+
+            File workingFile = new File(workingFilePath);
+            byte[] workingDocumentBytes = Files.readAllBytes(workingFile.toPath());
+            workingFile.delete();
+
+            return workingDocumentBytes;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public byte[] generateSertifikatOKontrolisanju(MeriloHelper meriloHelper) {
         String staticResourcePath = "src/main/resources/static/";
         String wordFilePath = staticResourcePath + "sertifikatOKontrolisanjuTemplate.docx";
@@ -2194,7 +2307,7 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                         replaceText(paragraph, "[cb2]", "☐ ");
                                     }                                }
                                 if (text.contains("pravilnik")) {
-                                    //replaceText(paragraph, "pravilnik", meriloHelper.getPravilnik());
+                                    replaceText(paragraph, "pravilnik", meriloHelper.getPravilnik());
                                 }
                             }
                         }
@@ -2240,7 +2353,6 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
             return null;
         }
     }
-
 
     private String getRazlika(String value1, String value2) {
         char decimalSeparator = ',';

@@ -64,14 +64,11 @@ public class JednodelnoMeriloController {
         JednodelnoMerilo jednodelnoMerilo = jednodelnoMeriloService.getByBrojZapisnika(brojZapisnika);
 
         MeriloHelper meriloHelper = jednodelnoMerilo.getMeriloHeplper();
-        if(jednodelnoMerilo == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
 
         byte[] pdfData = null;
 
         if(jednodelnoMerilo.isMeriloIspunjavaZahteve()){
-            pdfData = DOCXGeneratorService.generateSertifikatOKontrolisanju(meriloHelper);
+            pdfData = DOCXGeneratorService.generateUverenjeOOveravanju(meriloHelper);
         }else{
             pdfData = DOCXGeneratorService.generateResenjeOOdbijanju(meriloHelper);
         }
@@ -82,5 +79,20 @@ public class JednodelnoMeriloController {
         return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
     }
 
+    @GetMapping("/printSertifikat")
+    public ResponseEntity<byte[]> printSertifikat(@RequestParam("brojZapisnika") String brojZapisnika){
+        JednodelnoMerilo jednodelnoMerilo = jednodelnoMeriloService.getByBrojZapisnika(brojZapisnika);
+        MeriloHelper meriloHelper = jednodelnoMerilo.getMeriloHeplper();
+        if(jednodelnoMerilo == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        byte[] pdfData = DOCXGeneratorService.generateSertifikatOKontrolisanju(meriloHelper);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+
+        return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
+    }
 
 }

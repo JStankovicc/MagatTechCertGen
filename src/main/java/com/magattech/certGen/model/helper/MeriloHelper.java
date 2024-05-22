@@ -24,6 +24,7 @@ public class MeriloHelper {
     private String brojZapisnika;
     private String vrstaKontrolisanja;
     private String datum;
+    private String datum2;
     private String razlogOdbijanja;
     private String merniOpseg;
     private String identifikacioniBroj;

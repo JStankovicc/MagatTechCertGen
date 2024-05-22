@@ -33,9 +33,9 @@ public class MernaLetva {
     private String identifikacioniBroj;
 
     private String proizvodjac;
-    @Column(length = 10)
+    @Column(length = 20)
     private String oznakaTipa;
-    @Column(length = 10)
+    @Column(length = 20)
     private String sluzbenaOznakaTipa;
 
     @Column(length = 30)
@@ -162,6 +162,7 @@ public class MernaLetva {
                 .vlasnikKorisnik(this.korisnik)
                 .identifikacioniBroj(this.identifikacioniBroj)
                 .ispunjavaUslove(this.meriloIspunjavaZahteve)
+                .datum2(getDatum2Format())
                 .build();
 
         return meriloHelper;
@@ -175,9 +176,16 @@ public class MernaLetva {
         return date;
     }
 
+    private String getDatum2Format(){
+        int d = this.datum.getDay();
+        int m = this.datum.getMonth() + 1;
+        int y = this.datum.getYear() + 1900 + 2;
+        String date = d + "." + m + "." + y + ".";
+        return date;
+    }
+
     private String getOsnovneKarakteristike(){
         String osnovneKarakteristike = "Температура: " + this.temperatura + "°C; Влажност ваздуха: " + this.vlaznostVazduha + "%; Мерни опсег: " + this.merniOpseg + "; Најмањи подељак скале: " + this.najmanjiPodeljak;
         return osnovneKarakteristike;
     }
-
 }
