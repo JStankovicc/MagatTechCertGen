@@ -1,20 +1,15 @@
 package com.magattech.certGen.service.implementation;
 
-import com.magattech.certGen.configuration.SecurityConfiguration;
 import com.magattech.certGen.model.User;
 import com.magattech.certGen.model.enums.Role;
 import com.magattech.certGen.model.request.UserRequest;
 import com.magattech.certGen.repository.UserRepository;
 import com.magattech.certGen.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -58,5 +53,10 @@ public class UserServiceImpl implements UserService {
     public void deleteUserByEmail(String email) {
         User user = userRepository.findUserByEmail(email);
         userRepository.delete(user);
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow();
     }
 }

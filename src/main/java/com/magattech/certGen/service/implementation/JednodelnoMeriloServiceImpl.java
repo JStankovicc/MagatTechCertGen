@@ -32,6 +32,8 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
     @Override
     public void add(JednodelnoMeriloRequest request) {
 
+        User user = userService.findByEmail(request.getZapisnikUneo());
+        User user2 = userService.findByEmail(request.getZapisnikOdobrio());
 
         String ispravnost = request.getMeriloJeIspravno();
         boolean ispravnostBool = true;
@@ -113,8 +115,8 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
                 .meriloIspunjavaZahteve(ispunjavaZahteveBool)
                 .komentar2(request.getKomentar2())
                 .datum(request.getDatum())
-                .etalonirao(request.getZapisnikUneo())
-                .odobrio(request.getZapisnikOdobrio())
+                .etalonirao(user.getFirstName() + " " + user.getLastName())
+                .odobrio(user2.getFirstName() + " " + user2.getLastName())
                 .odobreno(true)
                 .unit1(request.getUnit1())
                 .unit2(request.getUnit2())

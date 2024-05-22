@@ -5,6 +5,7 @@ import com.magattech.certGen.model.request.UserRequest;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
     UserDetailsService userDetailsService();
@@ -14,4 +15,6 @@ public interface UserService {
     void addUser(UserRequest userRequest);
 
     void deleteUserByEmail(String email);
+
+    User findByEmail(String zapisnikUneo);
 }
