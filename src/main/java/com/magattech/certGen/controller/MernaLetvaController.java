@@ -73,6 +73,20 @@ public class MernaLetvaController {
         return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
     }
 
+    @GetMapping("/checkType")
+    public ResponseEntity<String> checkType(@RequestParam("brojZapisnika") String brojZapisnika) {
+        MernaLetva mernaLetva = mernaLetvaService.getByBrojZapisnika(brojZapisnika);
+        String fileType;
+
+        if (mernaLetva.isMeriloIspunjavaZahteve()) {
+            fileType = "Uverenje o overavanju merila";
+        } else {
+            fileType = "Resenje o odbijanju merila";
+        }
+
+        return ResponseEntity.ok(fileType);
+    }
+
     @GetMapping("/printSertifikat")
     public ResponseEntity<byte[]> printSertifikat(@RequestParam("brojZapisnika") String brojZapisnika){
         MernaLetva mernaLetva = mernaLetvaService.getByBrojZapisnika(brojZapisnika);

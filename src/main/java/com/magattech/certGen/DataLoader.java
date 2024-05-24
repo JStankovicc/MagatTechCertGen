@@ -72,10 +72,10 @@ public class DataLoader {
                 .build();
         userRepository.save(regularUser);
 
-        VrstaKontrolisanja vrstaKontrolisanja = VrstaKontrolisanja.builder().description("Redovno (periodicno)").build();
+        VrstaKontrolisanja vrstaKontrolisanja = VrstaKontrolisanja.builder().description("Редовно (периодично)").build();
         vrstaKontrolisanjaRepository.save(vrstaKontrolisanja);
 
-        VrstaKontrolisanja vrstaKontrolisanja1 = VrstaKontrolisanja.builder().description("Vanredno").build();
+        VrstaKontrolisanja vrstaKontrolisanja1 = VrstaKontrolisanja.builder().description("Ванредно").build();
         vrstaKontrolisanjaRepository.save(vrstaKontrolisanja1);
 
 //        Kompanija kompanija = Kompanija.builder().name("Kompanija 1").build();
@@ -84,6 +84,7 @@ public class DataLoader {
 //        kompanijaRepository.save(kompanija1);
 
 //        proizvodjacRepository.save(Proizvodjac.builder().name("Proizvodjac").build());
+//
 //       proizvodjacRepository.save(Proizvodjac.builder().name("Proizvodjac 2").build());
 
         opremaRepository.save(Oprema.builder().tip(OpremaType.MERNA_LUPA).serBrEtalona("SerBrMerneLupe").date(new Date()).build());

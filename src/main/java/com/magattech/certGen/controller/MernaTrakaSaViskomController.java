@@ -72,6 +72,20 @@ public class MernaTrakaSaViskomController {
         return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
     }
 
+    @GetMapping("/checkType")
+    public ResponseEntity<String> checkType(@RequestParam("brojZapisnika") String brojZapisnika) {
+        MernaTrakaSaViskom mernaTrakaSaViskom = mernaTrakaSaViskomService.getByBrojZapisnika(brojZapisnika);
+        String fileType;
+
+        if (mernaTrakaSaViskom.isMeriloIspunjavaZahteve()) {
+            fileType = "Uverenje o overavanju merila";
+        } else {
+            fileType = "Resenje o odbijanju merila";
+        }
+
+        return ResponseEntity.ok(fileType);
+    }
+
     @GetMapping("/printSertifikat")
     public ResponseEntity<byte[]> printSertifikat(@RequestParam("brojZapisnika") String brojZapisnika){
         MernaTrakaSaViskom mernaTrakaSaViskom = mernaTrakaSaViskomService.getByBrojZapisnika(brojZapisnika);

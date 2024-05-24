@@ -73,6 +73,20 @@ public class MetriZaTekstilController {
         return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
     }
 
+    @GetMapping("/checkType")
+    public ResponseEntity<String> checkType(@RequestParam("brojZapisnika") String brojZapisnika) {
+        MetriZaTekstil metriZaTekstil = metriZaTekstilService.getByBrojZapisnika(brojZapisnika);
+        String fileType;
+
+        if (metriZaTekstil.isMeriloIspunjavaZahteve()) {
+            fileType = "Uverenje o overavanju merila";
+        } else {
+            fileType = "Resenje o odbijanju merila";
+        }
+
+        return ResponseEntity.ok(fileType);
+    }
+
     @GetMapping("/printSertifikat")
     public ResponseEntity<byte[]> printSertifikat(@RequestParam("brojZapisnika") String brojZapisnika){
         MetriZaTekstil metriZaTekstil = metriZaTekstilService.getByBrojZapisnika(brojZapisnika);

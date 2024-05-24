@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/jednodelnoMerilo")
@@ -77,6 +78,20 @@ public class JednodelnoMeriloController {
         headers.setContentType(MediaType.APPLICATION_PDF);
 
         return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/checkType")
+    public ResponseEntity<String> checkType(@RequestParam("brojZapisnika") String brojZapisnika) {
+        JednodelnoMerilo jednodelnoMerilo = jednodelnoMeriloService.getByBrojZapisnika(brojZapisnika);
+        String fileType;
+
+        if (jednodelnoMerilo.isMeriloIspunjavaZahteve()) {
+            fileType = "Uverenje o overavanju merila";
+        } else {
+            fileType = "Resenje o odbijanju merila";
+        }
+
+        return ResponseEntity.ok(fileType);
     }
 
     @GetMapping("/printSertifikat")

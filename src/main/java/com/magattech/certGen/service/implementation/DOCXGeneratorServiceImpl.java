@@ -2141,7 +2141,6 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
             for (XWPFParagraph paragraph : doc.getParagraphs()) {
                 for (XWPFRun run : paragraph.getRuns()) {
                     String text = run.getText(0);
-                    System.out.println(text);
                     if(text != null) {
                         if (text.contains("brojZapisnika")) {
                             text = text.replace("brojZapisnika", meriloHelper.getBrojZapisnika());

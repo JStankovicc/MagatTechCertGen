@@ -20,39 +20,39 @@ public class SlozivoMerilo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(length = 10)
+    //@Column(length = 10)
     private String brojZapisnika;
 
     private String vrstaKontrolisanja;
     private String podnosilacZahteva;
     private String korisnik;
 
-    @Column(length = 10)
+    //@Column(length = 10)
     private String serijskiBroj;
-    @Column(length = 10)
+    //@Column(length = 10)
     private String identifikacioniBroj;
 
     private String proizvodjac;
-    @Column(length = 20)
+    //@Column(length = 20)
     private String oznakaTipa;
-    @Column(length = 20)
+    //@Column(length = 20)
     private String sluzbenaOznakaTipa;
 
-    @Column(length = 30)
+    //@Column(length = 30)
     private String merniOpseg;
-    @Column(length = 10)
+    //@Column(length = 10)
     private String najmanjiPodeljak;
     @Column(length = 10)
     private String klasaTacnosti;
 
-    @Column(length = 10)
+    //@Column(length = 10)
     private String temperatura;
-    @Column(length = 10)
+    //@Column(length = 10)
     private String vlaznostVazduha;
 
     private boolean meriloJeIspravno;
 
-    @Column(length = 10)
+    //@Column(length = 10)
     private String napomena;
 
     @Column(length = 10)
@@ -174,9 +174,9 @@ public class SlozivoMerilo {
 
     private Date datum;
 
-    @Column(length = 30)
+    //@Column(length = 30)
     private String etalonirao;
-    @Column(length = 30)
+    //@Column(length = 30)
     private String odobrio;
 
     private boolean odobreno;
