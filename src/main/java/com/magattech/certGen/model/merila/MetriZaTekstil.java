@@ -70,21 +70,21 @@ public class MetriZaTekstil {
     @Column(length = 10)
     private String ndg1;
 
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska1;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska2;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska3;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska4;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska5;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska6;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska7;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska8;
 
     @Column(length = 10)
@@ -123,21 +123,21 @@ public class MetriZaTekstil {
     @Column(length = 10)
     private String ndg3;
 
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska9;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska10;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska11;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska12;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska13;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska14;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska15;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska16;
 
     @Column(length = 10)

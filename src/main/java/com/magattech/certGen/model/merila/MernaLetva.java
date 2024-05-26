@@ -81,21 +81,21 @@ public class MernaLetva {
     @Column(length = 10)
     private String ndg6;
 
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska1;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska2;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska3;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska4;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska5;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska6;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska7;
-    @Column(length = 10)
+    @Column(length = 15)
     private String greska8;
 
     @Column(length = 10)
