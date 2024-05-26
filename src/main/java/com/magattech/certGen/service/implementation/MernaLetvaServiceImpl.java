@@ -66,7 +66,7 @@ public class MernaLetvaServiceImpl implements MernaLetvaService {
                 .klasaTacnosti(request.getKlasaTacnosti())
                 .temperatura(request.getTemperatura())
                 .vlaznostVazduha(request.getVlaznostVazduha())
-                .meriloIspunjavaZahteve(ispravnostBool)
+                .meriloJeIspravno(ispravnostBool)
                 .napomena(request.getNapomena())
                 .odstupanje1(request.getOdstupanje1())
                 .odstupanje2(request.getOdstupanje2())
@@ -109,7 +109,6 @@ public class MernaLetvaServiceImpl implements MernaLetvaService {
                 .odobrio(user2.getFirstName() + " " + user2.getLastName())
                 .odobreno(true)
                 .unit1(request.getUnit1())
-                .unit2(request.getUnit2())
                 .propisaniZahtevi(request.getPropisaniZahtevi())
                 .pravilnik(request.getPropisaniZahtevi())
                 .build();

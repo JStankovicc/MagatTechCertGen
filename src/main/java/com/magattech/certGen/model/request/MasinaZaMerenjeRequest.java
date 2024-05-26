@@ -77,8 +77,8 @@ public class MasinaZaMerenjeRequest {
 
     private String odobreno;
 
-    private String unit1;
-    private String unit2;
+//    private String unit1;
+//    private String unit2;
 
     private String propisaniZahtevi;
 

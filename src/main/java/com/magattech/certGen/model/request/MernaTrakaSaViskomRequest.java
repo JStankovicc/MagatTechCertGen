@@ -110,11 +110,6 @@ public class MernaTrakaSaViskomRequest {
     private Date datum;
 
     private String unit1;
-    private String unit2;
-
-    private String merniLenjir;
-    private String mernaLupa;
-    private String pomicnoMerilo;
 
     private String zapisnikUneo;
     private String zapisnikOdobrio;

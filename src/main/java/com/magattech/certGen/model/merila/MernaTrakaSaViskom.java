@@ -161,7 +161,6 @@ public class MernaTrakaSaViskom {
     private boolean odobreno;
 
     private String unit1;
-    private String unit2;
 
     private String propisaniZahtevi;
 

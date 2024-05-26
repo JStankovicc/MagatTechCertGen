@@ -89,10 +89,6 @@ public class MasinaZaMerenje {
     private String brojMernogLenjira;
     private String brojPomicnogMerila;
 
-    private String mernaLupa;
-    private String merniLenjir;
-    private String pomicnoMerilo;
-
     private String skinutiZigovi;
     private String postavljeniZigovi;
 
@@ -110,8 +106,8 @@ public class MasinaZaMerenje {
 
     private boolean odobreno;
 
-    private String unit1;
-    private String unit2;
+//    private String unit1;
+//    private String unit2;
 
     private String propisaniZahtevi;
 

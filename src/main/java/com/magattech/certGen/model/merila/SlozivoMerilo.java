@@ -185,6 +185,8 @@ public class SlozivoMerilo {
     private String unit2;
 
     private String propisaniZahtevi;
+
+
     public MeriloHelper getMeriloHeplper(){
         MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Сложиво мерило").brojZapisnika(this.brojZapisnika)
                 .tip(this.oznakaTipa)
