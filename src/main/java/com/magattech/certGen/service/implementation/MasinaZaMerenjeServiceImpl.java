@@ -3,14 +3,12 @@ package com.magattech.certGen.service.implementation;
 import com.magattech.certGen.model.User;
 import com.magattech.certGen.model.enums.OpremaType;
 import com.magattech.certGen.model.included.Kompanija;
+import com.magattech.certGen.model.included.Proizvodjac;
 import com.magattech.certGen.model.merila.MasinaZaMerenje;
 import com.magattech.certGen.model.merila.MernaLetva;
 import com.magattech.certGen.model.request.MasinaZaMerenjeRequest;
 import com.magattech.certGen.repository.MasinaZaMerenjeRepository;
-import com.magattech.certGen.service.KompanijaService;
-import com.magattech.certGen.service.MasinaZaMerenjeService;
-import com.magattech.certGen.service.OpremaService;
-import com.magattech.certGen.service.UserService;
+import com.magattech.certGen.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +22,7 @@ public class MasinaZaMerenjeServiceImpl implements MasinaZaMerenjeService {
     private final OpremaService opremaService;
     private final KompanijaService kompanijaService;
     private final UserService userService;
+    private final ProizvodjacService proizvodjacService;
 
     @Override
     public List<MasinaZaMerenje> getAll() {
@@ -36,11 +35,11 @@ public class MasinaZaMerenjeServiceImpl implements MasinaZaMerenjeService {
         User user2 = userService.findByEmail(request.getZapisnikOdobrio());
 
 
-        Kompanija kompanija = kompanijaService.getByName(request.getProizvodjac());
-        if(kompanija.getName() == null){
-            kompanijaService.save(Kompanija.builder().name(request.getProizvodjac()).build());
+        Proizvodjac proizvodjac = proizvodjacService.getByName(request.getProizvodjac());
+        if(proizvodjac.getName() == null){
+            proizvodjacService.save(Proizvodjac.builder().name(request.getProizvodjac()).build());
         }
-        kompanija = kompanijaService.getByName(request.getKorisnik());
+        Kompanija kompanija = kompanijaService.getByName(request.getKorisnik());
         if(kompanija.getName() == null){
             kompanijaService.save(Kompanija.builder().name(request.getKorisnik()).build());
         }

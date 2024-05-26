@@ -11,10 +11,7 @@ import com.magattech.certGen.model.merila.MetriZaTekstil;
 import com.magattech.certGen.model.merila.SlozivoMerilo;
 import com.magattech.certGen.model.request.MetriZaTekstilRequest;
 import com.magattech.certGen.repository.MetriZaTekstilRepository;
-import com.magattech.certGen.service.KompanijaService;
-import com.magattech.certGen.service.MetriZaTekstilService;
-import com.magattech.certGen.service.OpremaService;
-import com.magattech.certGen.service.UserService;
+import com.magattech.certGen.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +24,7 @@ public class MetriZaTekstilServiceImpl implements MetriZaTekstilService {
     private final OpremaService opremaService;
     private final KompanijaService kompanijaService;
     private final UserService userService;
+    private final ProizvodjacService proizvodjacService;
 
     @Override
     public List<MetriZaTekstil> getAll() {
@@ -39,11 +37,11 @@ public class MetriZaTekstilServiceImpl implements MetriZaTekstilService {
         User user2 = userService.findByEmail(request.getZapisnikOdobrio());
 
 
-        Kompanija kompanija = kompanijaService.getByName(request.getProizvodjac());
-        if(kompanija.getName() == null){
-            kompanijaService.save(Kompanija.builder().name(request.getProizvodjac()).build());
+        Proizvodjac proizvodjac = proizvodjacService.getByName(request.getProizvodjac());
+        if(proizvodjac.getName() == null){
+            proizvodjacService.save(Proizvodjac.builder().name(request.getProizvodjac()).build());
         }
-        kompanija = kompanijaService.getByName(request.getKorisnik());
+        Kompanija kompanija = kompanijaService.getByName(request.getKorisnik());
         if(kompanija.getName() == null){
             kompanijaService.save(Kompanija.builder().name(request.getKorisnik()).build());
         }

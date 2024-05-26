@@ -157,6 +157,10 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                     }
                                 }
 
+                                if (text.contains("Pravilnik")) {
+                                    replaceText(paragraph, "Pravilnik", jednodelnoMerilo.getPropisaniZahtevi());
+                                }
+
                                 if (text.contains("[komentar2]")) {
                                     replaceText(paragraph, "[komentar2]", jednodelnoMerilo.getKomentar2());
                                 }

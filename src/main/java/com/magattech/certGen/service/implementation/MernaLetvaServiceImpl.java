@@ -31,11 +31,11 @@ public class MernaLetvaServiceImpl implements MernaLetvaService {
         User user = userService.findByEmail(request.getZapisnikUneo());
         User user2 = userService.findByEmail(request.getZapisnikOdobrio());
 
-        Kompanija kompanija = kompanijaService.getByName(request.getProizvodjac());
-        if(kompanija.getName() == null){
-            kompanijaService.save(Kompanija.builder().name(request.getProizvodjac()).build());
+        Proizvodjac proizvodjac = proizvodjacService.getByName(request.getProizvodjac());
+        if(proizvodjac.getName() == null){
+            proizvodjacService.save(Proizvodjac.builder().name(request.getProizvodjac()).build());
         }
-        kompanija = kompanijaService.getByName(request.getKorisnik());
+        Kompanija kompanija = kompanijaService.getByName(request.getKorisnik());
         if(kompanija.getName() == null){
             kompanijaService.save(Kompanija.builder().name(request.getKorisnik()).build());
         }

@@ -196,8 +196,8 @@ public class MernaTrakaSaViskom {
     }
 
     private String getDatum2Format(){
-        int d = this.datum.getDay();
-        int m = this.datum.getMonth() + 1;
+        int d = 31;
+        int m = 12;
         int y = this.datum.getYear() + 1900 + 2;
         String date = d + "." + m + "." + y + ".";
         return date;
