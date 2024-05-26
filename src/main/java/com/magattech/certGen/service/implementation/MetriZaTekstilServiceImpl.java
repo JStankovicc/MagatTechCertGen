@@ -1,5 +1,6 @@
 package com.magattech.certGen.service.implementation;
 
+import com.magattech.certGen.model.User;
 import com.magattech.certGen.model.enums.OpremaType;
 import com.magattech.certGen.model.included.Kompanija;
 import com.magattech.certGen.model.included.Proizvodjac;
@@ -13,6 +14,7 @@ import com.magattech.certGen.repository.MetriZaTekstilRepository;
 import com.magattech.certGen.service.KompanijaService;
 import com.magattech.certGen.service.MetriZaTekstilService;
 import com.magattech.certGen.service.OpremaService;
+import com.magattech.certGen.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,7 @@ public class MetriZaTekstilServiceImpl implements MetriZaTekstilService {
     private final MetriZaTekstilRepository metriZaTekstilRepository;
     private final OpremaService opremaService;
     private final KompanijaService kompanijaService;
+    private final UserService userService;
 
     @Override
     public List<MetriZaTekstil> getAll() {
@@ -32,6 +35,9 @@ public class MetriZaTekstilServiceImpl implements MetriZaTekstilService {
 
     @Override
     public void add(MetriZaTekstilRequest request) {
+        User user = userService.findByEmail(request.getZapisnikUneo());
+        User user2 = userService.findByEmail(request.getZapisnikOdobrio());
+
 
         Kompanija kompanija = kompanijaService.getByName(request.getProizvodjac());
         if(kompanija.getName() == null){
@@ -126,8 +132,8 @@ public class MetriZaTekstilServiceImpl implements MetriZaTekstilService {
                 .meriloIspunjavaZahteve(ispunjavaZahteveBool)
                 .komentar2(request.getKomentar2())
                 .datum(request.getDatum())
-                .etalonirao(request.getZapisnikUneo())
-                .odobrio(request.getZapisnikOdobrio())
+                .etalonirao(user.getFirstName() + " " + user.getLastName())
+                .odobrio(user2.getFirstName() + " " + user2.getLastName())
                 .odobreno(true)
                 .unit1(request.getUnit1())
                 .unit2(request.getUnit2())

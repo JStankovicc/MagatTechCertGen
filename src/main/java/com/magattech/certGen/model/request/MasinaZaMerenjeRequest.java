@@ -72,8 +72,8 @@ public class MasinaZaMerenjeRequest {
 
     private Date datum;
 
-    private String etalonirao;
-    private String odobrio;
+    private String zapisnikUneo;
+    private String zapisnikOdobrio;
 
     private String odobreno;
 

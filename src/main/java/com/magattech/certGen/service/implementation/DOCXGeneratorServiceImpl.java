@@ -110,21 +110,35 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                     replaceText(paragraph, "brojMerneLupe", jednodelnoMerilo.getBrojMerneLupe());
                                 }
 
-                                List<String> skinuti = List.of(jednodelnoMerilo.getSkinutiZigovi().split(";"));
-                                List<String> postavljeni = List.of(jednodelnoMerilo.getPostavljeniZigovi().split(";"));
+                                List<String> skinuti = null;
+                                if(jednodelnoMerilo.getSkinutiZigovi() != null){
+                                    skinuti = List.of(jednodelnoMerilo.getSkinutiZigovi().split(";"));
+                                }
+                                List<String> postavljeni = null;
+                                if(jednodelnoMerilo.getPostavljeniZigovi() != null){
+                                    postavljeni = List.of(jednodelnoMerilo.getPostavljeniZigovi().split(";"));
+                                }
 
-                                if (text.contains("Skinuti1")) {
+                                if (text.contains("Skinuti1") && skinuti!= null) {
                                     replaceText(paragraph, "Skinuti1", skinuti.get(0));
+                                }else {
+                                    replaceText(paragraph,"Skinuti1","/");
                                 }
-                                if (text.contains("Skinuti2")) {
+                                if (text.contains("Skinuti2") && skinuti!= null && skinuti.size() > 1) {
                                     replaceText(paragraph, "Skinuti2", skinuti.get(1));
+                                }else {
+                                    replaceText(paragraph,"Skinuti2","");
                                 }
 
-                                if (text.contains("Postavljeni1")) {
+                                if (text.contains("Postavljeni1") && postavljeni.size() > 0) {
                                     replaceText(paragraph, "Postavljeni1", postavljeni.get(0));
+                                }else {
+                                    replaceText(paragraph,"Postavljeni1", "/");
                                 }
-                                if (text.contains("Postavljeni2")) {
+                                if (text.contains("Postavljeni2") && postavljeni.size() > 1) {
                                     replaceText(paragraph, "Postavljeni2", postavljeni.get(1));
+                                }else {
+                                    replaceText(paragraph, "Postavljeni2", "");
                                 }
 
                                 if(jednodelnoMerilo.isMeriloIspunjavaZahteve()){
@@ -474,21 +488,35 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                     replaceText(paragraph, "brojMerneLupe", mernaLetva.getBrojMerneLupe());
                                 }
 
-                                List<String> skinuti = List.of(mernaLetva.getSkinutiZigovi().split(";"));
-                                List<String> postavljeni = List.of(mernaLetva.getPostavljeniZigovi().split(";"));
+                                List<String> skinuti = null;
+                                if(mernaLetva.getSkinutiZigovi() != null){
+                                    skinuti = List.of(mernaLetva.getSkinutiZigovi().split(";"));
+                                }
+                                List<String> postavljeni = null;
+                                if(mernaLetva.getPostavljeniZigovi() != null){
+                                    postavljeni = List.of(mernaLetva.getPostavljeniZigovi().split(";"));
+                                }
 
-                                if (text.contains("Skinuti1")) {
+                                if (text.contains("Skinuti1") && skinuti!= null) {
                                     replaceText(paragraph, "Skinuti1", skinuti.get(0));
+                                }else {
+                                    replaceText(paragraph,"Skinuti1","/");
                                 }
-                                if (text.contains("Skinuti2")) {
+                                if (text.contains("Skinuti2") && skinuti!= null && skinuti.size() > 1) {
                                     replaceText(paragraph, "Skinuti2", skinuti.get(1));
+                                }else {
+                                    replaceText(paragraph,"Skinuti2","");
                                 }
 
-                                if (text.contains("Postavljeni1")) {
+                                if (text.contains("Postavljeni1") && postavljeni.size() > 0) {
                                     replaceText(paragraph, "Postavljeni1", postavljeni.get(0));
+                                }else {
+                                    replaceText(paragraph,"Postavljeni1", "/");
                                 }
-                                if (text.contains("Postavljeni2")) {
+                                if (text.contains("Postavljeni2") && postavljeni.size() > 1) {
                                     replaceText(paragraph, "Postavljeni2", postavljeni.get(1));
+                                }else {
+                                    replaceText(paragraph, "Postavljeni2", "");
                                 }
 
                                 if(mernaLetva.isMeriloIspunjavaZahteve()){
@@ -770,15 +798,21 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                     replaceText(paragraph, "brojMerneLupe", mernaTrakaSaViskom.getBrojMerneLupe());
                                 }
 
-                                List<String> skinuti = List.of(mernaTrakaSaViskom.getSkinutiZigovi().split(";"));
-                                List<String> postavljeni = List.of(mernaTrakaSaViskom.getPostavljeniZigovi().split(";"));
+                                List<String> skinuti = null;
+                                if(mernaTrakaSaViskom.getSkinutiZigovi() != null){
+                                    skinuti = List.of(mernaTrakaSaViskom.getSkinutiZigovi().split(";"));
+                                }
+                                List<String> postavljeni = null;
+                                if(mernaTrakaSaViskom.getPostavljeniZigovi() != null){
+                                    postavljeni = List.of(mernaTrakaSaViskom.getPostavljeniZigovi().split(";"));
+                                }
 
-                                if (text.contains("Skinuti1") && skinuti.size() > 0) {
+                                if (text.contains("Skinuti1") && skinuti!= null) {
                                     replaceText(paragraph, "Skinuti1", skinuti.get(0));
                                 }else {
                                     replaceText(paragraph,"Skinuti1","/");
                                 }
-                                if (text.contains("Skinuti2") && skinuti.size() > 1) {
+                                if (text.contains("Skinuti2") && skinuti!= null && skinuti.size() > 1) {
                                     replaceText(paragraph, "Skinuti2", skinuti.get(1));
                                 }else {
                                     replaceText(paragraph,"Skinuti2","");
@@ -1379,21 +1413,35 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                     replaceText(paragraph, "brojMerneLupe", slozivoMerilo.getBrojMerneLupe());
                                 }
 
-                                List<String> skinuti = List.of(slozivoMerilo.getSkinutiZigovi().split(";"));
-                                List<String> postavljeni = List.of(slozivoMerilo.getPostavljeniZigovi().split(";"));
+                                List<String> skinuti = null;
+                                if(slozivoMerilo.getSkinutiZigovi() != null){
+                                    skinuti = List.of(slozivoMerilo.getSkinutiZigovi().split(";"));
+                                }
+                                List<String> postavljeni = null;
+                                if(slozivoMerilo.getPostavljeniZigovi() != null){
+                                    postavljeni = List.of(slozivoMerilo.getPostavljeniZigovi().split(";"));
+                                }
 
-                                if (text.contains("Skinuti1")) {
+                                if (text.contains("Skinuti1") && skinuti!= null) {
                                     replaceText(paragraph, "Skinuti1", skinuti.get(0));
+                                }else {
+                                    replaceText(paragraph,"Skinuti1","/");
                                 }
-                                if (text.contains("Skinuti2")) {
+                                if (text.contains("Skinuti2") && skinuti!= null && skinuti.size() > 1) {
                                     replaceText(paragraph, "Skinuti2", skinuti.get(1));
+                                }else {
+                                    replaceText(paragraph,"Skinuti2","");
                                 }
 
-                                if (text.contains("Postavljeni1")) {
+                                if (text.contains("Postavljeni1") && postavljeni.size() > 0) {
                                     replaceText(paragraph, "Postavljeni1", postavljeni.get(0));
+                                }else {
+                                    replaceText(paragraph,"Postavljeni1", "/");
                                 }
-                                if (text.contains("Postavljeni2")) {
+                                if (text.contains("Postavljeni2") && postavljeni.size() > 1) {
                                     replaceText(paragraph, "Postavljeni2", postavljeni.get(1));
+                                }else {
+                                    replaceText(paragraph, "Postavljeni2", "");
                                 }
 
                                 if(slozivoMerilo.isMeriloIspunjavaZahteve()){
