@@ -52,7 +52,7 @@ public class DataLoader {
         this.brojZapisnikaRepository = brojZapisnikaRepository;
     }
 
- /**   @PostConstruct
+    @PostConstruct
     public void addDummyData(){
         User adminUser = User.builder()
                 .firstName("Admin")
@@ -146,5 +146,5 @@ public class DataLoader {
 
         brojZapisnikaRepository.save(BrojZapisnika.builder().broj(1).godina(24).build());
 
-    }*/
+    }
 }
