@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -56,6 +57,10 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
         boolean ispunjavaZahteveBool = true;
         if(ispunjavaZahteve == "NE") ispunjavaZahteveBool = false;
 
+        Date datum = request.getDatum();
+        if(datum == null){
+            datum = new Date();
+        }
 
         JednodelnoMerilo jednodelnoMerilo = JednodelnoMerilo.builder().brojZapisnika(request.getBrojZapisnika())
                 .vrstaKontrolisanja(request.getVrstaKontrolisanja())
@@ -127,7 +132,7 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
                 .postavljeniZigovi(request.getPostavljeniZigovi())
                 .meriloIspunjavaZahteve(ispunjavaZahteveBool)
                 .komentar2(request.getKomentar2())
-                .datum(request.getDatum())
+                .datum(datum)
                 .etalonirao(user.getFirstName() + " " + user.getLastName())
                 .odobrio(user2.getFirstName() + " " + user2.getLastName())
                 .odobreno(true)

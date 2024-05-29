@@ -14,6 +14,7 @@ import com.magattech.certGen.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -53,6 +54,11 @@ public class MernaTrakaSaViskomServiceImpl implements MernaTrakaSaViskomService 
         String ispunjavaZahteve = request.getMeriloIspunjavaZahteve();
         boolean ispunjavaZahteveBool = true;
         if(ispunjavaZahteve == "NE") ispunjavaZahteveBool = false;
+
+        Date datum = request.getDatum();
+        if(datum == null){
+            datum = new Date();
+        }
 
         MernaTrakaSaViskom mernaTrakaSaViskom = MernaTrakaSaViskom.builder()
                 .brojZapisnika(request.getBrojZapisnika())
@@ -117,7 +123,7 @@ public class MernaTrakaSaViskomServiceImpl implements MernaTrakaSaViskomService 
                 .postavljeniZigovi(request.getPostavljeniZigovi())
                 .meriloIspunjavaZahteve(ispunjavaZahteveBool)
                 .komentar2(request.getKomentar2())
-                .datum(request.getDatum())
+                .datum(datum)
                 .etalonirao(user.getFirstName() + " " + user.getLastName())
                 .odobrio(user2.getFirstName() + " " + user2.getLastName())
                 .odobreno(true)

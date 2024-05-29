@@ -58,6 +58,15 @@ public class BrojZapisnikaServiceImpl implements BrojZapisnikaService {
         brojZapisnikaRepository.save(newBroj);
     }
 
+    @Override
+    public void checkAndUpdateZapisnik(){
+        String aktuelniBroj = getAktuelniBrojZapisnika();
+        if(!aktuelniBroj.endsWith("1")){
+            updateZapisnik();
+        }
+    }
+
+
     private void addToNonNull(List<String> list, String element) {
         if (element != null) {
             list.add(element);

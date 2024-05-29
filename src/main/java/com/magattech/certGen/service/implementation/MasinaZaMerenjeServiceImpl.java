@@ -12,6 +12,7 @@ import com.magattech.certGen.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -61,6 +62,11 @@ public class MasinaZaMerenjeServiceImpl implements MasinaZaMerenjeService {
         boolean ispunjavaZahteveBool = true;
         if(ispunjavaZahteve == "NE") ispunjavaZahteveBool = false;
 
+        Date datum = request.getDatum();
+        if(datum == null){
+            datum = new Date();
+        }
+
         MasinaZaMerenje masinaZaMerenje = MasinaZaMerenje.builder().brojZapisnika(request.getBrojZapisnika())
                 .vrstaKontrolisanja(request.getVrstaKontrolisanja())
                 .podnosilacZahteva(request.getPodnosilacZahteva())
@@ -93,7 +99,7 @@ public class MasinaZaMerenjeServiceImpl implements MasinaZaMerenjeService {
                 .pravilnik(request.getPravilnik())
                 .meriloIspunjavaZahteve(ispunjavaZahteveBool)
                 .komentar2(request.getKomentar2())
-                .datum(request.getDatum())
+                .datum(datum)
                 .etalonirao(user.getFirstName() + " " + user.getLastName())
                 .odobrio(user2.getFirstName() + " " + user2.getLastName())
                 .odobreno(true)

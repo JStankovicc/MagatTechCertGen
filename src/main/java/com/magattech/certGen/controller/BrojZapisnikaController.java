@@ -23,4 +23,9 @@ public class BrojZapisnikaController {
         brojZapisnikaService.updateZapisnik();
     }
 
+    @GetMapping("/checkAndUpdate")
+    public void checkAndUpdate(){
+        brojZapisnikaService.checkAndUpdateZapisnik();
+    }
+
 }

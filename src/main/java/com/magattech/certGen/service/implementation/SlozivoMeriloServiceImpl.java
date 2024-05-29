@@ -13,6 +13,7 @@ import com.magattech.certGen.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -55,6 +56,10 @@ public class SlozivoMeriloServiceImpl implements SlozivoMeriloService {
         boolean ispunjavaZahteveBool = true;
         if(ispunjavaZahteve == "NE") ispunjavaZahteveBool = false;
 
+        Date datum = request.getDatum();
+        if(datum == null){
+            datum = new Date();
+        }
 
         SlozivoMerilo slozivoMerilo = SlozivoMerilo.builder().brojZapisnika(request.getBrojZapisnika())
                 .vrstaKontrolisanja(request.getVrstaKontrolisanja())
@@ -126,7 +131,7 @@ public class SlozivoMeriloServiceImpl implements SlozivoMeriloService {
                 .postavljeniZigovi(request.getPostavljeniZigovi())
                 .meriloIspunjavaZahteve(ispunjavaZahteveBool)
                 .komentar2(request.getKomentar2())
-                .datum(request.getDatum())
+                .datum(datum)
                 .etalonirao(user.getFirstName() + " " + user.getLastName())
                 .odobrio(user2.getFirstName() + " " + user2.getLastName())
                 .odobreno(true)

@@ -13,6 +13,7 @@ import com.magattech.certGen.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -51,6 +52,11 @@ public class MernaLetvaServiceImpl implements MernaLetvaService {
         String ispunjavaZahteve = request.getMeriloIspunjavaZahteve();
         boolean ispunjavaZahteveBool = true;
         if(ispunjavaZahteve == "NE") ispunjavaZahteveBool = false;
+
+        Date datum = request.getDatum();
+        if(datum == null){
+            datum = new Date();
+        }
 
         MernaLetva mernaLetva = MernaLetva.builder().brojZapisnika(request.getBrojZapisnika())
                 .podnosilacZahteva(request.getPodnosilacZahteva())
@@ -104,7 +110,7 @@ public class MernaLetvaServiceImpl implements MernaLetvaService {
                 .postavljeniZigovi(request.getPostavljeniZigovi())
                 .meriloIspunjavaZahteve(ispunjavaZahteveBool)
                 .komentar2(request.getKomentar2())
-                .datum(request.getDatum())
+                .datum(datum)
                 .etalonirao(user.getFirstName() + " " + user.getLastName())
                 .odobrio(user2.getFirstName() + " " + user2.getLastName())
                 .odobreno(true)
