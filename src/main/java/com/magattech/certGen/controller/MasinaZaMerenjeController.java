@@ -28,6 +28,18 @@ public class MasinaZaMerenjeController {
         masinaZaMerenjeService.add(masinaZaMerenjeRequest);
     }
 
+    @PostMapping("/update/{id}")
+    public void updateMasina(@PathVariable String id, @RequestBody MasinaZaMerenjeRequest masinaZaMerenjeRequest){
+        String newId = id.replace("_","/");
+        masinaZaMerenjeService.update(newId,masinaZaMerenjeRequest);
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<MasinaZaMerenje> getMasina(@RequestParam("brojZapisnika") String brojZapisnika){
+        MasinaZaMerenje masinaZaMerenje = masinaZaMerenjeService.getByBrojZapisnika(brojZapisnika);
+        return ResponseEntity.ok(masinaZaMerenje);
+    }
+
     @GetMapping("/all")
     public ResponseEntity<List<MasinaZaMerenje>> getAll(){
         return ResponseEntity.ok(masinaZaMerenjeService.getAll());

@@ -17,4 +17,6 @@ public interface MasinaZaMerenjeService {
     List<MasinaZaMerenje> findAllNeoverena();
 
     void odobri(String brojZapisnika);
+
+    void update(String id, MasinaZaMerenjeRequest request);
 }

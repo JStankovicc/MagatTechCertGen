@@ -3,6 +3,7 @@ package com.magattech.certGen.controller;
 import com.magattech.certGen.model.helper.MeriloHelper;
 import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.merila.MetriZaTekstil;
+import com.magattech.certGen.model.request.JednodelnoMeriloRequest;
 import com.magattech.certGen.model.request.MetriZaTekstilRequest;
 import com.magattech.certGen.service.MetriZaTekstilService;
 import com.magattech.certGen.service.DOCXGeneratorService;
@@ -24,8 +25,19 @@ public class MetriZaTekstilController {
     private final DOCXGeneratorService DOCXGeneratorService;
 
     @PostMapping("/add")
-    public void addJednodelnoMerilo(@RequestBody MetriZaTekstilRequest metriZaTekstilRequest){
+    public void addMetriZaTekstil(@RequestBody MetriZaTekstilRequest metriZaTekstilRequest){
         metriZaTekstilService.add(metriZaTekstilRequest);
+    }
+
+    @PostMapping("/update/{id}")
+    public void updateMetriZaTekstil(@PathVariable String id, @RequestBody MetriZaTekstilRequest metriZaTekstilRequest){
+        String newId = id.replace("_","/");
+        metriZaTekstilService.update(newId,metriZaTekstilRequest);
+    }
+    @GetMapping("/get")
+    public ResponseEntity<MetriZaTekstil> getMetriZaTekstil(@RequestParam("brojZapisnika") String brojZapisnika){
+        MetriZaTekstil metriZaTekstil = metriZaTekstilService.getByBrojZapisnika(brojZapisnika);
+        return ResponseEntity.ok(metriZaTekstil);
     }
 
     @GetMapping("/all")

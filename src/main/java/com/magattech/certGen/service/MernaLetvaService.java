@@ -22,4 +22,6 @@ public interface MernaLetvaService {
     List<MernaLetva> findAllNeoverena();
 
     void odobri(String brojZapisnika);
+
+    void update(String newId, MernaLetvaRequest mernaLetvaRequest);
 }

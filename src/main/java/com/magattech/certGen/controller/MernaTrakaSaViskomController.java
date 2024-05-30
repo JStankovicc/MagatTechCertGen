@@ -2,7 +2,9 @@ package com.magattech.certGen.controller;
 
 import com.magattech.certGen.model.helper.MeriloHelper;
 import com.magattech.certGen.model.merila.JednodelnoMerilo;
+import com.magattech.certGen.model.merila.MernaLetva;
 import com.magattech.certGen.model.merila.MernaTrakaSaViskom;
+import com.magattech.certGen.model.request.MernaLetvaRequest;
 import com.magattech.certGen.model.request.MernaTrakaSaViskomRequest;
 import com.magattech.certGen.service.MernaTrakaSaViskomService;
 import com.magattech.certGen.service.DOCXGeneratorService;
@@ -24,6 +26,18 @@ public class MernaTrakaSaViskomController {
     @PostMapping("/add")
     public void addJednodelnoMerilo(@RequestBody MernaTrakaSaViskomRequest mernaTrakaSaViskomRequest){
         mernaTrakaSaViskomService.add(mernaTrakaSaViskomRequest);
+    }
+
+    @PostMapping("/update/{id}")
+    public void updateMernaTraka(@PathVariable String id, @RequestBody MernaTrakaSaViskomRequest mernaTrakaSaViskomRequest){
+        String newId = id.replace("_","/");
+        mernaTrakaSaViskomService.update(newId,mernaTrakaSaViskomRequest);
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<MernaTrakaSaViskom> getMernaTraka(@RequestParam("brojZapisnika") String brojZapisnika){
+        MernaTrakaSaViskom mernaTrakaSaViskom = mernaTrakaSaViskomService.getByBrojZapisnika(brojZapisnika);
+        return ResponseEntity.ok(mernaTrakaSaViskom);
     }
 
     @GetMapping("/all")

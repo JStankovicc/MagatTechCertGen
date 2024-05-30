@@ -3,6 +3,7 @@ package com.magattech.certGen.controller;
 import com.magattech.certGen.model.helper.MeriloHelper;
 import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.merila.SlozivoMerilo;
+import com.magattech.certGen.model.request.JednodelnoMeriloRequest;
 import com.magattech.certGen.model.request.SlozivoMeriloRequest;
 import com.magattech.certGen.service.DOCXGeneratorService;
 import com.magattech.certGen.service.SlozivoMeriloService;
@@ -26,6 +27,18 @@ public class SlozivoMeriloController {
     @PostMapping("/add")
     public void addJednodelnoMerilo(@RequestBody SlozivoMeriloRequest slozivoMeriloRequest){
         slozivoMeriloService.add(slozivoMeriloRequest);
+    }
+
+    @PostMapping("/update/{id}")
+    public void updateSlozivoMerilo(@PathVariable String id, @RequestBody SlozivoMeriloRequest slozivoMeriloRequest){
+        String newId = id.replace("_","/");
+        slozivoMeriloService.update(newId,slozivoMeriloRequest);
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<SlozivoMerilo> getSlozivoMerilo(@RequestParam("brojZapisnika") String brojZapisnika){
+        SlozivoMerilo slozivoMerilo = slozivoMeriloService.getByBrojZapisnika(brojZapisnika);
+        return ResponseEntity.ok(slozivoMerilo);
     }
 
     @GetMapping("/all")

@@ -3,7 +3,9 @@ package com.magattech.certGen.controller;
 import com.magattech.certGen.model.helper.MeriloHelper;
 import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.merila.MernaLetva;
+import com.magattech.certGen.model.merila.MetriZaTekstil;
 import com.magattech.certGen.model.request.MernaLetvaRequest;
+import com.magattech.certGen.model.request.MetriZaTekstilRequest;
 import com.magattech.certGen.service.MernaLetvaService;
 import com.magattech.certGen.service.DOCXGeneratorService;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +28,18 @@ public class MernaLetvaController {
     @PostMapping("/add")
     public void addMernaLetva(@RequestBody MernaLetvaRequest mernaLetvaRequest){
         mernaLetvaService.add(mernaLetvaRequest);
+    }
+
+    @PostMapping("/update/{id}")
+    public void updateMetriZaTekstil(@PathVariable String id, @RequestBody MernaLetvaRequest mernaLetvaRequest){
+        String newId = id.replace("_","/");
+        mernaLetvaService.update(newId,mernaLetvaRequest);
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<MernaLetva> getMernaLetva(@RequestParam("brojZapisnika") String brojZapisnika){
+        MernaLetva mernaLetva = mernaLetvaService.getByBrojZapisnika(brojZapisnika);
+        return ResponseEntity.ok(mernaLetva);
     }
 
     @GetMapping("/all")

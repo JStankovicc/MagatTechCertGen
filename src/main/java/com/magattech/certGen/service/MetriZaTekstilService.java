@@ -19,4 +19,6 @@ public interface MetriZaTekstilService {
     List<MetriZaTekstil> getAllNeoverena();
 
     void odobri(String brojZapisnika);
+
+    void update(String newId, MetriZaTekstilRequest metriZaTekstilRequest);
 }

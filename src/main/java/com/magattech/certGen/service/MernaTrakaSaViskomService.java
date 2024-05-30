@@ -21,4 +21,6 @@ public interface MernaTrakaSaViskomService {
     List<MernaTrakaSaViskom> getAllNeoverena();
 
     void odobri(String brojZapisnika);
+
+    void update(String id, MernaTrakaSaViskomRequest request);
 }
