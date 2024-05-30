@@ -29,6 +29,17 @@ public class JednodelnoMeriloController {
         jednodelnoMeriloService.add(jednodelnoMeriloRequest);
     }
 
+    @PostMapping("/update/{id}")
+    public void updateJednodelnoMerilo(@PathVariable String id, @RequestBody JednodelnoMeriloRequest jednodelnoMeriloRequest){
+        String newId = id.replace("_","/");
+        jednodelnoMeriloService.update(newId,jednodelnoMeriloRequest);
+    }
+    @GetMapping("/get")
+    public ResponseEntity<JednodelnoMerilo> getJednodelnoMerilo(@RequestParam("brojZapisnika") String brojZapisnika){
+        JednodelnoMerilo jednodelnoMerilo = jednodelnoMeriloService.getByBrojZapisnika(brojZapisnika);
+        return ResponseEntity.ok(jednodelnoMerilo);
+    }
+
     @GetMapping("/all")
     public ResponseEntity<List<JednodelnoMerilo>> getAll(){
         return ResponseEntity.ok(jednodelnoMeriloService.getAll());

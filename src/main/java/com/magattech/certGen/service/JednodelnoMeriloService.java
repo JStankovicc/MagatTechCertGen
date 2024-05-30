@@ -20,4 +20,6 @@ public interface JednodelnoMeriloService {
     List<JednodelnoMerilo> getNeoverena();
 
     void odobri(String brojZapisnika);
+
+    void update(String id, JednodelnoMeriloRequest jednodelnoMeriloRequest);
 }
