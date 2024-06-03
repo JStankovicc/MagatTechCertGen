@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -52,15 +53,15 @@ public class MasinaZaMerenjeServiceImpl implements MasinaZaMerenjeService {
 
         String ispravnost = request.getMeriloJeIspravno();
         boolean ispravnostBool = true;
-        if(ispravnost == "NE") ispravnostBool = false;
+        if(Objects.equals(ispravnost, "NE")) ispravnostBool = false;
 
         String ispravnostPokaznogUredjaja = request.getProveraIspravnostiPokaznogUredjaja();
         boolean ispravnostPokaznogUredjajaBool = true;
-        if(ispravnostPokaznogUredjaja == "NE") ispravnostPokaznogUredjajaBool = false;
+        if(Objects.equals(ispravnostPokaznogUredjaja, "NE")) ispravnostPokaznogUredjajaBool = false;
 
         String ispunjavaZahteve = request.getMeriloIspunjavaZahteve();
         boolean ispunjavaZahteveBool = true;
-        if(ispunjavaZahteve == "NE") ispunjavaZahteveBool = false;
+        if(Objects.equals(ispunjavaZahteve, "NE")) ispunjavaZahteveBool = false;
 
         Date datum = request.getDatum();
         if(datum == null){
@@ -153,15 +154,15 @@ public class MasinaZaMerenjeServiceImpl implements MasinaZaMerenjeService {
 
         String ispravnost = request.getMeriloJeIspravno();
         boolean ispravnostBool = true;
-        if(ispravnost == "NE") ispravnostBool = false;
+        if(Objects.equals(ispravnost, "NE")) ispravnostBool = false;
 
         String ispravnostPokaznogUredjaja = request.getProveraIspravnostiPokaznogUredjaja();
         boolean ispravnostPokaznogUredjajaBool = true;
-        if(ispravnostPokaznogUredjaja == "NE") ispravnostPokaznogUredjajaBool = false;
+        if(Objects.equals(ispravnostPokaznogUredjaja, "NE")) ispravnostPokaznogUredjajaBool = false;
 
         String ispunjavaZahteve = request.getMeriloIspunjavaZahteve();
         boolean ispunjavaZahteveBool = true;
-        if(ispunjavaZahteve == "NE") ispunjavaZahteveBool = false;
+        if(Objects.equals(ispunjavaZahteve, "NE")) ispunjavaZahteveBool = false;
 
         Date datum = request.getDatum();
         if(datum == null){
