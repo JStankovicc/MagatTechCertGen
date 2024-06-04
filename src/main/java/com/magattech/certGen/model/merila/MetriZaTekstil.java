@@ -184,8 +184,12 @@ public class MetriZaTekstil {
 
     private String unit1;
     private String unit2;
+    private String unit3;
+    private String unit4;
 
     private String propisaniZahtevi;
+
+    private String razlogOdbijanja;
 
     public MeriloHelper getMeriloHeplper(){
         MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Метри за текстил").brojZapisnika(this.brojZapisnika)
@@ -199,7 +203,7 @@ public class MetriZaTekstil {
                 .sluzbenaOznakaTipa(this.sluzbenaOznakaTipa)
                 .vrstaKontrolisanja(this.vrstaKontrolisanja)
                 .proizvodjac(this.proizvodjac)
-                .razlogOdbijanja("RAZLOG")
+                .razlogOdbijanja(this.razlogOdbijanja)
                 .brojZapisnika(this.brojZapisnika)
                 .vlasnikKorisnik(this.korisnik)
                 .identifikacioniBroj(this.identifikacioniBroj)

@@ -183,9 +183,12 @@ public class SlozivoMerilo {
 
     private String unit1;
     private String unit2;
+    private String unit3;
+    private String unit4;
 
     private String propisaniZahtevi;
 
+    private String razlogOdbijanja;
 
     public MeriloHelper getMeriloHeplper(){
         MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Сложиво мерило").brojZapisnika(this.brojZapisnika)
@@ -199,7 +202,7 @@ public class SlozivoMerilo {
                 .sluzbenaOznakaTipa(this.sluzbenaOznakaTipa)
                 .vrstaKontrolisanja(this.vrstaKontrolisanja)
                 .proizvodjac(this.proizvodjac)
-                .razlogOdbijanja("RAZLOG")
+                .razlogOdbijanja(this.razlogOdbijanja)
                 .brojZapisnika(this.brojZapisnika)
                 .vlasnikKorisnik(this.korisnik)
                 .identifikacioniBroj(this.identifikacioniBroj)

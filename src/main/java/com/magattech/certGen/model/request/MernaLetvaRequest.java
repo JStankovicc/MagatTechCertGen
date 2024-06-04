@@ -100,10 +100,12 @@ public class MernaLetvaRequest {
     private Date datum;
 
     private String unit1;
+    private String unit2;
 
     private String zapisnikUneo;
     private String zapisnikOdobrio;
 
     private String propisaniZahtevi;
 
+    private String razlogOdbijanja;
 }

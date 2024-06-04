@@ -117,8 +117,10 @@ public class MernaLetvaServiceImpl implements MernaLetvaService {
                 .odobrio(user2.getFirstName() + " " + user2.getLastName())
                 .odobreno(true)
                 .unit1(request.getUnit1())
+                .unit2(request.getUnit2())
                 .propisaniZahtevi(request.getPropisaniZahtevi())
                 .pravilnik(request.getPropisaniZahtevi())
+                .razlogOdbijanja(request.getRazlogOdbijanja())
                 .build();
 
         mernaLetvaRepository.save(mernaLetva);
@@ -247,8 +249,10 @@ public class MernaLetvaServiceImpl implements MernaLetvaService {
                 .odobrio(user2.getFirstName() + " " + user2.getLastName())
                 .odobreno(true)
                 .unit1(request.getUnit1())
+                .unit2(request.getUnit2())
                 .propisaniZahtevi(request.getPropisaniZahtevi())
                 .pravilnik(request.getPropisaniZahtevi())
+                .razlogOdbijanja(request.getRazlogOdbijanja())
                 .build();
 
         mernaLetvaRepository.save(newMernaLetva);

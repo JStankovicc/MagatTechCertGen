@@ -161,8 +161,11 @@ public class MernaTrakaSaViskom {
     private boolean odobreno;
 
     private String unit1;
+    private String unit2;
 
     private String propisaniZahtevi;
+
+    private String razlogOdbijanja;
 
     public MeriloHelper getMeriloHeplper(){
         MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Мерна трака са виском").brojZapisnika(this.brojZapisnika)
@@ -176,7 +179,7 @@ public class MernaTrakaSaViskom {
                 .sluzbenaOznakaTipa(this.sluzbenaOznakaTipa)
                 .vrstaKontrolisanja(this.vrstaKontrolisanja)
                 .proizvodjac(this.proizvodjac)
-                .razlogOdbijanja("RAZLOG")
+                .razlogOdbijanja(this.razlogOdbijanja)
                 .brojZapisnika(this.brojZapisnika)
                 .vlasnikKorisnik(this.korisnik)
                 .identifikacioniBroj(this.identifikacioniBroj)

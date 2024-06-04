@@ -106,10 +106,12 @@ public class MasinaZaMerenje {
 
     private boolean odobreno;
 
-//    private String unit1;
-//    private String unit2;
+    private String unit1;
+    private String unit2;
 
     private String propisaniZahtevi;
+
+    private String razlogOdbijanja;
 
     public MeriloHelper getMeriloHeplper(){
         MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Машина за мерење жица и каблова").brojZapisnika(this.brojZapisnika)
@@ -123,7 +125,7 @@ public class MasinaZaMerenje {
                 .sluzbenaOznakaTipa(this.sluzbenaOznakaTipa)
                 .vrstaKontrolisanja(this.vrstaKontrolisanja)
                 .proizvodjac(this.proizvodjac)
-                .razlogOdbijanja("RAZLOG")
+                .razlogOdbijanja(this.razlogOdbijanja)
                 .brojZapisnika(this.brojZapisnika)
                 .vlasnikKorisnik(this.korisnik)
                 .identifikacioniBroj(this.identifikacioniBroj)

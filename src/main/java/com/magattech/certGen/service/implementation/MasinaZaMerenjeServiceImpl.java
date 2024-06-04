@@ -104,12 +104,13 @@ public class MasinaZaMerenjeServiceImpl implements MasinaZaMerenjeService {
                 .etalonirao(user.getFirstName() + " " + user.getLastName())
                 .odobrio(user2.getFirstName() + " " + user2.getLastName())
                 .odobreno(true)
-//                .unit1(request.getUnit1())
-//                .unit2(request.getUnit2())
+                .unit1(request.getUnit1())
+                .unit2(request.getUnit2())
                 .propisaniZahtevi(request.getPropisaniZahtevi())
                 .pravilnik(request.getPropisaniZahtevi())
                 .brojMernogLenjira(opremaService.findLatestByTip(OpremaType.MERNI_LENJIR).getSerBrEtalona())
                 .brojPomicnogMerila(opremaService.findLatestByTip(OpremaType.POMICNO_MERILO).getSerBrEtalona())
+                .razlogOdbijanja(request.getRazlogOdbijanja())
                 .build();
 
         masinaZaMerenjeRepository.save(masinaZaMerenje);
@@ -209,12 +210,13 @@ public class MasinaZaMerenjeServiceImpl implements MasinaZaMerenjeService {
                 .etalonirao(user.getFirstName() + " " + user.getLastName())
                 .odobrio(user2.getFirstName() + " " + user2.getLastName())
                 .odobreno(true)
-//                .unit1(request.getUnit1())
-//                .unit2(request.getUnit2())
+                .unit1(request.getUnit1())
+                .unit2(request.getUnit2())
                 .propisaniZahtevi(request.getPropisaniZahtevi())
                 .pravilnik(request.getPropisaniZahtevi())
                 .brojMernogLenjira(opremaService.findLatestByTip(OpremaType.MERNI_LENJIR).getSerBrEtalona())
                 .brojPomicnogMerila(opremaService.findLatestByTip(OpremaType.POMICNO_MERILO).getSerBrEtalona())
+                .razlogOdbijanja(request.getRazlogOdbijanja())
                 .build();
 
         masinaZaMerenjeRepository.save(newMasinaZaMerenje);

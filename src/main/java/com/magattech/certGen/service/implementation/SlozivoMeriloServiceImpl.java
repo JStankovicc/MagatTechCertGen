@@ -138,8 +138,11 @@ public class SlozivoMeriloServiceImpl implements SlozivoMeriloService {
                 .odobreno(true)
                 .unit1(request.getUnit1())
                 .unit2(request.getUnit2())
+                .unit3(request.getUnit3())
+                .unit4(request.getUnit4())
                 .propisaniZahtevi(request.getPropisaniZahtevi())
                 .pravilnik(request.getPropisaniZahtevi())
+                .razlogOdbijanja(request.getRazlogOdbijanja())
                 .build();
 
         slozivoMeriloRepository.save(slozivoMerilo);
@@ -254,8 +257,11 @@ public class SlozivoMeriloServiceImpl implements SlozivoMeriloService {
                 .odobreno(true)
                 .unit1(request.getUnit1())
                 .unit2(request.getUnit2())
+                .unit3(request.getUnit3())
+                .unit4(request.getUnit4())
                 .propisaniZahtevi(request.getPropisaniZahtevi())
                 .pravilnik(request.getPropisaniZahtevi())
+                .razlogOdbijanja(request.getRazlogOdbijanja())
                 .build();
 
         slozivoMeriloRepository.save(newSlozivoMerilo);

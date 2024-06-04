@@ -129,8 +129,10 @@ public class MernaTrakaSaViskomServiceImpl implements MernaTrakaSaViskomService 
                 .odobrio(user2.getFirstName() + " " + user2.getLastName())
                 .odobreno(true)
                 .unit1(request.getUnit1())
+                .unit2(request.getUnit2())
                 .propisaniZahtevi(request.getPropisaniZahtevi())
                 .pravilnik(request.getPropisaniZahtevi())
+                .razlogOdbijanja(request.getRazlogOdbijanja())
                 .build();
 
         mernaTrakaSaViskomRepository.save(mernaTrakaSaViskom);
@@ -270,6 +272,8 @@ public class MernaTrakaSaViskomServiceImpl implements MernaTrakaSaViskomService 
                 .odobrio(user2.getFirstName() + " " + user2.getLastName())
                 .odobreno(true)
                 .unit1(request.getUnit1())
+                .unit2(request.getUnit2())
+                .razlogOdbijanja(request.getRazlogOdbijanja())
                 .propisaniZahtevi(request.getPropisaniZahtevi())
                 .pravilnik(request.getPropisaniZahtevi())
                 .build();

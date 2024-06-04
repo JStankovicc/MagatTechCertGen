@@ -131,9 +131,13 @@ public class MetriZaTekstilRequest {
 
     private String unit1;
     private String unit2;
+    private String unit3;
+    private String unit4;
 
     private String zapisnikUneo;
     private String zapisnikOdobrio;
 
     private String propisaniZahtevi;
+
+    private String razlogOdbijanja;
 }

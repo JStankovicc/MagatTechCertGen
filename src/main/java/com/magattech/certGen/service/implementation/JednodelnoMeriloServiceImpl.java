@@ -143,6 +143,9 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
                 .unit2(request.getUnit2())
                 .propisaniZahtevi(request.getPropisaniZahtevi())
                 .pravilnik(request.getPropisaniZahtevi())
+                .unit3(request.getUnit3())
+                .unit4(request.getUnit4())
+                .razlogOdbijanja(request.getRazlogOdbijanja())
                 .build();
 
                 jednodelnoMeriloRepository.save(jednodelnoMerilo);
@@ -261,6 +264,9 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
                 .unit2(request.getUnit2())
                 .propisaniZahtevi(request.getPropisaniZahtevi())
                 .pravilnik(request.getPropisaniZahtevi())
+                .unit3(request.getUnit3())
+                .unit4(request.getUnit4())
+                .razlogOdbijanja(request.getRazlogOdbijanja())
                 .build();
 
         jednodelnoMeriloRepository.save(newJednodelnoMerilo);

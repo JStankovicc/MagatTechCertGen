@@ -141,8 +141,11 @@ public class MetriZaTekstilServiceImpl implements MetriZaTekstilService {
                 .odobreno(true)
                 .unit1(request.getUnit1())
                 .unit2(request.getUnit2())
+                .unit3(request.getUnit3())
+                .unit4(request.getUnit4())
                 .propisaniZahtevi(request.getPropisaniZahtevi())
                 .pravilnik(request.getPropisaniZahtevi())
+                .razlogOdbijanja(request.getRazlogOdbijanja())
                 .build();
 
         metriZaTekstilRepository.save(metriZaTekstil);
@@ -276,6 +279,7 @@ public class MetriZaTekstilServiceImpl implements MetriZaTekstilService {
                 .unit2(request.getUnit2())
                 .propisaniZahtevi(request.getPropisaniZahtevi())
                 .pravilnik(request.getPropisaniZahtevi())
+                .razlogOdbijanja(request.getRazlogOdbijanja())
                 .build();
 
         metriZaTekstilRepository.save(newMetriZaTekstil);

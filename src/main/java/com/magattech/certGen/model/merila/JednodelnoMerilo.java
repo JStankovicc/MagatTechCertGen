@@ -170,10 +170,14 @@ public class JednodelnoMerilo {
     private String etalonirao;
     private String odobrio;
 
+    private String razlogOdbijanja;
+
     private boolean odobreno;
 
     private String unit1;
     private String unit2;
+    private String unit3;
+    private String unit4;
 
     private String propisaniZahtevi;
 
@@ -189,7 +193,7 @@ public class JednodelnoMerilo {
                 .sluzbenaOznakaTipa(this.sluzbenaOznakaTipa)
                 .vrstaKontrolisanja(this.vrstaKontrolisanja)
                 .proizvodjac(this.proizvodjac)
-                .razlogOdbijanja("RAZLOG")
+                .razlogOdbijanja(this.razlogOdbijanja)
                 .brojZapisnika(this.brojZapisnika)
                 .vlasnikKorisnik(this.korisnik)
                 .identifikacioniBroj(this.identifikacioniBroj)
