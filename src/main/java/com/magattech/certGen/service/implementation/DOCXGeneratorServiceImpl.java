@@ -1151,12 +1151,12 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                     replaceText(paragraph,"Skinuti2","");
                                 }
 
-                                if (text.contains("Postavljeni1") && postavljeni.size() > 0) {
+                                if (text.contains("Postavljeni1") && postavljeni != null) {
                                     replaceText(paragraph, "Postavljeni1", postavljeni.get(0));
                                 }else {
                                     replaceText(paragraph,"Postavljeni1", "/");
                                 }
-                                if (text.contains("Postavljeni2") && postavljeni.size() > 1) {
+                                if (text.contains("Postavljeni2") && postavljeni != null && postavljeni.size() > 1) {
                                     replaceText(paragraph, "Postavljeni2", postavljeni.get(1));
                                 }else {
                                     replaceText(paragraph, "Postavljeni2", "");

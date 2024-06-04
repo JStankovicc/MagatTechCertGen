@@ -217,7 +217,7 @@ public class JednodelnoMerilo {
     }
 
     private String getOsnovneKarakteristike(){
-        String osnovneKarakteristike = "Температура: " + this.temperatura + "°C; Влажност ваздуха: " + this.vlaznostVazduha + "%; Мерни опсег: " + this.merniOpseg + "; Најмањи подељак скале: " + this.najmanjiPodeljak;
+        String osnovneKarakteristike = "Мерни опсег: " + this.merniOpseg + "; Најмањи подељак скале: " + this.najmanjiPodeljak;
         return osnovneKarakteristike;
     }
 
