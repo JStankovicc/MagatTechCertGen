@@ -1440,6 +1440,319 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
     }
 
     @Override
+    public byte[] generateMernaTraka5m(MernaTraka5m mernaTrakaSaViskom){
+
+        String staticResourcePath = "src/main/resources/static/";
+        String wordFilePath = staticResourcePath + "mernaTraka5mTemplate.docx";
+
+        File wordFile = new File(wordFilePath);
+
+        if (!wordFile.exists()) {
+            System.err.println("Word file not found: " + wordFilePath);
+            return null;
+        }
+
+        try {
+            XWPFDocument doc = new XWPFDocument(new FileInputStream(wordFile));
+
+            for (XWPFTable table : doc.getTables()) {
+                for (XWPFTableRow row : table.getRows()) {
+                    for (XWPFTableCell cell : row.getTableCells()) {
+                        for (XWPFParagraph paragraph : cell.getParagraphs()) {
+                            String text = paragraph.getText();
+                            if (text != null) {
+                                if (text.contains("brojZapisnika")) {
+                                    replaceText(paragraph, "brojZapisnika", mernaTrakaSaViskom.getBrojZapisnika());
+                                }
+                                if (text.contains("[vrstaKontrolisanja]")) {
+                                    replaceText(paragraph, "[vrstaKontrolisanja]", mernaTrakaSaViskom.getVrstaKontrolisanja());
+                                }
+                                if (text.contains("[podnosilacZahteva]")) {
+                                    replaceText(paragraph, "[podnosilacZahteva]", mernaTrakaSaViskom.getPodnosilacZahteva());
+                                }
+                                if (text.contains("vlasnikKorisnik")) {
+                                    replaceText(paragraph, "vlasnikKorisnik", mernaTrakaSaViskom.getKorisnik());
+                                }
+                                if (text.contains("serijskiBroj")) {
+                                    replaceText(paragraph, "serijskiBroj", mernaTrakaSaViskom.getSerijskiBroj());
+                                }
+                                if (text.contains("[identifikacioniBroj]")) {
+                                    replaceText(paragraph, "[identifikacioniBroj]", mernaTrakaSaViskom.getIdentifikacioniBroj());
+                                }
+                                if (text.contains("[proizvodjac]")) {
+                                    replaceText(paragraph, "[proizvodjac]", mernaTrakaSaViskom.getProizvodjac());
+                                }
+                                if (text.contains("[oznakaTipa]")) {
+                                    replaceText(paragraph, "[oznakaTipa]", mernaTrakaSaViskom.getOznakaTipa());
+                                }
+                                if (text.contains("sluzbenaOznakaTipa")) {
+                                    replaceText(paragraph, "sluzbenaOznakaTipa", mernaTrakaSaViskom.getSluzbenaOznakaTipa());
+                                }
+                                if (text.contains("[merniOpseg]")) {
+                                    replaceText(paragraph, "[merniOpseg]", mernaTrakaSaViskom.getMerniOpseg());
+                                }
+                                if (text.contains("najmanjiPodeljak")) {
+                                    replaceText(paragraph, "najmanjiPodeljak", mernaTrakaSaViskom.getNajmanjiPodeljak());
+                                }
+                                if (text.contains("[klasaTacnosti]")) {
+                                    replaceText(paragraph, "[klasaTacnosti]", mernaTrakaSaViskom.getKlasaTacnosti());
+                                }
+                                if (text.contains("temperatura")) {
+                                    replaceText(paragraph, "temperatura", mernaTrakaSaViskom.getTemperatura());
+                                }
+                                if (text.contains("[vlaznost]")) {
+                                    replaceText(paragraph, "[vlaznost]", mernaTrakaSaViskom.getVlaznostVazduha());
+                                }
+
+                                if(mernaTrakaSaViskom.isMeriloJeIspravno()){
+                                    if (text.contains("[cb1]")) {
+                                        replaceText(paragraph, "[cb1]", "☒");
+                                    }
+                                    if (text.contains("[cb2]")) {
+                                        replaceText(paragraph, "[cb2]", "☐");
+                                    }
+                                }else {
+                                    if (text.contains("[cb1]")) {
+                                        replaceText(paragraph, "[cb1]", "☐");
+                                    }
+                                    if (text.contains("[cb2]")) {
+                                        replaceText(paragraph, "[cb2]", "☒");
+                                    }
+                                }
+
+                                if (text.contains("[napomena1]")) {
+                                    replaceText(paragraph, "[napomena1]", mernaTrakaSaViskom.getNapomena());
+                                }
+                                if (text.contains("brojMernogLenjira")) {
+                                    replaceText(paragraph, "brojMernogLenjira", mernaTrakaSaViskom.getBrojMernogLenjira());
+                                }
+                                if (text.contains("brojMerneLupe")) {
+                                    replaceText(paragraph, "brojMerneLupe", mernaTrakaSaViskom.getBrojMerneLupe());
+                                }
+
+                                List<String> skinuti = null;
+                                if(mernaTrakaSaViskom.getSkinutiZigovi() != null){
+                                    skinuti = List.of(mernaTrakaSaViskom.getSkinutiZigovi().split(";"));
+                                }
+                                List<String> postavljeni = null;
+                                if(mernaTrakaSaViskom.getPostavljeniZigovi() != null){
+                                    postavljeni = List.of(mernaTrakaSaViskom.getPostavljeniZigovi().split(";"));
+                                }
+
+                                if (text.contains("Skinuti1") && skinuti!= null) {
+                                    replaceText(paragraph, "Skinuti1", skinuti.get(0));
+                                }else {
+                                    replaceText(paragraph,"Skinuti1","/");
+                                }
+                                if (text.contains("Skinuti2") && skinuti!= null && skinuti.size() > 1) {
+                                    replaceText(paragraph, "Skinuti2", skinuti.get(1));
+                                }else {
+                                    replaceText(paragraph,"Skinuti2","");
+                                }
+
+                                if (text.contains("Postavljeni1") && postavljeni.size() > 0) {
+                                    replaceText(paragraph, "Postavljeni1", postavljeni.get(0));
+                                }else {
+                                    replaceText(paragraph,"Postavljeni1", "/");
+                                }
+                                if (text.contains("Postavljeni2") && postavljeni.size() > 1) {
+                                    replaceText(paragraph, "Postavljeni2", postavljeni.get(1));
+                                }else {
+                                    replaceText(paragraph, "Postavljeni2", "");
+                                }
+
+                                if(mernaTrakaSaViskom.isMeriloIspunjavaZahteve()){
+                                    if (text.contains("[cb3]")) {
+                                        replaceText(paragraph, "[cb3]", "☒");
+                                    }
+                                    if (text.contains("[cb4]")) {
+                                        replaceText(paragraph, "[cb4]", "☐");
+                                    }
+                                }else {
+                                    if (text.contains("[cb3]")) {
+                                        replaceText(paragraph, "[cb3]", "☐");
+                                    }
+                                    if (text.contains("[cb4]")) {
+                                        replaceText(paragraph, "[cb4]", "☒");
+                                    }
+                                }
+
+                                if (text.contains("[komentar2]")) {
+                                    replaceText(paragraph, "[komentar2]", mernaTrakaSaViskom.getKomentar2());
+                                }
+
+                                if (text.contains("[datum]")) {
+                                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+
+                                    Date datum = mernaTrakaSaViskom.getDatum();
+
+                                    String formatiraniDatum = dateFormat.format(datum);
+
+                                    replaceText(paragraph, "[datum]", formatiraniDatum);
+                                }
+
+                                if (text.contains("etalonirao")) {
+                                    replaceText(paragraph, "etalonirao", mernaTrakaSaViskom.getEtalonirao());
+                                }
+                                if (text.contains("odobrio")) {
+                                    replaceText(paragraph, "odobrio", mernaTrakaSaViskom.getOdobrio());
+                                }
+
+                                if (text.contains("Pravilnik")) {
+                                    replaceText(paragraph, "Pravilnik", mernaTrakaSaViskom.getPravilnik());
+                                }
+
+                                if (text.contains("Резултати контролисања:")){
+                                    for (XWPFTable innerTable : cell.getTables()) {
+                                        for (XWPFTableRow innerRow : innerTable.getRows()) {
+                                            for (XWPFTableCell innerCell : innerRow.getTableCells()) {
+                                                for (XWPFParagraph innerParagraph : innerCell.getParagraphs()) {
+                                                    String innerText = innerParagraph.getText();
+                                                    if (innerText != null) {
+                                                        if (innerText.contains("Odstupanje1")) {
+                                                            replaceText(innerParagraph, "Odstupanje1", mernaTrakaSaViskom.getOdstupanje1());
+                                                        }if (innerText.contains("Odstupanje2")) {
+                                                            replaceText(innerParagraph, "Odstupanje2", mernaTrakaSaViskom.getOdstupanje2());
+                                                        }if (innerText.contains("Odstupanje3")) {
+                                                            replaceText(innerParagraph, "Odstupanje3", mernaTrakaSaViskom.getOdstupanje3());
+                                                        }if (innerText.contains("Odstupanje4")) {
+                                                            replaceText(innerParagraph, "Odstupanje4", mernaTrakaSaViskom.getOdstupanje4());
+                                                        }if (innerText.contains("Odstupanje5")) {
+                                                            replaceText(innerParagraph, "Odstupanje5", mernaTrakaSaViskom.getOdstupanje5());
+                                                        }if (innerText.contains("Odstupanje6")) {
+                                                            replaceText(innerParagraph, "Odstupanje6", mernaTrakaSaViskom.getOdstupanje6());
+                                                        }if (innerText.contains("Ndg1")) {
+                                                            replaceText(innerParagraph, "Ndg1", mernaTrakaSaViskom.getNdg1());
+                                                        }if (innerText.contains("Ndg2")) {
+                                                            replaceText(innerParagraph, "Ndg2", mernaTrakaSaViskom.getNdg2());
+                                                        }if (innerText.contains("Ndg3")) {
+                                                            replaceText(innerParagraph, "Ndg3", mernaTrakaSaViskom.getNdg3());
+                                                        }if (innerText.contains("Ndg4")) {
+                                                            replaceText(innerParagraph, "Ndg4", mernaTrakaSaViskom.getNdg4());
+                                                        }if (innerText.contains("Ndg5")) {
+                                                            replaceText(innerParagraph, "Ndg5", mernaTrakaSaViskom.getNdg5());
+                                                        }if (innerText.contains("Ndg6")) {
+                                                            replaceText(innerParagraph, "Ndg6", mernaTrakaSaViskom.getNdg6());
+                                                        }if (innerText.contains("Ndg7")) {
+                                                            replaceText(innerParagraph, "Ndg7", mernaTrakaSaViskom.getNdg7());
+                                                        }
+                                                        if (innerText.contains("Greska1")) {
+                                                            replaceText(innerParagraph, "Greska1", mernaTrakaSaViskom.getGreska1());
+                                                        }
+                                                        if (innerText.contains("Greska2")) {
+                                                            replaceText(innerParagraph, "Greska2", mernaTrakaSaViskom.getGreska2());
+                                                        }
+                                                        if (innerText.contains("Greska3")) {
+                                                            replaceText(innerParagraph, "Greska3", mernaTrakaSaViskom.getGreska3());
+                                                        }
+                                                        if (innerText.contains("Greska4")) {
+                                                            replaceText(innerParagraph, "Greska4", mernaTrakaSaViskom.getGreska4());
+                                                        }
+                                                        if (innerText.contains("Greska5")) {
+                                                            replaceText(innerParagraph, "Greska5", mernaTrakaSaViskom.getGreska5());
+                                                        }
+                                                        if (innerText.contains("Greska6")) {
+                                                            replaceText(innerParagraph, "Greska6", mernaTrakaSaViskom.getGreska6());
+                                                        }
+                                                        if (innerText.contains("Greska7")) {
+                                                            replaceText(innerParagraph, "Greska7", mernaTrakaSaViskom.getGreska7());
+                                                        }
+                                                        if (innerText.contains("Greska8")) {
+                                                            replaceText(innerParagraph, "Greska8", mernaTrakaSaViskom.getGreska8());
+                                                        }
+                                                        if (innerText.contains("Gp1")) {
+                                                            replaceText(innerParagraph, "Gp1", mernaTrakaSaViskom.getGreskaPodeljka1());
+                                                        }
+                                                        if (innerText.contains("Gp2")) {
+                                                            replaceText(innerParagraph, "Gp2", mernaTrakaSaViskom.getGreskaPodeljka2());
+                                                        }
+                                                        if (innerText.contains("Gp3")) {
+                                                            replaceText(innerParagraph, "Gp3", mernaTrakaSaViskom.getGreskaPodeljka3());
+                                                        }
+                                                        if (innerText.contains("Gp4")) {
+                                                            replaceText(innerParagraph, "Gp4", mernaTrakaSaViskom.getGreskaPodeljka4());
+                                                        }
+                                                        if (innerText.contains("Gp5")) {
+                                                            replaceText(innerParagraph, "Gp5", mernaTrakaSaViskom.getGreskaPodeljka5());
+                                                        }
+                                                        if (innerText.contains("Gp6")) {
+                                                            replaceText(innerParagraph, "Gp6", mernaTrakaSaViskom.getGreskaPodeljka6());
+                                                        }
+                                                        if (innerText.contains("Gp7")) {
+                                                            replaceText(innerParagraph, "Gp7", mernaTrakaSaViskom.getGreskaPodeljka7());
+                                                        }
+                                                        if (innerText.contains("Gp8")) {
+                                                            replaceText(innerParagraph, "Gp8", mernaTrakaSaViskom.getGreskaPodeljka8());
+                                                        }
+                                                        if (innerText.contains("Rd1")) {
+                                                            replaceText(innerParagraph, "Rd1", getRazlika(mernaTrakaSaViskom.getGreskaPodeljka1(), mernaTrakaSaViskom.getGreskaPodeljka2()));
+                                                        }
+                                                        if (innerText.contains("Rd2")) {
+                                                            replaceText(innerParagraph, "Rd2", getRazlika(mernaTrakaSaViskom.getGreskaPodeljka3(), mernaTrakaSaViskom.getGreskaPodeljka4()));
+                                                        }
+                                                        if (innerText.contains("Rd3")) {
+                                                            replaceText(innerParagraph, "Rd3", getRazlika(mernaTrakaSaViskom.getGreskaPodeljka5(), mernaTrakaSaViskom.getGreskaPodeljka6()));
+                                                        }
+                                                        if (innerText.contains("Rd4")) {
+                                                            replaceText(innerParagraph, "Rd4", getRazlika(mernaTrakaSaViskom.getGreskaPodeljka7(), mernaTrakaSaViskom.getGreskaPodeljka8()));
+                                                        }
+                                                        if (innerText.contains("Ndr1")) {
+                                                            replaceText(innerParagraph, "Ndr1", mernaTrakaSaViskom.getNdr1());
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            List<XWPFFooter> footers = doc.getFooterList();
+
+            for (XWPFFooter footer : footers) {
+                List<XWPFParagraph> paragraphs = footer.getParagraphs();
+                for (XWPFParagraph paragraph : paragraphs) {
+                    String text = paragraph.getText();
+                    if (text != null) {
+                        if (text.contains("date")) {
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+
+                            Date datum = mernaTrakaSaViskom.getDatum();
+
+                            String formatiraniDatum = dateFormat.format(datum);
+
+                            replaceText(paragraph, "date", formatiraniDatum);
+
+                            XWPFRun run = paragraph.createRun();
+                            run.addTab();
+                        }
+                    }
+                }
+            }
+
+            String workingFilePath = staticResourcePath + "workingJednodelnoMerilo.docx";
+            FileOutputStream fos = new FileOutputStream(workingFilePath);
+            doc.write(fos);
+            fos.close();
+            doc.close();
+
+            File workingFile = new File(workingFilePath);
+            byte[] workingDocumentBytes = Files.readAllBytes(workingFile.toPath());
+
+            workingFile.delete();
+
+            return workingDocumentBytes;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public byte[] generateMernaTraka25m(MernaTraka25m mernaTrakaSaViskom) {
 
         String staticResourcePath = "src/main/resources/static/";
