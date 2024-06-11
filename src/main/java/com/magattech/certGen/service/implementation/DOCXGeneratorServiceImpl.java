@@ -560,6 +560,11 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                     replaceText(paragraph, "odobrio", mernaLetva.getOdobrio());
                                 }
 
+
+                                if (text.contains("Pravilnik")) {
+                                    replaceText(paragraph, "Pravilnik", mernaLetva.getPravilnik());
+                                }
+
                                 if (text.contains("Резултати контролисања:")){
                                     for (XWPFTable innerTable : cell.getTables()) {
                                         for (XWPFTableRow innerRow : innerTable.getRows()) {
@@ -2347,6 +2352,11 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                     }
                                 }
 
+
+                                if (text.contains("Pravilnik")) {
+                                    replaceText(paragraph, "Pravilnik", masinaZaMerenje.getPravilnik());
+                                }
+
                                 if (text.contains("Резултати контролисања:")){
                                     for (XWPFTable innerTable : cell.getTables()) {
                                         for (XWPFTableRow innerRow : innerTable.getRows()) {
@@ -2587,6 +2597,11 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 }
                                 if (text.contains("odobrio")) {
                                     replaceText(paragraph, "odobrio", slozivoMerilo.getOdobrio());
+                                }
+
+
+                                if (text.contains("Pravilnik")) {
+                                    replaceText(paragraph, "Pravilnik", slozivoMerilo.getPravilnik());
                                 }
 
                                 if (text.contains("Резултати контролисања:")){
@@ -2965,6 +2980,11 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 }
                                 if (text.contains("odobrio")) {
                                     replaceText(paragraph, "odobrio", metriZaTekstil.getOdobrio());
+                                }
+
+
+                                if (text.contains("Pravilnik")) {
+                                    replaceText(paragraph, "Pravilnik", metriZaTekstil.getPravilnik());
                                 }
 
                                 if (text.contains("Резултати контролисања:")){
