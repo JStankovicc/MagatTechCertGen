@@ -715,7 +715,7 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
     public byte[] generateMernaTrakaSaViskom(MernaTrakaSaViskom mernaTrakaSaViskom) {
 
         String staticResourcePath = "src/main/resources/static/";
-        String wordFilePath = staticResourcePath + "mernaTrakaTemplate.docx";
+        String wordFilePath = staticResourcePath + "mernaTrakaSaViskomTemplate.docx";
 
         File wordFile = new File(wordFilePath);
 
@@ -870,6 +870,10 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                     replaceText(paragraph, "odobrio", mernaTrakaSaViskom.getOdobrio());
                                 }
 
+                                if (text.contains("Pravilnik")) {
+                                    replaceText(paragraph, "Pravilnik", mernaTrakaSaViskom.getPravilnik());
+                                }
+
                                 if (text.contains("Резултати контролисања:")){
                                     for (XWPFTable innerTable : cell.getTables()) {
                                         for (XWPFTableRow innerRow : innerTable.getRows()) {
@@ -986,6 +990,400 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                                             replaceText(innerParagraph, "[n12]", mernaTrakaSaViskom.getNdg12());
                                                         }
                                                         if (innerText.contains("Ndr1")) {
+                                                            replaceText(innerParagraph, "Ndr1", mernaTrakaSaViskom.getNdr1());
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            List<XWPFFooter> footers = doc.getFooterList();
+
+            for (XWPFFooter footer : footers) {
+                List<XWPFParagraph> paragraphs = footer.getParagraphs();
+                for (XWPFParagraph paragraph : paragraphs) {
+                    String text = paragraph.getText();
+                    if (text != null) {
+                        if (text.contains("date")) {
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+
+                            Date datum = mernaTrakaSaViskom.getDatum();
+
+                            String formatiraniDatum = dateFormat.format(datum);
+
+                            replaceText(paragraph, "date", formatiraniDatum);
+
+                            XWPFRun run = paragraph.createRun();
+                            run.addTab();
+                        }
+                    }
+                }
+            }
+
+            String workingFilePath = staticResourcePath + "workingJednodelnoMerilo.docx";
+            FileOutputStream fos = new FileOutputStream(workingFilePath);
+            doc.write(fos);
+            fos.close();
+            doc.close();
+
+            File workingFile = new File(workingFilePath);
+            byte[] workingDocumentBytes = Files.readAllBytes(workingFile.toPath());
+
+            workingFile.delete();
+
+            return workingDocumentBytes;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public byte[] generateMernaTrakaSaViskom25m(MernaTrakaSaViskom25m mernaTrakaSaViskom) {
+
+        String staticResourcePath = "src/main/resources/static/";
+        String wordFilePath = staticResourcePath + "mernaTrakaSaViskomTemplate25m.docx";
+
+        File wordFile = new File(wordFilePath);
+
+        if (!wordFile.exists()) {
+            System.err.println("Word file not found: " + wordFilePath);
+            return null;
+        }
+
+        try {
+            XWPFDocument doc = new XWPFDocument(new FileInputStream(wordFile));
+
+            for (XWPFTable table : doc.getTables()) {
+                for (XWPFTableRow row : table.getRows()) {
+                    for (XWPFTableCell cell : row.getTableCells()) {
+                        for (XWPFParagraph paragraph : cell.getParagraphs()) {
+                            String text = paragraph.getText();
+                            if (text != null) {
+                                if (text.contains("brojZapisnika")) {
+                                    replaceText(paragraph, "brojZapisnika", mernaTrakaSaViskom.getBrojZapisnika());
+                                }
+                                if (text.contains("[vrstaKontrolisanja]")) {
+                                    replaceText(paragraph, "[vrstaKontrolisanja]", mernaTrakaSaViskom.getVrstaKontrolisanja());
+                                }
+                                if (text.contains("[podnosilacZahteva]")) {
+                                    replaceText(paragraph, "[podnosilacZahteva]", mernaTrakaSaViskom.getPodnosilacZahteva());
+                                }
+                                if (text.contains("vlasnikKorisnik")) {
+                                    replaceText(paragraph, "vlasnikKorisnik", mernaTrakaSaViskom.getKorisnik());
+                                }
+                                if (text.contains("serijskiBroj")) {
+                                    replaceText(paragraph, "serijskiBroj", mernaTrakaSaViskom.getSerijskiBroj());
+                                }
+                                if (text.contains("[identifikacioniBroj]")) {
+                                    replaceText(paragraph, "[identifikacioniBroj]", mernaTrakaSaViskom.getIdentifikacioniBroj());
+                                }
+                                if (text.contains("[proizvodjac]")) {
+                                    replaceText(paragraph, "[proizvodjac]", mernaTrakaSaViskom.getProizvodjac());
+                                }
+                                if (text.contains("[oznakaTipa]")) {
+                                    replaceText(paragraph, "[oznakaTipa]", mernaTrakaSaViskom.getOznakaTipa());
+                                }
+                                if (text.contains("sluzbenaOznakaTipa")) {
+                                    replaceText(paragraph, "sluzbenaOznakaTipa", mernaTrakaSaViskom.getSluzbenaOznakaTipa());
+                                }
+                                if (text.contains("[merniOpseg]")) {
+                                    replaceText(paragraph, "[merniOpseg]", mernaTrakaSaViskom.getMerniOpseg());
+                                }
+                                if (text.contains("najmanjiPodeljak")) {
+                                    replaceText(paragraph, "najmanjiPodeljak", mernaTrakaSaViskom.getNajmanjiPodeljak());
+                                }
+                                if (text.contains("[klasaTacnosti]")) {
+                                    replaceText(paragraph, "[klasaTacnosti]", mernaTrakaSaViskom.getKlasaTacnosti());
+                                }
+                                if (text.contains("temperatura")) {
+                                    replaceText(paragraph, "temperatura", mernaTrakaSaViskom.getTemperatura());
+                                }
+                                if (text.contains("[vlaznost]")) {
+                                    replaceText(paragraph, "[vlaznost]", mernaTrakaSaViskom.getVlaznostVazduha());
+                                }
+
+                                if(mernaTrakaSaViskom.isMeriloJeIspravno()){
+                                    if (text.contains("[cb1]")) {
+                                        replaceText(paragraph, "[cb1]", "☒");
+                                    }
+                                    if (text.contains("[cb2]")) {
+                                        replaceText(paragraph, "[cb2]", "☐");
+                                    }
+                                }else {
+                                    if (text.contains("[cb1]")) {
+                                        replaceText(paragraph, "[cb1]", "☐");
+                                    }
+                                    if (text.contains("[cb2]")) {
+                                        replaceText(paragraph, "[cb2]", "☒");
+                                    }
+                                }
+
+                                if (text.contains("[napomena1]")) {
+                                    replaceText(paragraph, "[napomena1]", mernaTrakaSaViskom.getNapomena());
+                                }
+                                if (text.contains("brojMernogLenjira")) {
+                                    replaceText(paragraph, "brojMernogLenjira", mernaTrakaSaViskom.getBrojMernogLenjira());
+                                }
+                                if (text.contains("brojMerneLupe")) {
+                                    replaceText(paragraph, "brojMerneLupe", mernaTrakaSaViskom.getBrojMerneLupe());
+                                }
+
+                                List<String> skinuti = null;
+                                if(mernaTrakaSaViskom.getSkinutiZigovi() != null){
+                                    skinuti = List.of(mernaTrakaSaViskom.getSkinutiZigovi().split(";"));
+                                }
+                                List<String> postavljeni = null;
+                                if(mernaTrakaSaViskom.getPostavljeniZigovi() != null){
+                                    postavljeni = List.of(mernaTrakaSaViskom.getPostavljeniZigovi().split(";"));
+                                }
+
+                                if (text.contains("Skinuti1") && skinuti!= null) {
+                                    replaceText(paragraph, "Skinuti1", skinuti.get(0));
+                                }else {
+                                    replaceText(paragraph,"Skinuti1","/");
+                                }
+                                if (text.contains("Skinuti2") && skinuti!= null && skinuti.size() > 1) {
+                                    replaceText(paragraph, "Skinuti2", skinuti.get(1));
+                                }else {
+                                    replaceText(paragraph,"Skinuti2","");
+                                }
+
+                                if (text.contains("Postavljeni1") && postavljeni.size() > 0) {
+                                    replaceText(paragraph, "Postavljeni1", postavljeni.get(0));
+                                }else {
+                                    replaceText(paragraph,"Postavljeni1", "/");
+                                }
+                                if (text.contains("Postavljeni2") && postavljeni.size() > 1) {
+                                    replaceText(paragraph, "Postavljeni2", postavljeni.get(1));
+                                }else {
+                                    replaceText(paragraph, "Postavljeni2", "");
+                                }
+
+                                if(mernaTrakaSaViskom.isMeriloIspunjavaZahteve()){
+                                    if (text.contains("[cb3]")) {
+                                        replaceText(paragraph, "[cb3]", "☒");
+                                    }
+                                    if (text.contains("[cb4]")) {
+                                        replaceText(paragraph, "[cb4]", "☐");
+                                    }
+                                }else {
+                                    if (text.contains("[cb3]")) {
+                                        replaceText(paragraph, "[cb3]", "☐");
+                                    }
+                                    if (text.contains("[cb4]")) {
+                                        replaceText(paragraph, "[cb4]", "☒");
+                                    }
+                                }
+
+                                if (text.contains("[komentar2]")) {
+                                    replaceText(paragraph, "[komentar2]", mernaTrakaSaViskom.getKomentar2());
+                                }
+
+                                if (text.contains("[datum]")) {
+                                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+
+                                    Date datum = mernaTrakaSaViskom.getDatum();
+
+                                    String formatiraniDatum = dateFormat.format(datum);
+
+                                    replaceText(paragraph, "[datum]", formatiraniDatum);
+                                }
+
+                                if (text.contains("etalonirao")) {
+                                    replaceText(paragraph, "etalonirao", mernaTrakaSaViskom.getEtalonirao());
+                                }
+                                if (text.contains("odobrio")) {
+                                    replaceText(paragraph, "odobrio", mernaTrakaSaViskom.getOdobrio());
+                                }
+
+                                if (text.contains("Pravilnik")) {
+                                    replaceText(paragraph, "Pravilnik", mernaTrakaSaViskom.getPravilnik());
+                                }
+
+                                if (text.contains("Резултати контролисања:")){
+                                    for (XWPFTable innerTable : cell.getTables()) {
+                                        for (XWPFTableRow innerRow : innerTable.getRows()) {
+                                            for (XWPFTableCell innerCell : innerRow.getTableCells()) {
+                                                for (XWPFParagraph innerParagraph : innerCell.getParagraphs()) {
+                                                    String innerText = innerParagraph.getText();
+                                                    if (innerText != null) {
+                                                        if (innerText.contains("Odstupanje1")) {
+                                                            replaceText(innerParagraph, "Odstupanje1", mernaTrakaSaViskom.getOdstupanje1());
+                                                        }if (innerText.contains("Odstupanje2")) {
+                                                            replaceText(innerParagraph, "Odstupanje2", mernaTrakaSaViskom.getOdstupanje2());
+                                                        }if (innerText.contains("Odstupanje3")) {
+                                                            replaceText(innerParagraph, "Odstupanje3", mernaTrakaSaViskom.getOdstupanje3());
+                                                        }if (innerText.contains("Odstupanje4")) {
+                                                            replaceText(innerParagraph, "Odstupanje4", mernaTrakaSaViskom.getOdstupanje4());
+                                                        }if (innerText.contains("Odstupanje5")) {
+                                                            replaceText(innerParagraph, "Odstupanje5", mernaTrakaSaViskom.getOdstupanje5());
+                                                        }if (innerText.contains("Odstupanje6")) {
+                                                            replaceText(innerParagraph, "Odstupanje6", mernaTrakaSaViskom.getOdstupanje6());
+                                                        }if (innerText.contains("Odstupanje7")) {
+                                                            replaceText(innerParagraph, "Odstupanje7", mernaTrakaSaViskom.getOdstupanje7());
+                                                        }if (innerText.contains("Odstupanje8")) {
+                                                            replaceText(innerParagraph, "Odstupanje8", mernaTrakaSaViskom.getOdstupanje8());
+                                                        }if (innerText.contains("Odstupanje9")) {
+                                                            replaceText(innerParagraph, "Odstupanje9", mernaTrakaSaViskom.getOdstupanje9());
+                                                        }if (innerText.contains("[o10]")) {
+                                                            replaceText(innerParagraph, "[o10]", mernaTrakaSaViskom.getOdstupanje10());
+                                                        }if (innerText.contains("[o11]")) {
+                                                            replaceText(innerParagraph, "[o11]", mernaTrakaSaViskom.getOdstupanje11());
+                                                        }if (innerText.contains("[o12]")) {
+                                                            replaceText(innerParagraph, "[o12]", mernaTrakaSaViskom.getOdstupanje12());
+                                                        }if (innerText.contains("[o13]")) {
+                                                            replaceText(innerParagraph, "[o13]", mernaTrakaSaViskom.getOdstupanje13());
+                                                        }if (innerText.contains("[o14]")) {
+                                                            replaceText(innerParagraph, "[o14]", mernaTrakaSaViskom.getOdstupanje14());
+                                                        }if (innerText.contains("[o15]")) {
+                                                            replaceText(innerParagraph, "[o15]", mernaTrakaSaViskom.getOdstupanje15());
+                                                        }if (innerText.contains("[o16]")) {
+                                                            replaceText(innerParagraph, "[o16]", mernaTrakaSaViskom.getOdstupanje16());
+                                                        }if (innerText.contains("[o17]")) {
+                                                            replaceText(innerParagraph, "[o17]", mernaTrakaSaViskom.getOdstupanje17());
+                                                        }if (innerText.contains("[o18]")) {
+                                                            replaceText(innerParagraph, "[o18]", mernaTrakaSaViskom.getOdstupanje18());
+                                                        }if (innerText.contains("[o19]")) {
+                                                            replaceText(innerParagraph, "[o19]", mernaTrakaSaViskom.getOdstupanje19());
+                                                        }if (innerText.contains("[o20]")) {
+                                                            replaceText(innerParagraph, "[o20]", mernaTrakaSaViskom.getOdstupanje20());
+                                                        }if (innerText.contains("[o21]")) {
+                                                            replaceText(innerParagraph, "[o21]", mernaTrakaSaViskom.getOdstupanje21());
+                                                        }if (innerText.contains("[o22]")) {
+                                                            replaceText(innerParagraph, "[o22]", mernaTrakaSaViskom.getOdstupanje22());
+                                                        }if (innerText.contains("[o23]")) {
+                                                            replaceText(innerParagraph, "[o23]", mernaTrakaSaViskom.getOdstupanje23());
+                                                        }if (innerText.contains("[o24]")) {
+                                                            replaceText(innerParagraph, "[o24]", mernaTrakaSaViskom.getOdstupanje24());
+                                                        }if (innerText.contains("[o25]")) {
+                                                            replaceText(innerParagraph, "[o25]", mernaTrakaSaViskom.getOdstupanje25());
+                                                        }if (innerText.contains("[o26]")) {
+                                                            replaceText(innerParagraph, "[o26]", mernaTrakaSaViskom.getOdstupanje26());
+                                                        }if (innerText.contains("Ndg1")) {
+                                                            replaceText(innerParagraph, "Ndg1", mernaTrakaSaViskom.getNdg1());
+                                                        }if (innerText.contains("Ndg2")) {
+                                                            replaceText(innerParagraph, "Ndg2", mernaTrakaSaViskom.getNdg2());
+                                                        }if (innerText.contains("Ndg3")) {
+                                                            replaceText(innerParagraph, "Ndg3", mernaTrakaSaViskom.getNdg3());
+                                                        }if (innerText.contains("Ndg4")) {
+                                                            replaceText(innerParagraph, "Ndg4", mernaTrakaSaViskom.getNdg4());
+                                                        }if (innerText.contains("Ndg5")) {
+                                                            replaceText(innerParagraph, "Ndg5", mernaTrakaSaViskom.getNdg5());
+                                                        }if (innerText.contains("Ndg6")) {
+                                                            replaceText(innerParagraph, "Ndg6", mernaTrakaSaViskom.getNdg6());
+                                                        }if (innerText.contains("Ndg7")) {
+                                                            replaceText(innerParagraph, "Ndg7", mernaTrakaSaViskom.getNdg7());
+                                                        }if (innerText.contains("Ndg8")) {
+                                                            replaceText(innerParagraph, "Ndg8", mernaTrakaSaViskom.getNdg8());
+                                                        }if (innerText.contains("Ndg9")) {
+                                                            replaceText(innerParagraph, "Ndg9", mernaTrakaSaViskom.getNdg9());
+                                                        }if (innerText.contains("[n10]")) {
+                                                            replaceText(innerParagraph, "[n10]", mernaTrakaSaViskom.getNdg10());
+                                                        }if (innerText.contains("[n11]")) {
+                                                            replaceText(innerParagraph, "[n11]", mernaTrakaSaViskom.getNdg11());
+                                                        }if (innerText.contains("[n12]")) {
+                                                            replaceText(innerParagraph, "[n12]", mernaTrakaSaViskom.getNdg12());
+                                                        }if (innerText.contains("[n13]")) {
+                                                            replaceText(innerParagraph, "[n13]", mernaTrakaSaViskom.getNdg13());
+                                                        }if (innerText.contains("[n14]")) {
+                                                            replaceText(innerParagraph, "[n14]", mernaTrakaSaViskom.getNdg14());
+                                                        }if (innerText.contains("[n15]")) {
+                                                            replaceText(innerParagraph, "[n15]", mernaTrakaSaViskom.getNdg15());
+                                                        }if (innerText.contains("[n16]")) {
+                                                            replaceText(innerParagraph, "[n16]", mernaTrakaSaViskom.getNdg16());
+                                                        }if (innerText.contains("[n17]")) {
+                                                            replaceText(innerParagraph, "[n17]", mernaTrakaSaViskom.getNdg17());
+                                                        }if (innerText.contains("[n18]")) {
+                                                            replaceText(innerParagraph, "[n18]", mernaTrakaSaViskom.getNdg18());
+                                                        }if (innerText.contains("[n19]")) {
+                                                            replaceText(innerParagraph, "[n19]", mernaTrakaSaViskom.getNdg19());
+                                                        }if (innerText.contains("[n20]")) {
+                                                            replaceText(innerParagraph, "[n20]", mernaTrakaSaViskom.getNdg20());
+                                                        }if (innerText.contains("[n21]")) {
+                                                            replaceText(innerParagraph, "[n21]", mernaTrakaSaViskom.getNdg21());
+                                                        }if (innerText.contains("[n22]")) {
+                                                            replaceText(innerParagraph, "[n22]", mernaTrakaSaViskom.getNdg22());
+                                                        }if (innerText.contains("[n23]")) {
+                                                            replaceText(innerParagraph, "[n23]", mernaTrakaSaViskom.getNdg23());
+                                                        }if (innerText.contains("[n24]")) {
+                                                            replaceText(innerParagraph, "[n24]", mernaTrakaSaViskom.getNdg24());
+                                                        }if (innerText.contains("[n25]")) {
+                                                            replaceText(innerParagraph, "[n25]", mernaTrakaSaViskom.getNdg25());
+                                                        }if (innerText.contains("[n26]")) {
+                                                            replaceText(innerParagraph, "[n26]", mernaTrakaSaViskom.getNdg26());
+                                                        }
+                                                        if (innerText.contains("Greska1")) {
+                                                            replaceText(innerParagraph, "Greska1", mernaTrakaSaViskom.getGreska1());
+                                                        }
+                                                        if (innerText.contains("Greska2")) {
+                                                            replaceText(innerParagraph, "Greska2", mernaTrakaSaViskom.getGreska2());
+                                                        }
+                                                        if (innerText.contains("Greska3")) {
+                                                            replaceText(innerParagraph, "Greska3", mernaTrakaSaViskom.getGreska3());
+                                                        }
+                                                        if (innerText.contains("Greska4")) {
+                                                            replaceText(innerParagraph, "Greska4", mernaTrakaSaViskom.getGreska4());
+                                                        }
+                                                        if (innerText.contains("Greska5")) {
+                                                            replaceText(innerParagraph, "Greska5", mernaTrakaSaViskom.getGreska5());
+                                                        }
+                                                        if (innerText.contains("Greska6")) {
+                                                            replaceText(innerParagraph, "Greska6", mernaTrakaSaViskom.getGreska6());
+                                                        }
+                                                        if (innerText.contains("Greska7")) {
+                                                            replaceText(innerParagraph, "Greska7", mernaTrakaSaViskom.getGreska7());
+                                                        }
+                                                        if (innerText.contains("Greska8")) {
+                                                            replaceText(innerParagraph, "Greska8", mernaTrakaSaViskom.getGreska8());
+                                                        }
+                                                        if (innerText.contains("Gp1")) {
+                                                            replaceText(innerParagraph, "Gp1", mernaTrakaSaViskom.getGreskaPodeljka1());
+                                                        }
+                                                        if (innerText.contains("Gp2")) {
+                                                            replaceText(innerParagraph, "Gp2", mernaTrakaSaViskom.getGreskaPodeljka2());
+                                                        }
+                                                        if (innerText.contains("Gp3")) {
+                                                            replaceText(innerParagraph, "Gp3", mernaTrakaSaViskom.getGreskaPodeljka3());
+                                                        }
+                                                        if (innerText.contains("Gp4")) {
+                                                            replaceText(innerParagraph, "Gp4", mernaTrakaSaViskom.getGreskaPodeljka4());
+                                                        }
+                                                        if (innerText.contains("Gp5")) {
+                                                            replaceText(innerParagraph, "Gp5", mernaTrakaSaViskom.getGreskaPodeljka5());
+                                                        }
+                                                        if (innerText.contains("Gp6")) {
+                                                            replaceText(innerParagraph, "Gp6", mernaTrakaSaViskom.getGreskaPodeljka6());
+                                                        }
+                                                        if (innerText.contains("Gp7")) {
+                                                            replaceText(innerParagraph, "Gp7", mernaTrakaSaViskom.getGreskaPodeljka7());
+                                                        }
+                                                        if (innerText.contains("Gp8")) {
+                                                            replaceText(innerParagraph, "Gp8", mernaTrakaSaViskom.getGreskaPodeljka8());
+                                                        }
+                                                        if (innerText.contains("Rd1")) {
+                                                            replaceText(innerParagraph, "Rd1", getRazlika(mernaTrakaSaViskom.getGreskaPodeljka1(), mernaTrakaSaViskom.getGreskaPodeljka2()));
+                                                        }
+                                                        if (innerText.contains("Rd2")) {
+                                                            replaceText(innerParagraph, "Rd2", getRazlika(mernaTrakaSaViskom.getGreskaPodeljka3(), mernaTrakaSaViskom.getGreskaPodeljka4()));
+                                                        }
+                                                        if (innerText.contains("Rd3")) {
+                                                            replaceText(innerParagraph, "Rd3", getRazlika(mernaTrakaSaViskom.getGreskaPodeljka5(), mernaTrakaSaViskom.getGreskaPodeljka6()));
+                                                        }
+                                                        if (innerText.contains("Rd4")) {
+                                                            replaceText(innerParagraph, "Rd4", getRazlika(mernaTrakaSaViskom.getGreskaPodeljka7(), mernaTrakaSaViskom.getGreskaPodeljka8()));
+                                                        }
+                                                        if (innerText.contains("[n12]")) {
+                                                            replaceText(innerParagraph, "[n12]", mernaTrakaSaViskom.getNdg12());
+                                                        }
+                                                        if (innerText.contains("Ndr27")) {
                                                             replaceText(innerParagraph, "Ndr1", mernaTrakaSaViskom.getNdr1());
                                                         }
                                                     }

@@ -7,6 +7,7 @@ public interface DOCXGeneratorService {
     public byte[] generateJednodelnoMerilo(JednodelnoMerilo jednodelnoMerilo);
     public byte[] generateMernaLetva(MernaLetva mernaLetva);
     public byte[] generateMernaTrakaSaViskom(MernaTrakaSaViskom mernaTrakaSaViskom);
+    public byte[] generateMernaTrakaSaViskom25m(MernaTrakaSaViskom25m mernaTrakaSaViskom);
     public byte[] generateMasinaZaMerenje(MasinaZaMerenje masinaZaMerenje);
     public byte[] generateSlozivoMerilo(SlozivoMerilo slozivoMerilo);
     public byte[] generateMetriZaTekstil(MetriZaTekstil metriZaTekstil);
