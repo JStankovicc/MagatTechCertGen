@@ -189,6 +189,16 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                                 for (XWPFParagraph innerParagraph : innerCell.getParagraphs()) {
                                                     String innerText = innerParagraph.getText();
                                                     if (innerText != null) {
+                                                        if (innerText.contains("unit1")) {
+                                                            replaceText(innerParagraph, "unit1", jednodelnoMerilo.getUnit1());
+                                                        }if (innerText.contains("unit2")) {
+                                                            replaceText(innerParagraph, "unit2", jednodelnoMerilo.getUnit2());
+                                                        }if (innerText.contains("unit3")) {
+                                                            replaceText(innerParagraph, "unit3", jednodelnoMerilo.getUnit3());
+                                                        }if (innerText.contains("unit4")) {
+                                                            replaceText(innerParagraph, "unit4", jednodelnoMerilo.getUnit4());
+                                                        }
+
                                                         if (innerText.contains("odstupanje1")) {
                                                             replaceText(innerParagraph, "odstupanje1", jednodelnoMerilo.getOdstupanje1());
                                                         }if (innerText.contains("odstupanje2")) {
@@ -572,6 +582,13 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                                 for (XWPFParagraph innerParagraph : innerCell.getParagraphs()) {
                                                     String innerText = innerParagraph.getText();
                                                     if (innerText != null) {
+
+                                                        if (innerText.contains("unit1")) {
+                                                            replaceText(innerParagraph, "unit1", mernaLetva.getUnit1());
+                                                        }if (innerText.contains("unit2")) {
+                                                            replaceText(innerParagraph, "unit2", mernaLetva.getUnit2());
+                                                        }
+
                                                         if (innerText.contains("Odstupanje1")) {
                                                             replaceText(innerParagraph, "Odstupanje1", mernaLetva.getOdstupanje1());
                                                         }if (innerText.contains("Odstupanje2")) {
@@ -886,6 +903,13 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                                 for (XWPFParagraph innerParagraph : innerCell.getParagraphs()) {
                                                     String innerText = innerParagraph.getText();
                                                     if (innerText != null) {
+
+                                                        if (innerText.contains("unit1")) {
+                                                            replaceText(innerParagraph, "unit1", mernaTrakaSaViskom.getUnit1());
+                                                        }if (innerText.contains("unit2")) {
+                                                            replaceText(innerParagraph, "unit2", mernaTrakaSaViskom.getUnit2());
+                                                        }
+
                                                         if (innerText.contains("Odstupanje1")) {
                                                             replaceText(innerParagraph, "Odstupanje1", mernaTrakaSaViskom.getOdstupanje1());
                                                         }if (innerText.contains("Odstupanje2")) {
@@ -1220,6 +1244,13 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                                 for (XWPFParagraph innerParagraph : innerCell.getParagraphs()) {
                                                     String innerText = innerParagraph.getText();
                                                     if (innerText != null) {
+
+                                                        if (innerText.contains("unit1")) {
+                                                            replaceText(innerParagraph, "unit1", mernaTrakaSaViskom.getUnit1());
+                                                        }if (innerText.contains("unit2")) {
+                                                            replaceText(innerParagraph, "unit2", mernaTrakaSaViskom.getUnit2());
+                                                        }
+
                                                         if (innerText.contains("Odstupanje1")) {
                                                             replaceText(innerParagraph, "Odstupanje1", mernaTrakaSaViskom.getOdstupanje1());
                                                         }if (innerText.contains("Odstupanje2")) {
@@ -1614,6 +1645,13 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                                 for (XWPFParagraph innerParagraph : innerCell.getParagraphs()) {
                                                     String innerText = innerParagraph.getText();
                                                     if (innerText != null) {
+
+                                                        if (innerText.contains("unit1")) {
+                                                            replaceText(innerParagraph, "unit1", mernaTrakaSaViskom.getUnit1());
+                                                        }if (innerText.contains("unit2")) {
+                                                            replaceText(innerParagraph, "unit2", mernaTrakaSaViskom.getUnit2());
+                                                        }
+
                                                         if (innerText.contains("Odstupanje1")) {
                                                             replaceText(innerParagraph, "Odstupanje1", mernaTrakaSaViskom.getOdstupanje1());
                                                         }if (innerText.contains("Odstupanje2")) {
@@ -1927,6 +1965,12 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                                 for (XWPFParagraph innerParagraph : innerCell.getParagraphs()) {
                                                     String innerText = innerParagraph.getText();
                                                     if (innerText != null) {
+                                                        if (innerText.contains("unit1")) {
+                                                            replaceText(innerParagraph, "unit1", mernaTrakaSaViskom.getUnit1());
+                                                        }if (innerText.contains("unit2")) {
+                                                            replaceText(innerParagraph, "unit2", mernaTrakaSaViskom.getUnit2());
+                                                        }
+
                                                         if (innerText.contains("Odstupanje1")) {
                                                             replaceText(innerParagraph, "Odstupanje1", mernaTrakaSaViskom.getOdstupanje1());
                                                         }if (innerText.contains("Odstupanje2")) {
@@ -2364,6 +2408,12 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                                 for (XWPFParagraph innerParagraph : innerCell.getParagraphs()) {
                                                     String innerText = innerParagraph.getText();
                                                     if (innerText != null) {
+                                                        if (innerText.contains("unit1")) {
+                                                            replaceText(innerParagraph, "unit1", masinaZaMerenje.getUnit1());
+                                                        }if (innerText.contains("unit2")) {
+                                                            replaceText(innerParagraph, "unit2", masinaZaMerenje.getUnit2());
+                                                        }
+
                                                         if (innerText.contains("Merenje1")) {
                                                             replaceText(innerParagraph, "Merenje1", masinaZaMerenje.getMerenje1());
                                                         }if (innerText.contains("Merenje2")) {
@@ -2611,6 +2661,16 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                                 for (XWPFParagraph innerParagraph : innerCell.getParagraphs()) {
                                                     String innerText = innerParagraph.getText();
                                                     if (innerText != null) {
+                                                        if (innerText.contains("unit1")) {
+                                                            replaceText(innerParagraph, "unit1", slozivoMerilo.getUnit1());
+                                                        }if (innerText.contains("unit2")) {
+                                                            replaceText(innerParagraph, "unit2", slozivoMerilo.getUnit2());
+                                                        }if (innerText.contains("unit3")) {
+                                                            replaceText(innerParagraph, "unit3", slozivoMerilo.getUnit3());
+                                                        }if (innerText.contains("unit4")) {
+                                                            replaceText(innerParagraph, "unit4", slozivoMerilo.getUnit4());
+                                                        }
+
                                                         if (innerText.contains("odstupanje1")) {
                                                             replaceText(innerParagraph, "odstupanje1", slozivoMerilo.getOdstupanje1());
                                                         }if (innerText.contains("odstupanje2")) {
@@ -2994,6 +3054,16 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                                 for (XWPFParagraph innerParagraph : innerCell.getParagraphs()) {
                                                     String innerText = innerParagraph.getText();
                                                     if (innerText != null) {
+                                                        if (innerText.contains("unit1")) {
+                                                            replaceText(innerParagraph, "unit1", metriZaTekstil.getUnit1());
+                                                        }if (innerText.contains("unit2")) {
+                                                            replaceText(innerParagraph, "unit2", metriZaTekstil.getUnit2());
+                                                        }if (innerText.contains("unit3")) {
+                                                            replaceText(innerParagraph, "unit3", metriZaTekstil.getUnit3());
+                                                        }if (innerText.contains("unit4")) {
+                                                            replaceText(innerParagraph, "unit4", metriZaTekstil.getUnit4());
+                                                        }
+
                                                         if (innerText.contains("odstupanje1")) {
                                                             replaceText(innerParagraph, "odstupanje1", metriZaTekstil.getOdstupanje1());
                                                         }if (innerText.contains("odstupanje2")) {
