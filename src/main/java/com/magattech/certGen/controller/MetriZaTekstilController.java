@@ -45,6 +45,11 @@ public class MetriZaTekstilController {
         return ResponseEntity.ok(metriZaTekstilService.getAll());
     }
 
+    @GetMapping("/allByBrojSeta")
+    public ResponseEntity<List<MetriZaTekstil>> getAllByBrojSeta(@RequestParam("brojSeta") String brojSeta){
+        return ResponseEntity.ok(metriZaTekstilService.getAllByBrojSeta(brojSeta));
+    }
+
     @GetMapping("/neoverena")
     public ResponseEntity<List<MetriZaTekstil>> getNeoverena(){
         return ResponseEntity.ok(metriZaTekstilService.getAllNeoverena());

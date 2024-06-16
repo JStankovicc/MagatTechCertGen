@@ -157,6 +157,13 @@ public class MetriZaTekstilServiceImpl implements MetriZaTekstilService {
     }
 
     @Override
+    public List<MetriZaTekstil> getAllByBrojSeta(String brojSeta){
+        String formattedBrojSeta = "%" + brojSeta + "%";
+        List<MetriZaTekstil> metriZaTekstils = metriZaTekstilRepository.findAllByBrojZapisnikaLike(formattedBrojSeta);
+        return metriZaTekstils;
+    }
+
+    @Override
     public List<MetriZaTekstil> getAllNeoverena() {
         return metriZaTekstilRepository.findAllByOdobreno(false);
     }

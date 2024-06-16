@@ -16,4 +16,6 @@ public interface MernaTraka5mRepository extends JpaRepository<MernaTraka5m, Inte
 
     @Query(value = "SELECT j.broj_zapisnika FROM _merna_traka_5m j WHERE j.broj_zapisnika LIKE %:broj% ORDER BY j.broj_zapisnika DESC LIMIT 1", nativeQuery = true)
     String findBiggestBrojZapisnika(@Param("broj") String broj);
+
+    List<MernaTraka5m> findAllByBrojZapisnikaLike(String formattedBrojSeta);
 }

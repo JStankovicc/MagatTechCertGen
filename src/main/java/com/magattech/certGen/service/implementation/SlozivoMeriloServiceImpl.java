@@ -273,6 +273,13 @@ public class SlozivoMeriloServiceImpl implements SlozivoMeriloService {
     }
 
     @Override
+    public List<SlozivoMerilo> getAllByBrojSeta(String brojSeta){
+        String formattedBrojSeta = "%" + brojSeta + "%";
+        List<SlozivoMerilo> slozivoMerilos = slozivoMeriloRepository.findAllByBrojZapisnikaLike(formattedBrojSeta);
+        return slozivoMerilos;
+    }
+
+    @Override
     public List<SlozivoMerilo> getAllNeoverena() {
         return slozivoMeriloRepository.findAllByOdobreno(false);
     }

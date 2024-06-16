@@ -177,6 +177,13 @@ public class MernaTraka25mServiceImpl implements MernaTraka25mService {
     }
 
     @Override
+    public List<MernaTraka25m> getAllByBrojSeta(String brojSeta){
+        String formattedBrojSeta = "%" + brojSeta + "%";
+        List<MernaTraka25m> mernaTraka25ms = mernaTrakaSaViskomRepository.findAllByBrojZapisnikaLike(formattedBrojSeta);
+        return mernaTraka25ms;
+    }
+
+    @Override
     public void addOdobrenje(OdobrenjeRequest odobrenjeRequest) {
 
     }

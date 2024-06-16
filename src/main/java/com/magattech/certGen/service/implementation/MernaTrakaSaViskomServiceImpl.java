@@ -154,6 +154,13 @@ public class MernaTrakaSaViskomServiceImpl implements MernaTrakaSaViskomService 
     }
 
     @Override
+    public List<MernaTrakaSaViskom> getAllByBrojSeta(String brojSeta){
+        String formattedBrojSeta = "%" + brojSeta + "%";
+        List<MernaTrakaSaViskom> mernaTrakaSaViskoms = mernaTrakaSaViskomRepository.findAllByBrojZapisnikaLike(formattedBrojSeta);
+        return mernaTrakaSaViskoms;
+    }
+
+    @Override
     public List<MernaTrakaSaViskom> getAll() {
         return mernaTrakaSaViskomRepository.findAll();
     }

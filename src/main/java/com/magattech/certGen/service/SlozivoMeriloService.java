@@ -19,4 +19,6 @@ public interface SlozivoMeriloService {
     void odobri(String brojZapisnika);
 
     void update(String newId, SlozivoMeriloRequest slozivoMeriloRequest);
+
+    List<SlozivoMerilo> getAllByBrojSeta(String brojSeta);
 }

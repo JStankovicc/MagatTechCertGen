@@ -15,4 +15,6 @@ public interface MernaTrakaSaViskom25mRepository extends JpaRepository<MernaTrak
 
     @Query(value = "SELECT j.broj_zapisnika FROM _merna_traka_sa_viskom_25m j WHERE j.broj_zapisnika LIKE %:broj% ORDER BY j.broj_zapisnika DESC LIMIT 1", nativeQuery = true)
     String findBiggestBrojZapisnika(@Param("broj") String broj);
+
+    List<MernaTrakaSaViskom25m> findAllByBrojZapisnikaLike(String formattedBrojSeta);
 }

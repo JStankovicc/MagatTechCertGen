@@ -4,13 +4,10 @@ import com.magattech.certGen.model.User;
 import com.magattech.certGen.model.enums.OpremaType;
 import com.magattech.certGen.model.included.Kompanija;
 import com.magattech.certGen.model.included.Proizvodjac;
-import com.magattech.certGen.model.included.VrstaKontrolisanja;
 import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.request.JednodelnoMeriloRequest;
 import com.magattech.certGen.model.request.OdobrenjeRequest;
 import com.magattech.certGen.repository.JednodelnoMeriloRepository;
-import com.magattech.certGen.repository.KompanijaRepository;
-import com.magattech.certGen.repository.VrstaKontrolisanjaRepository;
 import com.magattech.certGen.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -275,6 +272,13 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
     @Override
     public JednodelnoMerilo getById(int id) {
         return jednodelnoMeriloRepository.findById(id).orElse(JednodelnoMerilo.builder().brojZapisnika(null).build());
+    }
+
+    @Override
+    public List<JednodelnoMerilo> getAllByBrojSeta(String brojSeta){
+        String formattedBrojSeta = "%" + brojSeta + "%";
+        List<JednodelnoMerilo> jednodelnoMeriloList = jednodelnoMeriloRepository.findAllByBrojZapisnikaLike(formattedBrojSeta);
+        return jednodelnoMeriloList;
     }
 
     @Override

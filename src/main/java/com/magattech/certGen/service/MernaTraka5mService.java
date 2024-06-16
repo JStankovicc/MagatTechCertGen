@@ -21,4 +21,6 @@ public interface MernaTraka5mService {
     void odobri(String brojZapisnika);
 
     void update(String id, MernaTraka5mRequest request);
+
+    List<MernaTraka5m> getAllByBrojSeta(String brojSeta);
 }

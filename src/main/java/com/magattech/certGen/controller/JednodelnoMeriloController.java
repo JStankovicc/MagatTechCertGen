@@ -14,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/jednodelnoMerilo")
@@ -43,6 +42,11 @@ public class JednodelnoMeriloController {
     @GetMapping("/all")
     public ResponseEntity<List<JednodelnoMerilo>> getAll(){
         return ResponseEntity.ok(jednodelnoMeriloService.getAll());
+    }
+
+    @GetMapping("/allByBrojSeta")
+    public ResponseEntity<List<JednodelnoMerilo>> getAllByBrojSeta(@RequestParam("brojSeta") String brojSeta){
+        return ResponseEntity.ok(jednodelnoMeriloService.getAllByBrojSeta(brojSeta));
     }
 
     @GetMapping("/neoverena")

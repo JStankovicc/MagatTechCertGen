@@ -148,6 +148,13 @@ public class MernaLetvaServiceImpl implements MernaLetvaService {
     }
 
     @Override
+    public List<MernaLetva> getAllByBrojSeta(String brojSeta){
+        String formattedBrojSeta = "%" + brojSeta + "%";
+        List<MernaLetva> mernaLetvas = mernaLetvaRepository.findAllByBrojZapisnikaLike(formattedBrojSeta);
+        return mernaLetvas;
+    }
+
+    @Override
     public List<MernaLetva> findAllNeoverena() {
         return mernaLetvaRepository.findAllByOdobreno(false);
     }

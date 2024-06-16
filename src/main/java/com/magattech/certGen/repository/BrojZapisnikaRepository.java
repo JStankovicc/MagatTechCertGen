@@ -8,10 +8,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface BrojZapisnikaRepository extends JpaRepository<BrojZapisnika, Integer> {
     @Query(value = "SELECT * FROM _broj_zapisnika b ORDER BY b.godina DESC, b.broj DESC LIMIT 1;",nativeQuery = true)
     BrojZapisnika getAktuelniBrojZapisnika();
+
+    List<BrojZapisnika> findByGodina(Integer godina);
+
+    List<BrojZapisnika> findByGodinaNot(Integer godina);
 }

@@ -22,4 +22,6 @@ public interface JednodelnoMeriloService {
     void odobri(String brojZapisnika);
 
     void update(String id, JednodelnoMeriloRequest jednodelnoMeriloRequest);
+
+    List<JednodelnoMerilo> getAllByBrojSeta(String brojSeta);
 }

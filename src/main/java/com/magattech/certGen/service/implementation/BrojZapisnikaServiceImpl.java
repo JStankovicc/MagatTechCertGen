@@ -4,6 +4,7 @@ import com.magattech.certGen.model.BrojZapisnika;
 import com.magattech.certGen.repository.*;
 import com.magattech.certGen.service.BrojZapisnikaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,6 +22,33 @@ public class BrojZapisnikaServiceImpl implements BrojZapisnikaService {
     private final MasinaZaMerenjeRepository masinaZaMerenjeRepository;
     private final MetriZaTekstilRepository metriZaTekstilRepository;
     private final SlozivoMeriloRepository slozivoMeriloRepository;
+
+    @Override
+    public List<String> getAll(){
+        List<BrojZapisnika> brojZapisnika = brojZapisnikaRepository.findAll();
+        List<String> obradjeni = obradiZapisnike(brojZapisnika);
+        return obradjeni;
+    }
+
+    @Override
+    public List<String> getThisYear(){
+        LocalDateTime dateTime = LocalDateTime.now();
+        String year = String.valueOf(dateTime.getYear());
+        String lastTwoDigits = year.substring(year.length() - 2);
+        List<BrojZapisnika> brojZapisnikas = brojZapisnikaRepository.findByGodina(Integer.valueOf(lastTwoDigits));
+        List<String> obradjeni = obradiZapisnike(brojZapisnikas);
+        return obradjeni;
+    }
+
+    @Override
+    public List<String> getWithoutThisYear(){
+        LocalDateTime dateTime = LocalDateTime.now();
+        String year = String.valueOf(dateTime.getYear());
+        String lastTwoDigits = year.substring(year.length() - 2);
+        List<BrojZapisnika> brojZapisnikas = brojZapisnikaRepository.findByGodinaNot(Integer.valueOf(lastTwoDigits));
+        List<String> obradjeni = obradiZapisnike(brojZapisnikas);
+        return obradjeni;
+    }
 
     @Override
     public String getAktuelniBrojZapisnika() {
@@ -83,4 +111,12 @@ public class BrojZapisnikaServiceImpl implements BrojZapisnikaService {
         return najveciOstatakInt;
     }
 
+    private List<String> obradiZapisnike(List<BrojZapisnika> brojZapisnika){
+        List<String> obradjeni = new ArrayList<>();
+        for(BrojZapisnika brojZapisnika1 : brojZapisnika){
+            String bZ = brojZapisnika1.getBroj() + "/" + brojZapisnika1.getGodina();
+            obradjeni.add(bZ);
+        }
+        return obradjeni;
+    }
 }

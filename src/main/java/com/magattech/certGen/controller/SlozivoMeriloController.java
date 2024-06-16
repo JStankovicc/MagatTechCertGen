@@ -46,6 +46,11 @@ public class SlozivoMeriloController {
         return ResponseEntity.ok(slozivoMeriloService.getAll());
     }
 
+    @GetMapping("/allByBrojSeta")
+    public ResponseEntity<List<SlozivoMerilo>> getAllByBrojSeta(@RequestParam("brojSeta") String brojSeta){
+        return ResponseEntity.ok(slozivoMeriloService.getAllByBrojSeta(brojSeta));
+    }
+
     @GetMapping("/neoverena")
     public ResponseEntity<List<SlozivoMerilo>> getNeodobrena(){
         return ResponseEntity.ok(slozivoMeriloService.getAllNeoverena());

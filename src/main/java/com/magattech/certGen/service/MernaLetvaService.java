@@ -24,4 +24,6 @@ public interface MernaLetvaService {
     void odobri(String brojZapisnika);
 
     void update(String newId, MernaLetvaRequest mernaLetvaRequest);
+
+    List<MernaLetva> getAllByBrojSeta(String brojSeta);
 }

@@ -104,7 +104,7 @@ public class DataLoader {
                 .ndg4("±1,2").ndr2("1,2").brojMernogLenjira("650462").brojMerneLupe("2049").skinutiZigovi("77;23").postavljeniZigovi("25;131").meriloIspunjavaZahteve(true)
                 .etalonirao("Nikola Danilovic").odobrio("Maja Aleksic").odobreno(false).komentar2("Komentar2").pravilnik("PRAVILNIK").propisaniZahtevi("Propisani zahtevi").build());
 
-        mernaLetvaRepository.save(MernaLetva.builder().brojZapisnika("45/23-K1").datum(new Date()).vrstaKontrolisanja("Ванредно").podnosilacZahteva("Podnosilac zahteva doo").korisnik("Korisnik doo").serijskiBroj("311/2015").identifikacioniBroj("/").proizvodjac("PROIZVODJAC").oznakaTipa("TIP")
+        mernaLetvaRepository.save(MernaLetva.builder().brojZapisnika("47/23-K1").datum(new Date()).vrstaKontrolisanja("Ванредно").podnosilacZahteva("Podnosilac zahteva doo").korisnik("Korisnik doo").serijskiBroj("311/2015").identifikacioniBroj("/").proizvodjac("PROIZVODJAC").oznakaTipa("TIP")
                 .sluzbenaOznakaTipa("Sl TIP").najmanjiPodeljak("1 mm").merniOpseg("0 mm do 3 mm").klasaTacnosti("II").temperatura("19,4").vlaznostVazduha("44,9").meriloJeIspravno(true)
                 .odstupanje1("-0,35").odstupanje2("-0,40").odstupanje3("-0,40").odstupanje4("-0,40").odstupanje5("-0,45").odstupanje6("-0,55").ndg1("1,4").ndg2("1,4")
                 .ndg3("1,8").ndg4("1,8").ndg5("2,2").ndg6("2,2").greska1("660-661").greska2("661-662").greska3("1530-1531").greska4("1531-1532").greska5("2250-2251").greska6("2251-2252")
@@ -112,7 +112,7 @@ public class DataLoader {
                 .ndg7("±0,4").ndr1("0,4").brojMernogLenjira("650462").brojMerneLupe("2049").skinutiZigovi("63;22").postavljeniZigovi("25;131").napomena("NAPOMENA").meriloIspunjavaZahteve(true).komentar2("Komentar broj 2").etalonirao("Nikola Danilovic").odobrio("Maja Aleksic").odobreno(false).pravilnik("PRAVILNIK").build());
 
 
-        mernaTrakaSaViskomRepository.save(MernaTrakaSaViskom.builder().brojZapisnika("46/23-K1").datum(new Date()).vrstaKontrolisanja("Prvo").podnosilacZahteva("Neki doo").korisnik("Drugi doo").serijskiBroj("46/23").identifikacioniBroj("/")
+        mernaTrakaSaViskomRepository.save(MernaTrakaSaViskom.builder().brojZapisnika("47/23-K1").datum(new Date()).vrstaKontrolisanja("Prvo").podnosilacZahteva("Neki doo").korisnik("Drugi doo").serijskiBroj("46/23").identifikacioniBroj("/")
                 .proizvodjac("Neka firma").oznakaTipa("Tip").sluzbenaOznakaTipa("SL TIP").merniOpseg("0 mm do 10 m").najmanjiPodeljak("1 mm"). klasaTacnosti("II").temperatura("19,4").vlaznostVazduha("49,4")
                 .meriloJeIspravno(true).napomena("NAPOMENA").odstupanje1("0").odstupanje2("-0,10").odstupanje3("-0,15").odstupanje4("-0,30").odstupanje5("-0,40").odstupanje6("-0,50").odstupanje7("-0,55")
                 .odstupanje8("-0,60").odstupanje9("-0,70").odstupanje10("-0,80").odstupanje11("-0,90").ndg1("0.6").ndg2("0.6").ndg3("0.7").ndg4("0.9").ndg5("1,1").ndg6("1,3").ndg7("1,5").ndg8("1,7").ndg9("1,9").ndg10("2,1").ndg11("2,3")
@@ -120,7 +120,7 @@ public class DataLoader {
                 .greskaPodeljka1("-0,05").greskaPodeljka2("0").greskaPodeljka3("0").greskaPodeljka4("0").greskaPodeljka5("-0,05").greskaPodeljka6("0").greskaPodeljka7("0").greskaPodeljka8("-0,05").ndg12("±0,2").ndr1("0,2")
                 .brojMernogLenjira("650462").brojMerneLupe("2049").skinutiZigovi("/").postavljeniZigovi("25;131").meriloIspunjavaZahteve(true).komentar2("Komentar 2").etalonirao("Nikola Danilovic").odobrio("Maja Aleksic").odobreno(false).pravilnik("PRAVILNIK").build());
 
-        masinaZaMerenjeRepository.save(MasinaZaMerenje.builder().brojZapisnika("39/23-K2").datum(new Date()).vrstaKontrolisanja("Periodicno (redovno)").podnosilacZahteva("Elektronapon doo").korisnik("Elektronapon doo").serijskiBroj("/").identifikacioniBroj("85434")
+        masinaZaMerenjeRepository.save(MasinaZaMerenje.builder().brojZapisnika("47/23-K2").datum(new Date()).vrstaKontrolisanja("Periodicno (redovno)").podnosilacZahteva("Elektronapon doo").korisnik("Elektronapon doo").serijskiBroj("/").identifikacioniBroj("85434")
                 .proizvodjac("Minion").oznakaTipa("VM-1").sluzbenaOznakaTipa("D-8-17").merniOpseg("50 m do 99999,9 m").najmanjiPodeljak("0,1 m").klasaTacnosti("/").temperatura("19,5").vlaznostVazduha("45,5").meriloJeIspravno(true).napomena("/")
                 .merenje1("157,70").merenje2("157,75").merenje3("157,80").proveraIspravnogVodjenja("nijePrimenljivo").proveraIspravnostiPokaznogUredjaja(true).duzinaUzorka("50").debljinaUzorka("0,0065").pokazivanjeMasine("50").odstupanjeOdPraveVrednostiDuzine("0,045").relativnaGreskaIzmereneDuzine("0,09").ndg1("0,5")
                 .brojMernogLenjira("197").brojPomicnogMerila("711").skinutiZigovi("00202158 (23)").meriloIspunjavaZahteve(true).komentar2("Komentar 2").etalonirao("Milos Belic").odobrio("Maja Aleksic").odobreno(false).pravilnik("PRAVILNIK").build());

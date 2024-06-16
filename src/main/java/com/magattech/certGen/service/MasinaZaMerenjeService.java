@@ -19,4 +19,6 @@ public interface MasinaZaMerenjeService {
     void odobri(String brojZapisnika);
 
     void update(String id, MasinaZaMerenjeRequest request);
+
+    List<MasinaZaMerenje> getAllByBrojSeta(String brojSeta);
 }

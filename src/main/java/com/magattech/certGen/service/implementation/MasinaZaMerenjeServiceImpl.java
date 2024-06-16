@@ -4,6 +4,7 @@ import com.magattech.certGen.model.User;
 import com.magattech.certGen.model.enums.OpremaType;
 import com.magattech.certGen.model.included.Kompanija;
 import com.magattech.certGen.model.included.Proizvodjac;
+import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.merila.MasinaZaMerenje;
 import com.magattech.certGen.model.merila.MernaLetva;
 import com.magattech.certGen.model.request.MasinaZaMerenjeRequest;
@@ -119,6 +120,13 @@ public class MasinaZaMerenjeServiceImpl implements MasinaZaMerenjeService {
     @Override
     public MasinaZaMerenje getByBrojZapisnika(String brojZapisnika) {
         return masinaZaMerenjeRepository.findByBrojZapisnika(brojZapisnika).orElse(MasinaZaMerenje.builder().brojZapisnika(null).build());
+    }
+
+    @Override
+    public List<MasinaZaMerenje> getAllByBrojSeta(String brojSeta){
+        String formattedBrojSeta = "%" + brojSeta + "%";
+        List<MasinaZaMerenje> masinaZaMerenjeList = masinaZaMerenjeRepository.findAllByBrojZapisnikaLike(formattedBrojSeta);
+        return masinaZaMerenjeList;
     }
 
     @Override

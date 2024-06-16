@@ -45,6 +45,11 @@ public class MasinaZaMerenjeController {
         return ResponseEntity.ok(masinaZaMerenjeService.getAll());
     }
 
+    @GetMapping("/allByBrojSeta")
+    public ResponseEntity<List<MasinaZaMerenje>> getAllByBrojSeta(@RequestParam("brojSeta") String brojSeta){
+        return ResponseEntity.ok(masinaZaMerenjeService.getAllByBrojSeta(brojSeta));
+    }
+
     @GetMapping("/neoverena")
     public ResponseEntity<List<MasinaZaMerenje>> getNeoverena(){
         return ResponseEntity.ok(masinaZaMerenjeService.findAllNeoverena());

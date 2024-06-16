@@ -21,4 +21,6 @@ public interface MetriZaTekstilService {
     void odobri(String brojZapisnika);
 
     void update(String newId, MetriZaTekstilRequest metriZaTekstilRequest);
+
+    List<MetriZaTekstil> getAllByBrojSeta(String brojSeta);
 }

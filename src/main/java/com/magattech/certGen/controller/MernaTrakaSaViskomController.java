@@ -45,6 +45,11 @@ public class MernaTrakaSaViskomController {
         return ResponseEntity.ok(mernaTrakaSaViskomService.getAll());
     }
 
+    @GetMapping("/allByBrojSeta")
+    public ResponseEntity<List<MernaTrakaSaViskom>> getAllByBrojSeta(@RequestParam("brojSeta") String brojSeta){
+        return ResponseEntity.ok(mernaTrakaSaViskomService.getAllByBrojSeta(brojSeta));
+    }
+
     @GetMapping("/neoverena")
     public ResponseEntity<List<MernaTrakaSaViskom>> getAllNeoverena(){
         return ResponseEntity.ok(mernaTrakaSaViskomService.getAllNeoverena());
