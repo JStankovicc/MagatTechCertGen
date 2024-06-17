@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Data
@@ -215,11 +216,13 @@ public class MetriZaTekstil {
     }
 
     private String getDatumFormat(){
-        int d = this.datum.getDay();
-        int m = this.datum.getMonth() + 1;
-        int y = this.datum.getYear() + 1900;
-        String date = d + "." + m + "." + y + ".";
-        return date;
+        SimpleDateFormat format = new SimpleDateFormat("d.M.yyyy.");
+        return format.format(this.datum);
+//        int d = this.datum.getDay();
+//        int m = this.datum.getMonth() + 1;
+//        int y = this.datum.getYear() + 1900;
+//        String date = d + "." + m + "." + y + ".";
+//        return date;
     }
 
     private String getDatum2Format(){
