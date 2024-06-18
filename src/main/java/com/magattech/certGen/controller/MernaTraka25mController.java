@@ -1,11 +1,13 @@
 package com.magattech.certGen.controller;
 
+import com.magattech.certGen.model.additional.MernaTraka25mND;
 import com.magattech.certGen.model.helper.MeriloHelper;
 import com.magattech.certGen.model.merila.MernaTraka25m;
 import com.magattech.certGen.model.merila.MernaTrakaSaViskom25m;
 import com.magattech.certGen.model.request.MernaTraka25mRequest;
 import com.magattech.certGen.model.request.MernaTrakaSaViskom25mRequest;
 import com.magattech.certGen.service.DOCXGeneratorService;
+import com.magattech.certGen.service.MernaTraka25mNDService;
 import com.magattech.certGen.service.MernaTraka25mService;
 import com.magattech.certGen.service.MernaTrakaSaViskom25mService;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MernaTraka25mController {
     private final MernaTraka25mService mernaTrakaSaViskomService;
+    private final MernaTraka25mNDService mernaTraka25mNDService;
     private final com.magattech.certGen.service.DOCXGeneratorService DOCXGeneratorService;
     @PostMapping("/add")
     public void addJednodelnoMerilo(@RequestBody MernaTraka25mRequest mernaTrakaSaViskomRequest){
@@ -119,6 +122,11 @@ public class MernaTraka25mController {
         headers.setContentType(MediaType.APPLICATION_PDF);
 
         return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/getND")
+    public ResponseEntity<MernaTraka25mND> getND(){
+        return ResponseEntity.ok(mernaTraka25mNDService.getMernaTraka25mND());
     }
 }
 

@@ -1,9 +1,11 @@
 package com.magattech.certGen.controller;
 
+import com.magattech.certGen.model.additional.MasinaZaMerenjeND;
 import com.magattech.certGen.model.helper.MeriloHelper;
 import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.merila.MasinaZaMerenje;
 import com.magattech.certGen.model.request.MasinaZaMerenjeRequest;
+import com.magattech.certGen.service.MasinaZaMerenjeNDService;
 import com.magattech.certGen.service.MasinaZaMerenjeService;
 import com.magattech.certGen.service.DOCXGeneratorService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ import java.util.List;
 public class MasinaZaMerenjeController {
 
     private final MasinaZaMerenjeService masinaZaMerenjeService;
+    private final MasinaZaMerenjeNDService masinaZaMerenjeNDService;
     private final DOCXGeneratorService DOCXGeneratorService;
 
     @PostMapping("/add")
@@ -114,5 +117,10 @@ public class MasinaZaMerenjeController {
         headers.setContentType(MediaType.APPLICATION_PDF);
 
         return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/getND")
+    public ResponseEntity<MasinaZaMerenjeND> getND(){
+        return ResponseEntity.ok(masinaZaMerenjeNDService.getMasinaZaMerenjeND());
     }
 }

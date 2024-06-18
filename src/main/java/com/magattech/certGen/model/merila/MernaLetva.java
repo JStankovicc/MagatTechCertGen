@@ -1,5 +1,6 @@
 package com.magattech.certGen.model.merila;
 
+import com.magattech.certGen.model.additional.MernaLetvaND;
 import com.magattech.certGen.model.helper.MeriloHelper;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -147,6 +148,12 @@ public class MernaLetva {
     private String propisaniZahtevi;
 
     private String razlogOdbijanja;
+
+    public MernaLetvaND getMernaLetvaND(){
+        MernaLetvaND mernaLetvaND = MernaLetvaND.builder().ndg1(this.ndg1).ndg2(this.ndg2).ndg3(this.ndg3).ndg4(this.ndg4)
+                .ndg5(this.ndg5).ndg6(this.ndg6).ndg7(this.ndg7).ndr1(this.ndr1).build();
+        return mernaLetvaND;
+    }
 
     public MeriloHelper getMeriloHeplper(){
         MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Мерна летва").brojZapisnika(this.brojZapisnika)

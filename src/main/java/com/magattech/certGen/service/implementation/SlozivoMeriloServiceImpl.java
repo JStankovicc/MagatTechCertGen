@@ -1,6 +1,7 @@
 package com.magattech.certGen.service.implementation;
 
 import com.magattech.certGen.model.User;
+import com.magattech.certGen.model.additional.SlozivoMeriloND;
 import com.magattech.certGen.model.enums.OpremaType;
 import com.magattech.certGen.model.included.Kompanija;
 import com.magattech.certGen.model.included.Proizvodjac;
@@ -25,6 +26,7 @@ public class SlozivoMeriloServiceImpl implements SlozivoMeriloService {
     private final KompanijaService kompanijaService;
     private final UserService userService;
     private final ProizvodjacService proizvodjacService;
+    private final SlozivoMeriloNDService slozivoMeriloNDService;
 
     @Override
     public List<SlozivoMerilo> getAll() {
@@ -146,6 +148,9 @@ public class SlozivoMeriloServiceImpl implements SlozivoMeriloService {
                 .build();
 
         slozivoMeriloRepository.save(slozivoMerilo);
+
+        SlozivoMeriloND slozivoMeriloND = slozivoMerilo.getSlozivoMeriloND();
+        slozivoMeriloNDService.updateSlozivoMeriloND(slozivoMeriloND);
     }
 
     @Override
@@ -265,6 +270,9 @@ public class SlozivoMeriloServiceImpl implements SlozivoMeriloService {
                 .build();
 
         slozivoMeriloRepository.save(newSlozivoMerilo);
+
+        SlozivoMeriloND slozivoMeriloND = newSlozivoMerilo.getSlozivoMeriloND();
+        slozivoMeriloNDService.updateSlozivoMeriloND(slozivoMeriloND);
     }
 
     @Override

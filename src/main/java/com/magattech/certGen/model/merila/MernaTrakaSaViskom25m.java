@@ -1,5 +1,6 @@
 package com.magattech.certGen.model.merila;
 
+import com.magattech.certGen.model.additional.MernaTrakaSaViskom25mND;
 import com.magattech.certGen.model.helper.MeriloHelper;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -228,6 +229,14 @@ public class MernaTrakaSaViskom25m {
     private String propisaniZahtevi;
 
     private String razlogOdbijanja;
+
+    public MernaTrakaSaViskom25mND getMernaTrakaSaViskom25mND(){
+        MernaTrakaSaViskom25mND mernaTrakaSaViskom25mND = MernaTrakaSaViskom25mND.builder().ndg1(this.ndg1).ndg2(this.ndg2).ndg3(this.ndg3).ndg4(this.ndg4)
+                .ndg5(this.ndg5).ndg6(this.ndg6).ndg7(this.ndg7).ndg8(this.ndg8).ndg9(this.ndg9).ndg10(this.ndg10).ndg11(this.ndg11).ndg12(this.ndg12)
+                .ndg13(this.ndg13).ndg14(this.ndg14).ndg15(this.ndg15).ndg16(this.ndg16).ndg17(this.ndg17).ndg18(this.ndg18).ndg19(this.ndg19).ndg20(this.ndg20)
+                .ndg21(this.ndg21).ndg22(this.ndg22).ndg23(this.ndg23).ndg24(this.ndg24).ndg25(this.ndg25).ndg26(this.ndg26).ndg27(this.ndg27).ndr1(this.ndr1).build();
+        return mernaTrakaSaViskom25mND;
+    }
 
     public MeriloHelper getMeriloHeplper(){
         MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Мерна трака са виском").brojZapisnika(this.brojZapisnika)

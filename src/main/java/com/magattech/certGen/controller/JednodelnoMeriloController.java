@@ -1,9 +1,11 @@
 package com.magattech.certGen.controller;
 
 
+import com.magattech.certGen.model.additional.JednodelnoMeriloND;
 import com.magattech.certGen.model.helper.MeriloHelper;
 import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.request.JednodelnoMeriloRequest;
+import com.magattech.certGen.service.JednodelnoMeriloNDService;
 import com.magattech.certGen.service.JednodelnoMeriloService;
 import com.magattech.certGen.service.DOCXGeneratorService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ import java.util.List;
 public class JednodelnoMeriloController {
 
     private final JednodelnoMeriloService jednodelnoMeriloService;
+    private final JednodelnoMeriloNDService jednodelnoMeriloNDService;
     private final DOCXGeneratorService DOCXGeneratorService;
 
     @PostMapping("/add")
@@ -123,6 +126,11 @@ public class JednodelnoMeriloController {
         headers.setContentType(MediaType.APPLICATION_PDF);
 
         return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/getND")
+    public ResponseEntity<JednodelnoMeriloND> getND(){
+        return ResponseEntity.ok(jednodelnoMeriloNDService.getJednodelnoMeriloND());
     }
 
 }

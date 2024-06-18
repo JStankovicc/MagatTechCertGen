@@ -1,10 +1,12 @@
 package com.magattech.certGen.controller;
 
+import com.magattech.certGen.model.additional.MetriZaTekstilND;
 import com.magattech.certGen.model.helper.MeriloHelper;
 import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.merila.MetriZaTekstil;
 import com.magattech.certGen.model.request.JednodelnoMeriloRequest;
 import com.magattech.certGen.model.request.MetriZaTekstilRequest;
+import com.magattech.certGen.service.MetriZaTekstilNDService;
 import com.magattech.certGen.service.MetriZaTekstilService;
 import com.magattech.certGen.service.DOCXGeneratorService;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ import java.util.List;
 public class MetriZaTekstilController {
 
     private final MetriZaTekstilService metriZaTekstilService;
+    private final MetriZaTekstilNDService metriZaTekstilNDService;
     private final DOCXGeneratorService DOCXGeneratorService;
 
     @PostMapping("/add")
@@ -118,6 +121,11 @@ public class MetriZaTekstilController {
         headers.setContentType(MediaType.APPLICATION_PDF);
 
         return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/getND")
+    public ResponseEntity<MetriZaTekstilND> getND(){
+        return ResponseEntity.ok(metriZaTekstilNDService.getMetriZaTekstilND());
     }
 
 }

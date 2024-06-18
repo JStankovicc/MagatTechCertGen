@@ -1,5 +1,6 @@
 package com.magattech.certGen.model.merila;
 
+import com.magattech.certGen.model.additional.MetriZaTekstilND;
 import com.magattech.certGen.model.helper.MeriloHelper;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -191,6 +192,11 @@ public class MetriZaTekstil {
     private String propisaniZahtevi;
 
     private String razlogOdbijanja;
+
+    public MetriZaTekstilND metriZaTekstilND(){
+        MetriZaTekstilND metriZaTekstilND = MetriZaTekstilND.builder().ndg1(this.ndg1).ndg2(this.ndg2).ndg3(this.ndg3).ndg4(this.ndg4).ndr1(this.ndr1).ndr2(this.ndr2).build();
+        return metriZaTekstilND;
+    }
 
     public MeriloHelper getMeriloHeplper(){
         MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Метри за текстил").brojZapisnika(this.brojZapisnika)

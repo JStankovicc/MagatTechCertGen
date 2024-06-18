@@ -1,6 +1,7 @@
 package com.magattech.certGen.service.implementation;
 
 import com.magattech.certGen.model.User;
+import com.magattech.certGen.model.additional.JednodelnoMeriloND;
 import com.magattech.certGen.model.enums.OpremaType;
 import com.magattech.certGen.model.included.Kompanija;
 import com.magattech.certGen.model.included.Proizvodjac;
@@ -27,6 +28,7 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
     private final UserService userService;
     private final JwtService jwtService;
     private final OpremaService opremaService;
+    private final JednodelnoMeriloNDService jednodelnoMeriloNDService;
 
     @Override
     public void add(JednodelnoMeriloRequest request) {
@@ -146,6 +148,9 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
                 .build();
 
                 jednodelnoMeriloRepository.save(jednodelnoMerilo);
+
+        JednodelnoMeriloND jednodelnoMeriloND = jednodelnoMerilo.getJednodelnoMeriloND();
+        jednodelnoMeriloNDService.updateJednodelnoMeriloND(jednodelnoMeriloND);
 
     }
 
@@ -267,6 +272,9 @@ public class JednodelnoMeriloServiceImpl implements JednodelnoMeriloService {
                 .build();
 
         jednodelnoMeriloRepository.save(newJednodelnoMerilo);
+
+        JednodelnoMeriloND jednodelnoMeriloND = newJednodelnoMerilo.getJednodelnoMeriloND();
+        jednodelnoMeriloNDService.updateJednodelnoMeriloND(jednodelnoMeriloND);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.magattech.certGen.model.merila;
 
 import com.magattech.certGen.model.User;
+import com.magattech.certGen.model.additional.JednodelnoMeriloND;
 import com.magattech.certGen.model.helper.MeriloHelper;
 import com.magattech.certGen.model.included.VrstaKontrolisanja;
 import com.magattech.certGen.model.request.JednodelnoMeriloRequest;
@@ -181,6 +182,12 @@ public class JednodelnoMerilo {
     private String unit4;
 
     private String propisaniZahtevi;
+
+    public JednodelnoMeriloND getJednodelnoMeriloND(){
+        JednodelnoMeriloND jednodelnoMeriloND = JednodelnoMeriloND.builder().ndg1(this.ndg1).ndg2(this.ndg2)
+                .ndg3(this.ndg3).ndg4(this.ndg4).ndr1(this.ndr1).ndr2(this.ndr2).build();
+        return jednodelnoMeriloND;
+    }
 
     public MeriloHelper getMeriloHeplper(){
         MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Једноделно мерило").brojZapisnika(this.brojZapisnika)

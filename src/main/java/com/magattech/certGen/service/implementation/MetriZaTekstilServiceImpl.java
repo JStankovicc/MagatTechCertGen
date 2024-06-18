@@ -1,6 +1,7 @@
 package com.magattech.certGen.service.implementation;
 
 import com.magattech.certGen.model.User;
+import com.magattech.certGen.model.additional.MetriZaTekstilND;
 import com.magattech.certGen.model.enums.OpremaType;
 import com.magattech.certGen.model.included.Kompanija;
 import com.magattech.certGen.model.included.Proizvodjac;
@@ -27,6 +28,7 @@ public class MetriZaTekstilServiceImpl implements MetriZaTekstilService {
     private final KompanijaService kompanijaService;
     private final UserService userService;
     private final ProizvodjacService proizvodjacService;
+    private final MetriZaTekstilNDService metriZaTekstilNDService;
 
     @Override
     public List<MetriZaTekstil> getAll() {
@@ -149,6 +151,10 @@ public class MetriZaTekstilServiceImpl implements MetriZaTekstilService {
                 .build();
 
         metriZaTekstilRepository.save(metriZaTekstil);
+
+        MetriZaTekstilND metriZaTekstilND = metriZaTekstil.metriZaTekstilND();
+        metriZaTekstilNDService.updateMetriZaTekstilND(metriZaTekstilND);
+
     }
 
     @Override
@@ -290,5 +296,8 @@ public class MetriZaTekstilServiceImpl implements MetriZaTekstilService {
                 .build();
 
         metriZaTekstilRepository.save(newMetriZaTekstil);
+
+        MetriZaTekstilND metriZaTekstilND = newMetriZaTekstil.metriZaTekstilND();
+        metriZaTekstilNDService.updateMetriZaTekstilND(metriZaTekstilND);
     }
 }

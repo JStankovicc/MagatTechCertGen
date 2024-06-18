@@ -1,8 +1,10 @@
 package com.magattech.certGen.controller;
 
+import com.magattech.certGen.model.additional.MernaTraka5mND;
 import com.magattech.certGen.model.helper.MeriloHelper;
 import com.magattech.certGen.model.merila.MernaTraka5m;
 import com.magattech.certGen.model.request.MernaTraka5mRequest;
+import com.magattech.certGen.service.MernaTraka5mNDService;
 import com.magattech.certGen.service.MernaTraka5mService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -18,7 +20,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MernaTraka5mController {
     private final MernaTraka5mService mernaTrakaSaViskomService;
+    private final MernaTraka5mNDService mernaTraka5mNDService;
     private final com.magattech.certGen.service.DOCXGeneratorService DOCXGeneratorService;
+
+
     @PostMapping("/add")
     public void addJednodelnoMerilo(@RequestBody MernaTraka5mRequest mernaTrakaSaViskomRequest){
         mernaTrakaSaViskomService.add(mernaTrakaSaViskomRequest);
@@ -115,5 +120,10 @@ public class MernaTraka5mController {
         headers.setContentType(MediaType.APPLICATION_PDF);
 
         return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/getND")
+    public ResponseEntity<MernaTraka5mND> getND(){
+        return ResponseEntity.ok(mernaTraka5mNDService.getMernaTraka5mND());
     }
 }

@@ -1,6 +1,7 @@
 package com.magattech.certGen.service.implementation;
 
 import com.magattech.certGen.model.User;
+import com.magattech.certGen.model.additional.MernaLetvaND;
 import com.magattech.certGen.model.enums.OpremaType;
 import com.magattech.certGen.model.included.Kompanija;
 import com.magattech.certGen.model.included.Proizvodjac;
@@ -28,6 +29,7 @@ public class MernaLetvaServiceImpl implements MernaLetvaService {
     private final UserService userService;
     private final JwtService jwtService;
     private final OpremaService opremaService;
+    private final MernaLetvaNDService mernaLetvaNDService;
     @Override
     public void add(MernaLetvaRequest request) {
 
@@ -124,6 +126,9 @@ public class MernaLetvaServiceImpl implements MernaLetvaService {
                 .build();
 
         mernaLetvaRepository.save(mernaLetva);
+
+        MernaLetvaND mernaLetvaND = mernaLetva.getMernaLetvaND();
+        mernaLetvaNDService.updateMernaLetvaND(mernaLetvaND);
     }
 
     @Override
@@ -263,5 +268,8 @@ public class MernaLetvaServiceImpl implements MernaLetvaService {
                 .build();
 
         mernaLetvaRepository.save(newMernaLetva);
+
+        MernaLetvaND mernaLetvaND = newMernaLetva.getMernaLetvaND();
+        mernaLetvaNDService.updateMernaLetvaND(mernaLetvaND);
     }
 }

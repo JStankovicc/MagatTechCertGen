@@ -1,11 +1,13 @@
 package com.magattech.certGen.controller;
 
+import com.magattech.certGen.model.additional.MernaLetvaND;
 import com.magattech.certGen.model.helper.MeriloHelper;
 import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.merila.MernaLetva;
 import com.magattech.certGen.model.merila.MetriZaTekstil;
 import com.magattech.certGen.model.request.MernaLetvaRequest;
 import com.magattech.certGen.model.request.MetriZaTekstilRequest;
+import com.magattech.certGen.service.MernaLetvaNDService;
 import com.magattech.certGen.service.MernaLetvaService;
 import com.magattech.certGen.service.DOCXGeneratorService;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ import java.util.List;
 public class MernaLetvaController {
 
     private final MernaLetvaService mernaLetvaService;
+    private final MernaLetvaNDService mernaLetvaNDService;
     private final DOCXGeneratorService DOCXGeneratorService;
 
     @PostMapping("/add")
@@ -120,5 +123,10 @@ public class MernaLetvaController {
         headers.setContentType(MediaType.APPLICATION_PDF);
 
         return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/getND")
+    public ResponseEntity<MernaLetvaND> getND(){
+        return ResponseEntity.ok(mernaLetvaNDService.getMernaLetvaND());
     }
 }

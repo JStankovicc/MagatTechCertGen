@@ -1,5 +1,6 @@
 package com.magattech.certGen.model.merila;
 
+import com.magattech.certGen.model.additional.MasinaZaMerenjeND;
 import com.magattech.certGen.model.helper.MeriloHelper;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -113,6 +114,11 @@ public class MasinaZaMerenje {
     private String propisaniZahtevi;
 
     private String razlogOdbijanja;
+
+    public MasinaZaMerenjeND getMasinaZaMerenjeND(){
+        MasinaZaMerenjeND masinaZaMerenjeND = MasinaZaMerenjeND.builder().ndg1(this.ndg1).build();
+        return masinaZaMerenjeND;
+    }
 
     public MeriloHelper getMeriloHeplper(){
         MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Машина за мерење жица и каблова").brojZapisnika(this.brojZapisnika)

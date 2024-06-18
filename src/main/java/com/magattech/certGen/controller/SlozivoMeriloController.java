@@ -1,11 +1,13 @@
 package com.magattech.certGen.controller;
 
+import com.magattech.certGen.model.additional.SlozivoMeriloND;
 import com.magattech.certGen.model.helper.MeriloHelper;
 import com.magattech.certGen.model.merila.JednodelnoMerilo;
 import com.magattech.certGen.model.merila.SlozivoMerilo;
 import com.magattech.certGen.model.request.JednodelnoMeriloRequest;
 import com.magattech.certGen.model.request.SlozivoMeriloRequest;
 import com.magattech.certGen.service.DOCXGeneratorService;
+import com.magattech.certGen.service.SlozivoMeriloNDService;
 import com.magattech.certGen.service.SlozivoMeriloService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -22,6 +24,7 @@ import java.util.List;
 public class SlozivoMeriloController {
 
     private final SlozivoMeriloService slozivoMeriloService;
+    private final SlozivoMeriloNDService slozivoMeriloNDService;
     private final DOCXGeneratorService DOCXGeneratorService;
 
     @PostMapping("/add")
@@ -119,6 +122,11 @@ public class SlozivoMeriloController {
         headers.setContentType(MediaType.APPLICATION_PDF);
 
         return new ResponseEntity<>(pdfData, headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/getND")
+    public ResponseEntity<SlozivoMeriloND> getND(){
+        return ResponseEntity.ok(slozivoMeriloNDService.getSlozivoMeriloND());
     }
 
 }

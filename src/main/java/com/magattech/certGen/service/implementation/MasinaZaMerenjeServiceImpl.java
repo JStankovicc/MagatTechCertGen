@@ -1,6 +1,7 @@
 package com.magattech.certGen.service.implementation;
 
 import com.magattech.certGen.model.User;
+import com.magattech.certGen.model.additional.MasinaZaMerenjeND;
 import com.magattech.certGen.model.enums.OpremaType;
 import com.magattech.certGen.model.included.Kompanija;
 import com.magattech.certGen.model.included.Proizvodjac;
@@ -26,6 +27,7 @@ public class MasinaZaMerenjeServiceImpl implements MasinaZaMerenjeService {
     private final KompanijaService kompanijaService;
     private final UserService userService;
     private final ProizvodjacService proizvodjacService;
+    private final MasinaZaMerenjeNDService masinaZaMerenjeNDService;
 
     @Override
     public List<MasinaZaMerenje> getAll() {
@@ -115,6 +117,9 @@ public class MasinaZaMerenjeServiceImpl implements MasinaZaMerenjeService {
                 .build();
 
         masinaZaMerenjeRepository.save(masinaZaMerenje);
+
+        MasinaZaMerenjeND masinaZaMerenjeND = masinaZaMerenje.getMasinaZaMerenjeND();
+        masinaZaMerenjeNDService.updateMasinaZaMerenjeND(masinaZaMerenjeND);
     }
 
     @Override
@@ -228,5 +233,8 @@ public class MasinaZaMerenjeServiceImpl implements MasinaZaMerenjeService {
                 .build();
 
         masinaZaMerenjeRepository.save(newMasinaZaMerenje);
+
+        MasinaZaMerenjeND masinaZaMerenjeND = newMasinaZaMerenje.getMasinaZaMerenjeND();
+        masinaZaMerenjeNDService.updateMasinaZaMerenjeND(masinaZaMerenjeND);
     }
 }

@@ -1,5 +1,7 @@
 package com.magattech.certGen.model.merila;
 
+import com.magattech.certGen.model.additional.JednodelnoMeriloND;
+import com.magattech.certGen.model.additional.SlozivoMeriloND;
 import com.magattech.certGen.model.helper.MeriloHelper;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -190,6 +192,12 @@ public class SlozivoMerilo {
     private String propisaniZahtevi;
 
     private String razlogOdbijanja;
+
+    public SlozivoMeriloND getSlozivoMeriloND(){
+        SlozivoMeriloND slozivoMeriloND = SlozivoMeriloND.builder().ndg1(this.ndg1).ndg2(this.ndg2)
+                .ndg3(this.ndg3).ndg4(this.ndg4).ndr1(this.ndr1).ndr2(this.ndr2).build();
+        return slozivoMeriloND;
+    }
 
     public MeriloHelper getMeriloHeplper(){
         MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Сложиво мерило").brojZapisnika(this.brojZapisnika)

@@ -1,6 +1,7 @@
 package com.magattech.certGen.service.implementation;
 
 import com.magattech.certGen.model.User;
+import com.magattech.certGen.model.additional.MernaTrakaSaViskom25mND;
 import com.magattech.certGen.model.enums.OpremaType;
 import com.magattech.certGen.model.included.Kompanija;
 import com.magattech.certGen.model.included.Proizvodjac;
@@ -28,6 +29,7 @@ public class MernaTrakaSaViskom25mServiceImpl implements MernaTrakaSaViskom25mSe
     private final UserService userService;
     private final JwtService jwtService;
     private final OpremaService opremaService;
+    private final MernaTrakaSaViskom25mNDService mernaTrakaSaViskom25mNDService;
 
     @Override
     public void add(MernaTrakaSaViskom25mRequest request) {
@@ -165,6 +167,9 @@ public class MernaTrakaSaViskom25mServiceImpl implements MernaTrakaSaViskom25mSe
                 .build();
 
         mernaTrakaSaViskomRepository.save(mernaTrakaSaViskom);
+
+        MernaTrakaSaViskom25mND mernaTrakaSaViskom25mND = mernaTrakaSaViskom.getMernaTrakaSaViskom25mND();
+        mernaTrakaSaViskom25mNDService.updateMernaTrakaSaViskom25mND(mernaTrakaSaViskom25mND);
     }
 
     @Override
@@ -344,5 +349,8 @@ public class MernaTrakaSaViskom25mServiceImpl implements MernaTrakaSaViskom25mSe
                 .build();
 
         mernaTrakaSaViskomRepository.save(mernaTrakaSaViskom);
+
+        MernaTrakaSaViskom25mND mernaTrakaSaViskom25mND = mernaTrakaSaViskom.getMernaTrakaSaViskom25mND();
+        mernaTrakaSaViskom25mNDService.updateMernaTrakaSaViskom25mND(mernaTrakaSaViskom25mND);
     }
 }
