@@ -222,7 +222,7 @@ public class MetriZaTekstil {
     }
 
     private String getDatumFormat(){
-        SimpleDateFormat format = new SimpleDateFormat("d.M.yyyy.");
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         return format.format(this.datum);
 //        int d = this.datum.getDay();
 //        int m = this.datum.getMonth() + 1;
@@ -240,7 +240,7 @@ public class MetriZaTekstil {
     }
 
     private String getOsnovneKarakteristike(){
-        String osnovneKarakteristike = "Мерни опсег: " + this.merniOpseg + "; Најмањи подељак скале: " + this.najmanjiPodeljak;
+        String osnovneKarakteristike = "Мерни опсег: " + this.merniOpseg + "; Најмањи подељак скале: " + this.najmanjiPodeljak + "; Класа тачности: " + this.klasaTacnosti;
         return osnovneKarakteristike;
     }
 }
