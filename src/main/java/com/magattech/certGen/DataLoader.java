@@ -54,29 +54,29 @@ public class DataLoader {
 
     @PostConstruct
     public void addDummyData(){
-//        User adminUser = User.builder()
-//                .firstName("Admin")
-//                .lastName("Adminovic")
-//                .email("admin@gmail.com")
-//                .password(passwordEncoder.encode("123"))
-//                .role(Role.ADMIN)
-//                .build();
-//        userRepository.save(adminUser);
-//
-//        User regularUser = User.builder()
-//                .firstName("User")
-//                .lastName("Regularevic")
-//                .email("user@gmail.com")
-//                .password(passwordEncoder.encode("123"))
-//                .role(Role.USER)
-//                .build();
-//        userRepository.save(regularUser);
-//
-//        VrstaKontrolisanja vrstaKontrolisanja = VrstaKontrolisanja.builder().description("Редовно (периодично)").build();
-//        vrstaKontrolisanjaRepository.save(vrstaKontrolisanja);
-//
-//        VrstaKontrolisanja vrstaKontrolisanja1 = VrstaKontrolisanja.builder().description("Ванредно").build();
-//        vrstaKontrolisanjaRepository.save(vrstaKontrolisanja1);
+        User adminUser = User.builder()
+                .firstName("Admin")
+                .lastName("Adminovic")
+                .email("admin@gmail.com")
+                .password(passwordEncoder.encode("123"))
+                .role(Role.ADMIN)
+                .build();
+        userRepository.save(adminUser);
+
+        User regularUser = User.builder()
+                .firstName("User")
+                .lastName("Regularevic")
+                .email("user@gmail.com")
+                .password(passwordEncoder.encode("123"))
+                .role(Role.USER)
+                .build();
+        userRepository.save(regularUser);
+
+        VrstaKontrolisanja vrstaKontrolisanja = VrstaKontrolisanja.builder().description("Редовно (периодично)").build();
+        vrstaKontrolisanjaRepository.save(vrstaKontrolisanja);
+
+        VrstaKontrolisanja vrstaKontrolisanja1 = VrstaKontrolisanja.builder().description("Ванредно").build();
+        vrstaKontrolisanjaRepository.save(vrstaKontrolisanja1);
 
 //        Kompanija kompanija = Kompanija.builder().name("Kompanija 1").build();
 //        kompanijaRepository.save(kompanija);
@@ -87,9 +87,9 @@ public class DataLoader {
 //
 //       proizvodjacRepository.save(Proizvodjac.builder().name("Proizvodjac 2").build());
 
-//        opremaRepository.save(Oprema.builder().tip(OpremaType.MERNA_LUPA).serBrEtalona("SerBrMerneLupe").date(new Date()).build());
-//        opremaRepository.save(Oprema.builder().tip(OpremaType.MERNI_LENJIR).serBrEtalona("SerBrMernogLenjira").date(new Date()).build());
-//        opremaRepository.save(Oprema.builder().tip(OpremaType.POMICNO_MERILO).serBrEtalona("SerBrPomicnogMerila").date(new Date()).build());
+        opremaRepository.save(Oprema.builder().tip(OpremaType.MERNA_LUPA).serBrEtalona("SerBrMerneLupe").date(new Date()).build());
+        opremaRepository.save(Oprema.builder().tip(OpremaType.MERNI_LENJIR).serBrEtalona("SerBrMernogLenjira").date(new Date()).build());
+        opremaRepository.save(Oprema.builder().tip(OpremaType.POMICNO_MERILO).serBrEtalona("SerBrPomicnogMerila").date(new Date()).build());
 
 //        jednodelnoMeriloRepository.save(JednodelnoMerilo.builder().brojZapisnika("47/23-K1").datum(new Date()).vrstaKontrolisanja("Ванредно").podnosilacZahteva("Kompanija koja je podnela zahtev").korisnik("Kompanija koja je korisnik")
 //                .serijskiBroj("ser000").identifikacioniBroj("id000").proizvodjac("Proizvodjac").oznakaTipa("TIP1").sluzbenaOznakaTipa("TIP S1").meriloJeIspravno(true)
