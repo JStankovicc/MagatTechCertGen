@@ -15,7 +15,7 @@ public interface MernaLetvaRepository extends JpaRepository<MernaLetva, Integer>
 
     List<MernaLetva> findAllByOdobreno(boolean odobreno);
 
-    @Query(value = "SELECT j.broj_zapisnika FROM _merna_letva j WHERE j.broj_zapisnika LIKE %:broj% ORDER BY j.broj_zapisnika DESC LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT j.broj_zapisnika FROM _merna_letva j WHERE j.broj_zapisnika LIKE %:broj% ORDER BY CAST(SUBSTRING(j.broj_zapisnika, INSTR(j.broj_zapisnika, 'K') + 1) AS UNSIGNED) DESC LIMIT 1", nativeQuery = true)
     String findBiggestBrojZapisnika(@Param("broj") String broj);
 
     List<MernaLetva> findAllByBrojZapisnikaLike(String formattedBrojSeta);
