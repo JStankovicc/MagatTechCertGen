@@ -22,6 +22,9 @@ public class BrojZapisnikaServiceImpl implements BrojZapisnikaService {
     private final MasinaZaMerenjeRepository masinaZaMerenjeRepository;
     private final MetriZaTekstilRepository metriZaTekstilRepository;
     private final SlozivoMeriloRepository slozivoMeriloRepository;
+    private final MernaTrakaSaViskom25mRepository mernaTrakaSaViskom25mRepository;
+    private final MernaTraka5mRepository mernaTraka5mRepository;
+    private final MernaTraka25mRepository mernaTraka25mRepository;
 
     @Override
     public List<String> getAll(){
@@ -60,6 +63,9 @@ public class BrojZapisnikaServiceImpl implements BrojZapisnikaService {
         addToNonNull(stringovi, jednodelnoMeriloRepository.findBiggestBrojZapisnika(broj));
         addToNonNull(stringovi, mernaLetvaRepository.findBiggestBrojZapisnika(broj));
         addToNonNull(stringovi, mernaTrakaSaViskomRepository.findBiggestBrojZapisnika(broj));
+        addToNonNull(stringovi, mernaTrakaSaViskom25mRepository.findBiggestBrojZapisnika(broj));
+        addToNonNull(stringovi, mernaTraka5mRepository.findBiggestBrojZapisnika(broj));
+        addToNonNull(stringovi, mernaTraka25mRepository.findBiggestBrojZapisnika(broj));
         addToNonNull(stringovi, masinaZaMerenjeRepository.findBiggestBrojZapisnika(broj));
         addToNonNull(stringovi, metriZaTekstilRepository.findBiggestBrojZapisnika(broj));
         addToNonNull(stringovi, slozivoMeriloRepository.findBiggestBrojZapisnika(broj));
