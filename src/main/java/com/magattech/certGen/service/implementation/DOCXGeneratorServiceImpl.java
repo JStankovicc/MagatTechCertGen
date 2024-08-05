@@ -3648,8 +3648,10 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
 
             XWPFRun newRun = paragraph.createRun();
             newRun.setText(newText, 0);
+            newRun.setFontSize(12);
         }
     }
+
 
     private String calculateAverage(String value1, String value2, String value3) {
         char decimalSeparator = ',';
