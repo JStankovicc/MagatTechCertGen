@@ -90,8 +90,8 @@ public class DataLoader {
 //        opremaRepository.save(Oprema.builder().tip(OpremaType.MERNA_LUPA).serBrEtalona("SerBrMerneLupe").date(new Date()).build());
 //        opremaRepository.save(Oprema.builder().tip(OpremaType.MERNI_LENJIR).serBrEtalona("SerBrMernogLenjira").date(new Date()).build());
 //        opremaRepository.save(Oprema.builder().tip(OpremaType.POMICNO_MERILO).serBrEtalona("SerBrPomicnogMerila").date(new Date()).build());
-
-//        jednodelnoMeriloRepository.save(JednodelnoMerilo.builder().brojZapisnika("47/23-K1").datum(new Date()).vrstaKontrolisanja("Ванредно").podnosilacZahteva("Kompanija koja je podnela zahtev").korisnik("Kompanija koja je korisnik")
+//
+//        jednodelnoMeriloRepository.save(JednodelnoMerilo.builder().brojZapisnika("1/24-K1").datum(new Date()).vrstaKontrolisanja("Ванредно").podnosilacZahteva("Kompanija koja je podnela zahtev").korisnik("Kompanija koja je korisnik")
 //                .serijskiBroj("ser000").identifikacioniBroj("id000").proizvodjac("Proizvodjac").oznakaTipa("TIP1").sluzbenaOznakaTipa("TIP S1").meriloJeIspravno(true)
 //                .merniOpseg("0 mm do 1 mm").najmanjiPodeljak("1 cm").klasaTacnosti("III").temperatura("19.1").vlaznostVazduha("43,9")
 //                .napomena("Napomena").odstupanje1("-0,80").odstupanje2("0").odstupanje3("-0,90").odstupanje4("-0,90").odstupanje5("-1").ndg1("±2,6")
@@ -111,7 +111,7 @@ public class DataLoader {
 //                .greska7("2863-2864").greska8("2864-2865").greskaPodeljka1("-0,05").greskaPodeljka2("-0,10").greskaPodeljka3("-0,05").greskaPodeljka4("-0,05").greskaPodeljka5("0").greskaPodeljka6("-0,10").greskaPodeljka7("-0,10").greskaPodeljka8("-0,05")
 //                .ndg7("±0,4").ndr1("0,4").brojMernogLenjira("650462").brojMerneLupe("2049").skinutiZigovi("63;22").postavljeniZigovi("25;131").napomena("NAPOMENA").meriloIspunjavaZahteve(true).komentar2("Komentar broj 2").etalonirao("Nikola Danilovic").odobrio("Maja Aleksic").odobreno(false).pravilnik("PRAVILNIK").build());
 //
-//
+
 //        mernaTrakaSaViskomRepository.save(MernaTrakaSaViskom.builder().brojZapisnika("47/23-K1").datum(new Date()).vrstaKontrolisanja("Prvo").podnosilacZahteva("Neki doo").korisnik("Drugi doo").serijskiBroj("46/23").identifikacioniBroj("/")
 //                .proizvodjac("Neka firma").oznakaTipa("Tip").sluzbenaOznakaTipa("SL TIP").merniOpseg("0 mm do 10 m").najmanjiPodeljak("1 mm"). klasaTacnosti("II").temperatura("19,4").vlaznostVazduha("49,4")
 //                .meriloJeIspravno(true).napomena("NAPOMENA").odstupanje1("0").odstupanje2("-0,10").odstupanje3("-0,15").odstupanje4("-0,30").odstupanje5("-0,40").odstupanje6("-0,50").odstupanje7("-0,55")
@@ -120,12 +120,12 @@ public class DataLoader {
 //                .greskaPodeljka1("-0,05").greskaPodeljka2("0").greskaPodeljka3("0").greskaPodeljka4("0").greskaPodeljka5("-0,05").greskaPodeljka6("0").greskaPodeljka7("0").greskaPodeljka8("-0,05").ndg12("±0,2").ndr1("0,2")
 //                .brojMernogLenjira("650462").brojMerneLupe("2049").skinutiZigovi("/").postavljeniZigovi("25;131").meriloIspunjavaZahteve(true).komentar2("Komentar 2").etalonirao("Nikola Danilovic").odobrio("Maja Aleksic").odobreno(false).pravilnik("PRAVILNIK").build());
 //
-//        masinaZaMerenjeRepository.save(MasinaZaMerenje.builder().brojZapisnika("47/23-K2").datum(new Date()).vrstaKontrolisanja("Periodicno (redovno)").podnosilacZahteva("Elektronapon doo").korisnik("Elektronapon doo").serijskiBroj("/").identifikacioniBroj("85434")
+//        masinaZaMerenjeRepository.save(MasinaZaMerenje.builder().brojZapisnika("1/24-K2").datum(new Date()).vrstaKontrolisanja("Periodicno (redovno)").podnosilacZahteva("Elektronapon doo").korisnik("Elektronapon doo").serijskiBroj("/").identifikacioniBroj("85434")
 //                .proizvodjac("Minion").oznakaTipa("VM-1").sluzbenaOznakaTipa("D-8-17").merniOpseg("50 m do 99999,9 m").najmanjiPodeljak("0,1 m").klasaTacnosti("/").temperatura("19,5").vlaznostVazduha("45,5").meriloJeIspravno(true).napomena("/")
 //                .merenje1("157,70").merenje2("157,75").merenje3("157,80").proveraIspravnogVodjenja("nijePrimenljivo").proveraIspravnostiPokaznogUredjaja(true).duzinaUzorka("50").debljinaUzorka("0,0065").pokazivanjeMasine("50").odstupanjeOdPraveVrednostiDuzine("0,045").relativnaGreskaIzmereneDuzine("0,09").ndg1("0,5")
 //                .brojMernogLenjira("197").brojPomicnogMerila("711").skinutiZigovi("00202158 (23)").meriloIspunjavaZahteve(true).komentar2("Komentar 2").etalonirao("Milos Belic").odobrio("Maja Aleksic").odobreno(false).pravilnik("PRAVILNIK").build());
 //
-//
+
 //        slozivoMeriloRepository.save(SlozivoMerilo.builder().brojZapisnika("47/23-K2").datum(new Date()).vrstaKontrolisanja("Periodicno (redovno)").podnosilacZahteva("LIBELA").korisnik("DELTA").serijskiBroj("/").identifikacioniBroj("200").proizvodjac("S-VAGA").oznakaTipa("RS").sluzbenaOznakaTipa("D-1-5")
 //                .napomena("/").merniOpseg("0 mm do 1 m").najmanjiPodeljak("1 cm").klasaTacnosti("III").temperatura("19,5").vlaznostVazduha("42,8").meriloJeIspravno(true).odstupanje1("-0,80").odstupanje2("-0,90").odstupanje3("-0,90").odstupanje4("-0,90").odstupanje5("-1,00")
 //                .ndg1("±2,6").greska1("22-23").greska2("23-24").greska3("45-46").greska4("46-47").greska5("62-63").greska6("63-64").greska7("78-79").greska8("79-80").greskaPodeljka1("+0,05").greskaPodeljka2("0").greskaPodeljka3("-0,10").greskaPodeljka4("0").greskaPodeljka5("-0,10").greskaPodeljka6("0").greskaPodeljka7("0").greskaPodeljka8("0")

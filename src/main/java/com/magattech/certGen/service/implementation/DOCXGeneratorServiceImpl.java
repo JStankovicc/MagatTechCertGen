@@ -44,8 +44,8 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 if (text.contains("[brojZapisnika]")) {
                                     replaceText(paragraph, "[brojZapisnika]", jednodelnoMerilo.getBrojZapisnika());
                                 }
-                                if (text.contains("[vrstaKontrolisanja]")) {
-                                    replaceText(paragraph, "[vrstaKontrolisanja]", jednodelnoMerilo.getVrstaKontrolisanja());
+                                if (text.contains("vrstaKontrolisanja")) {
+                                    replaceText(paragraph, "vrstaKontrolisanja", jednodelnoMerilo.getVrstaKontrolisanja());
                                 }
                                 if (text.contains("[podnosilacZahteva]")) {
                                     replaceText(paragraph, "[podnosilacZahteva]", jednodelnoMerilo.getPodnosilacZahteva());
@@ -56,14 +56,14 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 if (text.contains("[serijskiBroj]")) {
                                     replaceText(paragraph, "[serijskiBroj]", jednodelnoMerilo.getSerijskiBroj());
                                 }
-                                if (text.contains("[identifikacioniBroj]")) {
-                                    replaceText(paragraph, "[identifikacioniBroj]", jednodelnoMerilo.getIdentifikacioniBroj());
+                                if (text.contains("identifikacioniBroj")) {
+                                    replaceText(paragraph, "identifikacioniBroj", jednodelnoMerilo.getIdentifikacioniBroj());
                                 }
-                                if (text.contains("[proizvodjac]")) {
-                                    replaceText(paragraph, "[proizvodjac]", jednodelnoMerilo.getProizvodjac());
+                                if (text.contains("proizvodjac")) {
+                                    replaceText(paragraph, "proizvodjac", jednodelnoMerilo.getProizvodjac());
                                 }
-                                if (text.contains("[oznakaTipa]")) {
-                                    replaceText(paragraph, "[oznakaTipa]", jednodelnoMerilo.getOznakaTipa());
+                                if (text.contains("oznakaTipa")) {
+                                    replaceText(paragraph, "oznakaTipa", jednodelnoMerilo.getOznakaTipa());
                                 }
                                 if (text.contains("sluzbenaOznakaTipa")) {
                                     replaceText(paragraph, "sluzbenaOznakaTipa", jednodelnoMerilo.getSluzbenaOznakaTipa());
@@ -436,8 +436,8 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 if (text.contains("brojZapisnika")) {
                                     replaceText(paragraph, "brojZapisnika", mernaLetva.getBrojZapisnika());
                                 }
-                                if (text.contains("[vrstaKontrolisanja]")) {
-                                    replaceText(paragraph, "[vrstaKontrolisanja]", mernaLetva.getVrstaKontrolisanja());
+                                if (text.contains("vrstaKontrolisanja")) {
+                                    replaceText(paragraph, "vrstaKontrolisanja", mernaLetva.getVrstaKontrolisanja());
                                 }
                                 if (text.contains("[podnosilacZahteva]")) {
                                     replaceText(paragraph, "[podnosilacZahteva]", mernaLetva.getPodnosilacZahteva());
@@ -448,14 +448,14 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 if (text.contains("serijskiBroj")) {
                                     replaceText(paragraph, "serijskiBroj", mernaLetva.getSerijskiBroj());
                                 }
-                                if (text.contains("[identifikacioniBroj]")) {
-                                    replaceText(paragraph, "[identifikacioniBroj]", mernaLetva.getIdentifikacioniBroj());
+                                if (text.contains("identifikacioniBroj")) {
+                                    replaceText(paragraph, "identifikacioniBroj", mernaLetva.getIdentifikacioniBroj());
                                 }
-                                if (text.contains("[proizvodjac]")) {
-                                    replaceText(paragraph, "[proizvodjac]", mernaLetva.getProizvodjac());
+                                if (text.contains("proizvodjac")) {
+                                    replaceText(paragraph, "proizvodjac", mernaLetva.getProizvodjac());
                                 }
-                                if (text.contains("[oznakaTipa]")) {
-                                    replaceText(paragraph, "[oznakaTipa]", mernaLetva.getOznakaTipa());
+                                if (text.contains("oznakaTipa")) {
+                                    replaceText(paragraph, "oznakaTipa", mernaLetva.getOznakaTipa());
                                 }
                                 if (text.contains("sluzbenaOznakaTipa")) {
                                     replaceText(paragraph, "sluzbenaOznakaTipa", mernaLetva.getSluzbenaOznakaTipa());
@@ -758,8 +758,8 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 if (text.contains("brojZapisnika")) {
                                     replaceText(paragraph, "brojZapisnika", mernaTrakaSaViskom.getBrojZapisnika());
                                 }
-                                if (text.contains("[vrstaKontrolisanja]")) {
-                                    replaceText(paragraph, "[vrstaKontrolisanja]", mernaTrakaSaViskom.getVrstaKontrolisanja());
+                                if (text.contains("vrstaKontrolisanja")) {
+                                    replaceText(paragraph, "vrstaKontrolisanja", mernaTrakaSaViskom.getVrstaKontrolisanja());
                                 }
                                 if (text.contains("[podnosilacZahteva]")) {
                                     replaceText(paragraph, "[podnosilacZahteva]", mernaTrakaSaViskom.getPodnosilacZahteva());
@@ -770,14 +770,14 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 if (text.contains("serijskiBroj")) {
                                     replaceText(paragraph, "serijskiBroj", mernaTrakaSaViskom.getSerijskiBroj());
                                 }
-                                if (text.contains("[identifikacioniBroj]")) {
-                                    replaceText(paragraph, "[identifikacioniBroj]", mernaTrakaSaViskom.getIdentifikacioniBroj());
+                                if (text.contains("identifikacioniBroj")) {
+                                    replaceText(paragraph, "identifikacioniBroj", mernaTrakaSaViskom.getIdentifikacioniBroj());
                                 }
-                                if (text.contains("[proizvodjac]")) {
-                                    replaceText(paragraph, "[proizvodjac]", mernaTrakaSaViskom.getProizvodjac());
+                                if (text.contains("proizvodjac")) {
+                                    replaceText(paragraph, "proizvodjac", mernaTrakaSaViskom.getProizvodjac());
                                 }
-                                if (text.contains("[oznakaTipa]")) {
-                                    replaceText(paragraph, "[oznakaTipa]", mernaTrakaSaViskom.getOznakaTipa());
+                                if (text.contains("oznakaTipa")) {
+                                    replaceText(paragraph, "oznakaTipa", mernaTrakaSaViskom.getOznakaTipa());
                                 }
                                 if (text.contains("sluzbenaOznakaTipa")) {
                                     replaceText(paragraph, "sluzbenaOznakaTipa", mernaTrakaSaViskom.getSluzbenaOznakaTipa());
@@ -1099,8 +1099,8 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 if (text.contains("brojZapisnika")) {
                                     replaceText(paragraph, "brojZapisnika", mernaTrakaSaViskom.getBrojZapisnika());
                                 }
-                                if (text.contains("[vrstaKontrolisanja]")) {
-                                    replaceText(paragraph, "[vrstaKontrolisanja]", mernaTrakaSaViskom.getVrstaKontrolisanja());
+                                if (text.contains("vrstaKontrolisanja")) {
+                                    replaceText(paragraph, "vrstaKontrolisanja", mernaTrakaSaViskom.getVrstaKontrolisanja());
                                 }
                                 if (text.contains("[podnosilacZahteva]")) {
                                     replaceText(paragraph, "[podnosilacZahteva]", mernaTrakaSaViskom.getPodnosilacZahteva());
@@ -1111,14 +1111,14 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 if (text.contains("serijskiBroj")) {
                                     replaceText(paragraph, "serijskiBroj", mernaTrakaSaViskom.getSerijskiBroj());
                                 }
-                                if (text.contains("[identifikacioniBroj]")) {
-                                    replaceText(paragraph, "[identifikacioniBroj]", mernaTrakaSaViskom.getIdentifikacioniBroj());
+                                if (text.contains("identifikacioniBroj")) {
+                                    replaceText(paragraph, "identifikacioniBroj", mernaTrakaSaViskom.getIdentifikacioniBroj());
                                 }
-                                if (text.contains("[proizvodjac]")) {
-                                    replaceText(paragraph, "[proizvodjac]", mernaTrakaSaViskom.getProizvodjac());
+                                if (text.contains("proizvodjac")) {
+                                    replaceText(paragraph, "proizvodjac", mernaTrakaSaViskom.getProizvodjac());
                                 }
-                                if (text.contains("[oznakaTipa]")) {
-                                    replaceText(paragraph, "[oznakaTipa]", mernaTrakaSaViskom.getOznakaTipa());
+                                if (text.contains("oznakaTipa")) {
+                                    replaceText(paragraph, "oznakaTipa", mernaTrakaSaViskom.getOznakaTipa());
                                 }
                                 if (text.contains("sluzbenaOznakaTipa")) {
                                     replaceText(paragraph, "sluzbenaOznakaTipa", mernaTrakaSaViskom.getSluzbenaOznakaTipa());
@@ -1500,8 +1500,8 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 if (text.contains("brojZapisnika")) {
                                     replaceText(paragraph, "brojZapisnika", mernaTrakaSaViskom.getBrojZapisnika());
                                 }
-                                if (text.contains("[vrstaKontrolisanja]")) {
-                                    replaceText(paragraph, "[vrstaKontrolisanja]", mernaTrakaSaViskom.getVrstaKontrolisanja());
+                                if (text.contains("vrstaKontrolisanja")) {
+                                    replaceText(paragraph, "vrstaKontrolisanja", mernaTrakaSaViskom.getVrstaKontrolisanja());
                                 }
                                 if (text.contains("[podnosilacZahteva]")) {
                                     replaceText(paragraph, "[podnosilacZahteva]", mernaTrakaSaViskom.getPodnosilacZahteva());
@@ -1512,14 +1512,14 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 if (text.contains("serijskiBroj")) {
                                     replaceText(paragraph, "serijskiBroj", mernaTrakaSaViskom.getSerijskiBroj());
                                 }
-                                if (text.contains("[identifikacioniBroj]")) {
-                                    replaceText(paragraph, "[identifikacioniBroj]", mernaTrakaSaViskom.getIdentifikacioniBroj());
+                                if (text.contains("identifikacioniBroj")) {
+                                    replaceText(paragraph, "identifikacioniBroj", mernaTrakaSaViskom.getIdentifikacioniBroj());
                                 }
-                                if (text.contains("[proizvodjac]")) {
-                                    replaceText(paragraph, "[proizvodjac]", mernaTrakaSaViskom.getProizvodjac());
+                                if (text.contains("proizvodjac")) {
+                                    replaceText(paragraph, "proizvodjac", mernaTrakaSaViskom.getProizvodjac());
                                 }
-                                if (text.contains("[oznakaTipa]")) {
-                                    replaceText(paragraph, "[oznakaTipa]", mernaTrakaSaViskom.getOznakaTipa());
+                                if (text.contains("oznakaTipa")) {
+                                    replaceText(paragraph, "oznakaTipa", mernaTrakaSaViskom.getOznakaTipa());
                                 }
                                 if (text.contains("sluzbenaOznakaTipa")) {
                                     replaceText(paragraph, "sluzbenaOznakaTipa", mernaTrakaSaViskom.getSluzbenaOznakaTipa());
@@ -1820,8 +1820,8 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 if (text.contains("brojZapisnika")) {
                                     replaceText(paragraph, "brojZapisnika", mernaTrakaSaViskom.getBrojZapisnika());
                                 }
-                                if (text.contains("[vrstaKontrolisanja]")) {
-                                    replaceText(paragraph, "[vrstaKontrolisanja]", mernaTrakaSaViskom.getVrstaKontrolisanja());
+                                if (text.contains("vrstaKontrolisanja")) {
+                                    replaceText(paragraph, "vrstaKontrolisanja", mernaTrakaSaViskom.getVrstaKontrolisanja());
                                 }
                                 if (text.contains("[podnosilacZahteva]")) {
                                     replaceText(paragraph, "[podnosilacZahteva]", mernaTrakaSaViskom.getPodnosilacZahteva());
@@ -1832,14 +1832,14 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 if (text.contains("serijskiBroj")) {
                                     replaceText(paragraph, "serijskiBroj", mernaTrakaSaViskom.getSerijskiBroj());
                                 }
-                                if (text.contains("[identifikacioniBroj]")) {
-                                    replaceText(paragraph, "[identifikacioniBroj]", mernaTrakaSaViskom.getIdentifikacioniBroj());
+                                if (text.contains("identifikacioniBroj")) {
+                                    replaceText(paragraph, "identifikacioniBroj", mernaTrakaSaViskom.getIdentifikacioniBroj());
                                 }
-                                if (text.contains("[proizvodjac]")) {
-                                    replaceText(paragraph, "[proizvodjac]", mernaTrakaSaViskom.getProizvodjac());
+                                if (text.contains("proizvodjac")) {
+                                    replaceText(paragraph, "proizvodjac", mernaTrakaSaViskom.getProizvodjac());
                                 }
-                                if (text.contains("[oznakaTipa]")) {
-                                    replaceText(paragraph, "[oznakaTipa]", mernaTrakaSaViskom.getOznakaTipa());
+                                if (text.contains("oznakaTipa")) {
+                                    replaceText(paragraph, "oznakaTipa", mernaTrakaSaViskom.getOznakaTipa());
                                 }
                                 if (text.contains("sluzbenaOznakaTipa")) {
                                     replaceText(paragraph, "sluzbenaOznakaTipa", mernaTrakaSaViskom.getSluzbenaOznakaTipa());
@@ -2218,8 +2218,8 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 if (text.contains("brojZapisnika")) {
                                     replaceText(paragraph, "brojZapisnika", masinaZaMerenje.getBrojZapisnika());
                                 }
-                                if (text.contains("[vrstaKontrolisanja]")) {
-                                    replaceText(paragraph, "[vrstaKontrolisanja]", masinaZaMerenje.getVrstaKontrolisanja());
+                                if (text.contains("vrstaKontrolisanja")) {
+                                    replaceText(paragraph, "vrstaKontrolisanja", masinaZaMerenje.getVrstaKontrolisanja());
                                 }
                                 if (text.contains("podnosilacZahteva")) {
                                     replaceText(paragraph, "podnosilacZahteva", masinaZaMerenje.getPodnosilacZahteva());
@@ -2230,14 +2230,14 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 if (text.contains("serijskiBroj")) {
                                     replaceText(paragraph, "serijskiBroj", masinaZaMerenje.getSerijskiBroj());
                                 }
-                                if (text.contains("[identifikacioniBroj]")) {
-                                    replaceText(paragraph, "[identifikacioniBroj]", masinaZaMerenje.getIdentifikacioniBroj());
+                                if (text.contains("identifikacioniBroj")) {
+                                    replaceText(paragraph, "identifikacioniBroj", masinaZaMerenje.getIdentifikacioniBroj());
                                 }
-                                if (text.contains("[proizvodjac]")) {
-                                    replaceText(paragraph, "[proizvodjac]", masinaZaMerenje.getProizvodjac());
+                                if (text.contains("proizvodjac")) {
+                                    replaceText(paragraph, "proizvodjac", masinaZaMerenje.getProizvodjac());
                                 }
-                                if (text.contains("[oznakaTipa]")) {
-                                    replaceText(paragraph, "[oznakaTipa]", masinaZaMerenje.getOznakaTipa());
+                                if (text.contains("oznakaTipa")) {
+                                    replaceText(paragraph, "oznakaTipa", masinaZaMerenje.getOznakaTipa());
                                 }
                                 if (text.contains("sluzbenaOznakaTipa")) {
                                     replaceText(paragraph, "sluzbenaOznakaTipa", masinaZaMerenje.getSluzbenaOznakaTipa());
@@ -2515,8 +2515,8 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 if (text.contains("[brojZapisnika]")) {
                                     replaceText(paragraph, "[brojZapisnika]", slozivoMerilo.getBrojZapisnika());
                                 }
-                                if (text.contains("[vrstaKontrolisanja]")) {
-                                    replaceText(paragraph, "[vrstaKontrolisanja]", slozivoMerilo.getVrstaKontrolisanja());
+                                if (text.contains("vrstaKontrolisanja")) {
+                                    replaceText(paragraph, "vrstaKontrolisanja", slozivoMerilo.getVrstaKontrolisanja());
                                 }
                                 if (text.contains("[podnosilacZahteva]")) {
                                     replaceText(paragraph, "[podnosilacZahteva]", slozivoMerilo.getPodnosilacZahteva());
@@ -2524,17 +2524,17 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 if (text.contains("[vlasnikKorisnik]")) {
                                     replaceText(paragraph, "[vlasnikKorisnik]", slozivoMerilo.getKorisnik());
                                 }
-                                if (text.contains("[serijskiBroj]")) {
-                                    replaceText(paragraph, "[serijskiBroj]", slozivoMerilo.getSerijskiBroj());
+                                if (text.contains("serijskiBroj")) {
+                                    replaceText(paragraph, "serijskiBroj", slozivoMerilo.getSerijskiBroj());
                                 }
-                                if (text.contains("[identifikacioniBroj]")) {
-                                    replaceText(paragraph, "[identifikacioniBroj]", slozivoMerilo.getIdentifikacioniBroj());
+                                if (text.contains("identifikacioniBroj")) {
+                                    replaceText(paragraph, "identifikacioniBroj", slozivoMerilo.getIdentifikacioniBroj());
                                 }
-                                if (text.contains("[proizvodjac]")) {
-                                    replaceText(paragraph, "[proizvodjac]", slozivoMerilo.getProizvodjac());
+                                if (text.contains("proizvodjac")) {
+                                    replaceText(paragraph, "proizvodjac", slozivoMerilo.getProizvodjac());
                                 }
-                                if (text.contains("[oznakaTipa]")) {
-                                    replaceText(paragraph, "[oznakaTipa]", slozivoMerilo.getOznakaTipa());
+                                if (text.contains("oznakaTipa")) {
+                                    replaceText(paragraph, "oznakaTipa", slozivoMerilo.getOznakaTipa());
                                 }
                                 if (text.contains("sluzbenaOznakaTipa")) {
                                     replaceText(paragraph, "sluzbenaOznakaTipa", slozivoMerilo.getSluzbenaOznakaTipa());
@@ -2908,8 +2908,8 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 if (text.contains("[brojZapisnika]")) {
                                     replaceText(paragraph, "[brojZapisnika]", metriZaTekstil.getBrojZapisnika());
                                 }
-                                if (text.contains("[vrstaKontrolisanja]")) {
-                                    replaceText(paragraph, "[vrstaKontrolisanja]", metriZaTekstil.getVrstaKontrolisanja());
+                                if (text.contains("vrstaKontrolisanja")) {
+                                    replaceText(paragraph, "vrstaKontrolisanja", metriZaTekstil.getVrstaKontrolisanja());
                                 }
                                 if (text.contains("[podnosilacZahteva]")) {
                                     replaceText(paragraph, "[podnosilacZahteva]", metriZaTekstil.getPodnosilacZahteva());
@@ -2917,17 +2917,17 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 if (text.contains("[vlasnikKorisnik]")) {
                                     replaceText(paragraph, "[vlasnikKorisnik]", metriZaTekstil.getKorisnik());
                                 }
-                                if (text.contains("[serijskiBroj]")) {
-                                    replaceText(paragraph, "[serijskiBroj]", metriZaTekstil.getSerijskiBroj());
+                                if (text.contains("serijskiBroj")) {
+                                    replaceText(paragraph, "serijskiBroj", metriZaTekstil.getSerijskiBroj());
                                 }
-                                if (text.contains("[identifikacioniBroj]")) {
-                                    replaceText(paragraph, "[identifikacioniBroj]", metriZaTekstil.getIdentifikacioniBroj());
+                                if (text.contains("identifikacioniBroj")) {
+                                    replaceText(paragraph, "identifikacioniBroj", metriZaTekstil.getIdentifikacioniBroj());
                                 }
-                                if (text.contains("[proizvodjac]")) {
-                                    replaceText(paragraph, "[proizvodjac]", metriZaTekstil.getProizvodjac());
+                                if (text.contains("proizvodjac")) {
+                                    replaceText(paragraph, "proizvodjac", metriZaTekstil.getProizvodjac());
                                 }
-                                if (text.contains("[oznakaTipa]")) {
-                                    replaceText(paragraph, "[oznakaTipa]", metriZaTekstil.getOznakaTipa());
+                                if (text.contains("oznakaTipa")) {
+                                    replaceText(paragraph, "oznakaTipa", metriZaTekstil.getOznakaTipa());
                                 }
                                 if (text.contains("sluzbenaOznakaTipa")) {
                                     replaceText(paragraph, "sluzbenaOznakaTipa", metriZaTekstil.getSluzbenaOznakaTipa());
