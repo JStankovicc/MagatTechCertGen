@@ -85,15 +85,15 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 }
 
                                 if(jednodelnoMerilo.isMeriloJeIspravno()){
-                                    if (text.contains("[cb1]")) {
-                                        replaceText(paragraph, "[cb1]", "☒");
+                                    if (text.contains("cb1")) {
+                                        replaceText(paragraph, "cb1", "☒");
                                     }
                                     if (text.contains("[cb2]")) {
                                         replaceText(paragraph, "[cb2]", "☐");
                                     }
                                 }else {
-                                    if (text.contains("[cb1]")) {
-                                        replaceText(paragraph, "[cb1]", "☐");
+                                    if (text.contains("cb1")) {
+                                        replaceText(paragraph, "cb1", "☐");
                                     }
                                     if (text.contains("[cb2]")) {
                                         replaceText(paragraph, "[cb2]", "☒");
