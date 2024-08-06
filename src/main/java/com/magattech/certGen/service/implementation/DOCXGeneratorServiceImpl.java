@@ -3493,6 +3493,12 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                             run.setText(text, 0);
                         }
 
+                        if (text.contains("datum")) {
+                            text = text.replace("datum", meriloHelper.getDatum() + ".");
+                            run.setText(text, 0);
+                            //replaceText(paragraph, "datum", meriloHelper.getDatum());
+                        }
+
                     }
                 }
             }
@@ -3530,7 +3536,7 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                     replaceText(paragraph, "serijskiBroj", meriloHelper.getSerijskiBroj());
                                 }
                                 if (text.contains("datum")) {
-                                    replaceText(paragraph, "datum", meriloHelper.getDatum());
+                                    replaceText(paragraph, "datum", meriloHelper.getDatum() + ".");
                                 }
                                 if (text.contains("identifikacioniBroj")) {
                                     replaceText(paragraph, "identifikacioniBroj", meriloHelper.getIdentifikacioniBroj());
