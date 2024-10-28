@@ -3649,7 +3649,7 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
             razlika = val2 - val1;
         }
 
-        return String.valueOf(razlika);
+        return String.valueOf(razlika).replace('.',',');
     }
 
     private void replaceText(XWPFParagraph paragraph, String placeholder, String replacement) {
