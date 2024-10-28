@@ -156,7 +156,7 @@ public class MernaLetva {
     }
 
     public MeriloHelper getMeriloHeplper(){
-        MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Мерна летва").brojZapisnika(this.brojZapisnika)
+        MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Мерна летва за мерење нивоа течности").brojZapisnika(this.brojZapisnika)
                 .tip(this.oznakaTipa)
                 .datum(getDatumFormat())
                 .merniOpseg(this.merniOpseg)
@@ -197,7 +197,7 @@ public class MernaLetva {
     }
 
     private String getOsnovneKarakteristike(){
-        String osnovneKarakteristike = "Мерни опсег: " + this.merniOpseg + "; Најмањи подељак скале: " + this.najmanjiPodeljak + "; Класа тачности: " + this.klasaTacnosti;
+        String osnovneKarakteristike = "Мерни опсег: " + this.merniOpseg + "; Најмањи подељак скале:trenutak " + this.najmanjiPodeljak + "; Класа тачности: " + this.klasaTacnosti;
         return osnovneKarakteristike;
     }
 }

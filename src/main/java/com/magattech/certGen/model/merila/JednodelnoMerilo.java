@@ -190,7 +190,7 @@ public class JednodelnoMerilo {
     }
 
     public MeriloHelper getMeriloHeplper(){
-        MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Једноделно мерило").brojZapisnika(this.brojZapisnika)
+        MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Мерни лењир (Једноделно мерило дужине)").brojZapisnika(this.brojZapisnika)
                 .tip(this.oznakaTipa)
                 .datum(getDatumFormat())
                 .merniOpseg(this.merniOpseg)
@@ -231,7 +231,7 @@ public class JednodelnoMerilo {
     }
 
     private String getOsnovneKarakteristike(){
-        String osnovneKarakteristike = "Мерни опсег: " + this.merniOpseg + "; Најмањи подељак скале: " + this.najmanjiPodeljak + "; Класа тачности: " + this.klasaTacnosti;
+        String osnovneKarakteristike = "Мерни опсег: " + this.merniOpseg + "; Најмањи подељак скале:trenutak " + this.najmanjiPodeljak + "; Класа тачности: " + this.klasaTacnosti;
         return osnovneKarakteristike;
     }
 
