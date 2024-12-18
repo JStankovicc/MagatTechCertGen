@@ -3420,9 +3420,25 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                             run.setText(text, 0);
                         }
                         if (text.contains("osnovneKarakteristike")) {
-                            text = text.replace("osnovneKarakteristike", meriloHelper.getOsnovneKarakteristike());
-                            run.setText(text, 0);
+                            String osnovneKarakteristike = meriloHelper.getOsnovneKarakteristike();
+                            int klasaTacnostiIndex = osnovneKarakteristike.indexOf("Класа тачности");
+                            if (klasaTacnostiIndex > 57 && klasaTacnostiIndex <= 62) {
+                                String[] delovi = osnovneKarakteristike.split("trenutak", 2);
+                                run.setText(delovi[0], 0);
+                                run.addCarriageReturn();
+                                if (delovi.length > 1) {
+                                    //run.addCarriageReturn();
+                                    run.setText(delovi[1], 1);
+                                }
+                            } else {
+                                osnovneKarakteristike = osnovneKarakteristike.replace("trenutak", "");
+                                text = text.replace("osnovneKarakteristike", osnovneKarakteristike);
+                                run.setText(text,0);
+                            }
+                            //text = text.replace("osnovneKarakteristike", osnovneKarakteristike);
                         }
+
+
                         if (text.contains("vlasnikKorisnik")) {
                             text = text.replace("vlasnikKorisnik", meriloHelper.getVlasnikKorisnik());
                             run.setText(text, 0);
@@ -3432,7 +3448,8 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                             run.setText(text, 0);
                         }
                         if (text.contains("datum")) {
-                            text = text.replace("datum", meriloHelper.getDatum());
+                            String s = meriloHelper.getDatum().toString().concat(".");
+                            text = text.replace("datum", s);
                             run.setText(text, 0);
                         }
                         if (text.contains("drugidat")) {
@@ -3507,6 +3524,10 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                         for (XWPFParagraph paragraph : cell.getParagraphs()) {
                             String text = paragraph.getText();
                             if (text != null) {
+                                if (text.contains("bz1")) {
+                                    String s = meriloHelper.getBrojZapisnika().concat(".");
+                                    replaceText(paragraph, "bz1", s);
+                                }
                                 if (text.contains("brojZapisnika")) {
                                     replaceText(paragraph, "brojZapisnika", meriloHelper.getBrojZapisnika());
                                 }
@@ -3536,6 +3557,9 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 }
                                 if (text.contains("datum")) {
                                     replaceText(paragraph, "datum", meriloHelper.getDatum() + ".");
+                                }
+                                if (text.contains("D2")) {
+                                    replaceText(paragraph, "D2", meriloHelper.getDatum2());
                                 }
                                 if (text.contains("identifikacioniBroj")) {
                                     replaceText(paragraph, "identifikacioniBroj", meriloHelper.getIdentifikacioniBroj());
@@ -3624,7 +3648,7 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
             razlika = val2 - val1;
         }
 
-        return String.valueOf(razlika);
+        return String.valueOf(razlika).replace('.',',');
     }
 
     private void replaceText(XWPFParagraph paragraph, String placeholder, String replacement) {

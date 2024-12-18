@@ -162,7 +162,7 @@ public class MasinaZaMerenje {
     }
 
     private String getOsnovneKarakteristike(){
-        String osnovneKarakteristike = "Мерни опсег: " + this.merniOpseg + "; Најмањи подељак скале: " + this.najmanjiPodeljak + "; Класа тачности: " + this.klasaTacnosti;
+        String osnovneKarakteristike = "Мерни опсег: " + this.merniOpseg + "; Најмањи подељак скале:trenutak " + this.najmanjiPodeljak + "; Класа тачности: " + this.klasaTacnosti;
         return osnovneKarakteristike;
     }
 }
