@@ -1244,11 +1244,10 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                                 for (XWPFParagraph innerParagraph : innerCell.getParagraphs()) {
                                                     String innerText = innerParagraph.getText();
                                                     if (innerText != null) {
-
                                                         if (innerText.contains("unit1")) {
                                                             replaceText(innerParagraph, "unit1", mernaTrakaSaViskom.getUnit1());
-                                                        }if (innerText.contains("unit2")) {
-                                                            replaceText(innerParagraph, "unit2", mernaTrakaSaViskom.getUnit2());
+                                                        }if (innerText.contains("[unit2]")) {
+                                                            replaceText(innerParagraph, "[unit2]", mernaTrakaSaViskom.getUnit2());
                                                         }
 
                                                         if (innerText.contains("Odstupanje1")) {
