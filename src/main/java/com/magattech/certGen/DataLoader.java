@@ -52,8 +52,8 @@ public class DataLoader {
         this.brojZapisnikaRepository = brojZapisnikaRepository;
     }
 
-//    @PostConstruct
-//    public void addDummyData(){
+    @PostConstruct
+    public void addDummyData(){
 //        User adminUser = User.builder()
 //                .firstName("Admin")
 //                .lastName("Adminovic")
