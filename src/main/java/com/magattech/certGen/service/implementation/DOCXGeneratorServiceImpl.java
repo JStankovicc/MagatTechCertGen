@@ -162,7 +162,13 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 }
 
                                 if (text.contains("[komentar2]")) {
-                                    replaceText(paragraph, "[komentar2]", jednodelnoMerilo.getKomentar2());
+                                    if(jednodelnoMerilo.getKomentar2().equals("/")){
+                                        replaceText(paragraph, "[komentar2]", jednodelnoMerilo.getRazlogOdbijanja());
+                                    } else if (jednodelnoMerilo.getPropisaniZahtevi().equals("")) {
+                                        replaceText(paragraph, "[komentar2]", jednodelnoMerilo.getKomentar2());
+                                    }else {
+                                        replaceText(paragraph, "[komentar2]", jednodelnoMerilo.getKomentar2() + ". " + jednodelnoMerilo.getRazlogOdbijanja());
+                                    }
                                 }
 
                                 if (text.contains("[datum]")) {
@@ -550,8 +556,13 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 }
 
                                 if (text.contains("[komentar2]")) {
-                                    replaceText(paragraph, "[komentar2]", mernaLetva.getKomentar2());
-                                }
+                                    if(mernaLetva.getKomentar2().equals("/")){
+                                        replaceText(paragraph, "[komentar2]", mernaLetva.getRazlogOdbijanja());
+                                    } else if (mernaLetva.getPropisaniZahtevi().equals("")) {
+                                        replaceText(paragraph, "[komentar2]", mernaLetva.getKomentar2());
+                                    }else {
+                                        replaceText(paragraph, "[komentar2]", mernaLetva.getKomentar2() + ". " + mernaLetva.getRazlogOdbijanja());
+                                    }                                }
 
                                 if (text.contains("[datum]")) {
                                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -872,8 +883,13 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 }
 
                                 if (text.contains("[komentar2]")) {
-                                    replaceText(paragraph, "[komentar2]", mernaTrakaSaViskom.getKomentar2());
-                                }
+                                    if(mernaTrakaSaViskom.getKomentar2().equals("/")){
+                                        replaceText(paragraph, "[komentar2]", mernaTrakaSaViskom.getRazlogOdbijanja());
+                                    } else if (mernaTrakaSaViskom.getPropisaniZahtevi().equals("")) {
+                                        replaceText(paragraph, "[komentar2]", mernaTrakaSaViskom.getKomentar2());
+                                    }else {
+                                        replaceText(paragraph, "[komentar2]", mernaTrakaSaViskom.getKomentar2() + ". " + mernaTrakaSaViskom.getRazlogOdbijanja());
+                                    }                                }
 
                                 if (text.contains("[datum]")) {
                                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -1213,8 +1229,13 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 }
 
                                 if (text.contains("[komentar2]")) {
-                                    replaceText(paragraph, "[komentar2]", mernaTrakaSaViskom.getKomentar2());
-                                }
+                                    if(mernaTrakaSaViskom.getKomentar2().equals("/")){
+                                        replaceText(paragraph, "[komentar2]", mernaTrakaSaViskom.getRazlogOdbijanja());
+                                    } else if (mernaTrakaSaViskom.getPropisaniZahtevi().equals("")) {
+                                        replaceText(paragraph, "[komentar2]", mernaTrakaSaViskom.getKomentar2());
+                                    }else {
+                                        replaceText(paragraph, "[komentar2]", mernaTrakaSaViskom.getKomentar2() + ". " + mernaTrakaSaViskom.getRazlogOdbijanja());
+                                    }                                }
 
                                 if (text.contains("[datum]")) {
                                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -1613,8 +1634,13 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 }
 
                                 if (text.contains("[komentar2]")) {
-                                    replaceText(paragraph, "[komentar2]", mernaTrakaSaViskom.getKomentar2());
-                                }
+                                    if(mernaTrakaSaViskom.getKomentar2().equals("/")){
+                                        replaceText(paragraph, "[komentar2]", mernaTrakaSaViskom.getRazlogOdbijanja());
+                                    } else if (mernaTrakaSaViskom.getPropisaniZahtevi().equals("")) {
+                                        replaceText(paragraph, "[komentar2]", mernaTrakaSaViskom.getKomentar2());
+                                    }else {
+                                        replaceText(paragraph, "[komentar2]", mernaTrakaSaViskom.getKomentar2() + ". " + mernaTrakaSaViskom.getRazlogOdbijanja());
+                                    }                                }
 
                                 if (text.contains("[datum]")) {
                                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -1933,8 +1959,13 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 }
 
                                 if (text.contains("[komentar2]")) {
-                                    replaceText(paragraph, "[komentar2]", mernaTrakaSaViskom.getKomentar2());
-                                }
+                                    if(mernaTrakaSaViskom.getKomentar2().equals("/")){
+                                        replaceText(paragraph, "[komentar2]", mernaTrakaSaViskom.getRazlogOdbijanja());
+                                    } else if (mernaTrakaSaViskom.getPropisaniZahtevi().equals("")) {
+                                        replaceText(paragraph, "[komentar2]", mernaTrakaSaViskom.getKomentar2());
+                                    }else {
+                                        replaceText(paragraph, "[komentar2]", mernaTrakaSaViskom.getKomentar2() + ". " + mernaTrakaSaViskom.getRazlogOdbijanja());
+                                    }                                }
 
                                 if (text.contains("[datum]")) {
                                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -2331,7 +2362,13 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 }
 
                                 if (text.contains("[komentar2]")) {
-                                    replaceText(paragraph, "[komentar2]", masinaZaMerenje.getKomentar2());
+                                    if(masinaZaMerenje.getKomentar2().equals("/")){
+                                        replaceText(paragraph, "[komentar2]", masinaZaMerenje.getRazlogOdbijanja());
+                                    } else if (masinaZaMerenje.getPropisaniZahtevi().equals("")) {
+                                        replaceText(paragraph, "[komentar2]", masinaZaMerenje.getKomentar2());
+                                    }else {
+                                        replaceText(paragraph, "[komentar2]", masinaZaMerenje.getKomentar2() + ". " + masinaZaMerenje.getRazlogOdbijanja());
+                                    }
                                 }
 
                                 if (text.contains("[datum]")) {
@@ -2628,8 +2665,13 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 }
 
                                 if (text.contains("[komentar2]")) {
-                                    replaceText(paragraph, "[komentar2]", slozivoMerilo.getKomentar2());
-                                }
+                                    if(slozivoMerilo.getKomentar2().equals("/")){
+                                        replaceText(paragraph, "[komentar2]", slozivoMerilo.getRazlogOdbijanja());
+                                    } else if (slozivoMerilo.getPropisaniZahtevi().equals("")) {
+                                        replaceText(paragraph, "[komentar2]", slozivoMerilo.getKomentar2());
+                                    }else {
+                                        replaceText(paragraph, "[komentar2]", slozivoMerilo.getKomentar2() + ". " + slozivoMerilo.getRazlogOdbijanja());
+                                    }                                }
 
                                 if (text.contains("[datum]")) {
                                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -3021,8 +3063,13 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
                                 }
 
                                 if (text.contains("[komentar2]")) {
-                                    replaceText(paragraph, "[komentar2]", metriZaTekstil.getKomentar2());
-                                }
+                                    if(metriZaTekstil.getKomentar2().equals("/")){
+                                        replaceText(paragraph, "[komentar2]", metriZaTekstil.getRazlogOdbijanja());
+                                    } else if (metriZaTekstil.getPropisaniZahtevi().equals("")) {
+                                        replaceText(paragraph, "[komentar2]", metriZaTekstil.getKomentar2());
+                                    }else {
+                                        replaceText(paragraph, "[komentar2]", metriZaTekstil.getKomentar2() + ". " + metriZaTekstil.getRazlogOdbijanja());
+                                    }                                }
 
                                 if (text.contains("[datum]")) {
                                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");

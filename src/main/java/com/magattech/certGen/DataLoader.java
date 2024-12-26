@@ -144,7 +144,7 @@ public class DataLoader {
 //
 //
 //
-//        brojZapisnikaRepository.save(BrojZapisnika.builder().broj(1).godina(24).build());
+        brojZapisnikaRepository.save(BrojZapisnika.builder().broj(1).godina(24).build());
 
     }
 }
