@@ -176,7 +176,7 @@ public class MernaTrakaSaViskom {
     }
 
     public MeriloHelper getMeriloHeplper(){
-        MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Мерна трака са виском").brojZapisnika(this.brojZapisnika)
+        MeriloHelper meriloHelper = MeriloHelper.builder().nazivMerila("Мерна трака с виском").brojZapisnika(this.brojZapisnika)
                 .tip(this.oznakaTipa)
                 .datum(getDatumFormat())
                 .merniOpseg(this.merniOpseg)

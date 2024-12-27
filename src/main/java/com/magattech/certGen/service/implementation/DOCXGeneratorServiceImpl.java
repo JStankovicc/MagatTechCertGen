@@ -551,6 +551,7 @@ public class DOCXGeneratorServiceImpl implements DOCXGeneratorService {
 
                                 if (text.contains("[komentar2]")) {
                                     replaceText(paragraph, "[komentar2]", mernaLetva.getKomentar2());
+                                    
                                 }
 
                                 if (text.contains("[datum]")) {
